@@ -29,7 +29,7 @@ import gradientai
 
 ## Getting Started
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+Please follow the installation procedure and then run the following:
 
 ```python
 
@@ -75,43 +75,43 @@ with gradientai.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://github.com/Preemo-Inc/gradientai-python-sdk*
+All URIs are relative to *https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ModelsApi* | [**complete_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ModelsApi.md#complete_model) | **POST** /models/{id}/completions | Complete model
-*ModelsApi* | [**create_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ModelsApi.md#create_model) | **POST** /models | Create model
-*ModelsApi* | [**delete_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ModelsApi.md#delete_model) | **DELETE** /models/{id} | Delete model.
-*ModelsApi* | [**get_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ModelsApi.md#get_model) | **GET** /models/{id} | Describe model
-*ModelsApi* | [**list_models**](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ModelsApi.md#list_models) | **GET** /models | List available models
-*ModelsApi* | [**train_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ModelsApi.md#train_model) | **PUT** /models/{id} | Train model
+*ModelsApi* | [**complete_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ModelsApi.md#complete_model) | **POST** /models/{id}/completions | Complete model
+*ModelsApi* | [**create_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ModelsApi.md#create_model) | **POST** /models | Create model
+*ModelsApi* | [**delete_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ModelsApi.md#delete_model) | **DELETE** /models/{id} | Delete model.
+*ModelsApi* | [**get_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ModelsApi.md#get_model) | **GET** /models/{id} | Describe model
+*ModelsApi* | [**list_models**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ModelsApi.md#list_models) | **GET** /models | List available models
+*ModelsApi* | [**train_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ModelsApi.md#train_model) | **PUT** /models/{id} | Train model
 
 
 ## Documentation For Models
 
- - [BaseModel](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/BaseModel.md)
- - [CompleteModelBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CompleteModelBodyParams.md)
- - [CompleteModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CompleteModelError.md)
- - [CompleteModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CompleteModelSuccess.md)
- - [CreateModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CreateModelError.md)
- - [CreateModelRequestBody](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CreateModelRequestBody.md)
- - [CreateModelRequestBodyInitialHyperparameters](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CreateModelRequestBodyInitialHyperparameters.md)
- - [CreateModelRequestBodyInitialHyperparametersLoraHyperparameters](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CreateModelRequestBodyInitialHyperparametersLoraHyperparameters.md)
- - [CreateModelRequestBodyInitialHyperparametersTrainingArguments](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CreateModelRequestBodyInitialHyperparametersTrainingArguments.md)
- - [CreateModelRequestBodyModel](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CreateModelRequestBodyModel.md)
- - [CreateModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/CreateModelSuccess.md)
- - [DeleteModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/DeleteModelError.md)
- - [GetModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/GetModelError.md)
- - [GetModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/GetModelSuccess.md)
- - [ListModelsError](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ListModelsError.md)
- - [ListModelsSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ListModelsSuccess.md)
- - [ListModelsSuccessModelsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ListModelsSuccessModelsInner.md)
- - [ModelAdapter](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/ModelAdapter.md)
- - [TrainModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/TrainModelError.md)
- - [TrainModelRequestBody](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/TrainModelRequestBody.md)
- - [TrainModelRequestBodySamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/TrainModelRequestBodySamplesInner.md)
- - [TrainModelRequestBodySamplesInnerFineTuningParameters](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/TrainModelRequestBodySamplesInnerFineTuningParameters.md)
- - [TrainModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/docs/TrainModelSuccess.md)
+ - [BaseModel](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/BaseModel.md)
+ - [CompleteModelBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CompleteModelBodyParams.md)
+ - [CompleteModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CompleteModelError.md)
+ - [CompleteModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CompleteModelSuccess.md)
+ - [CreateModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CreateModelError.md)
+ - [CreateModelRequestBody](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CreateModelRequestBody.md)
+ - [CreateModelRequestBodyInitialHyperparameters](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CreateModelRequestBodyInitialHyperparameters.md)
+ - [CreateModelRequestBodyInitialHyperparametersLoraHyperparameters](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CreateModelRequestBodyInitialHyperparametersLoraHyperparameters.md)
+ - [CreateModelRequestBodyInitialHyperparametersTrainingArguments](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CreateModelRequestBodyInitialHyperparametersTrainingArguments.md)
+ - [CreateModelRequestBodyModel](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CreateModelRequestBodyModel.md)
+ - [CreateModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/CreateModelSuccess.md)
+ - [DeleteModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/DeleteModelError.md)
+ - [GetModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/GetModelError.md)
+ - [GetModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/GetModelSuccess.md)
+ - [ListModelsError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ListModelsError.md)
+ - [ListModelsSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ListModelsSuccess.md)
+ - [ListModelsSuccessModelsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ListModelsSuccessModelsInner.md)
+ - [ModelAdapter](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/ModelAdapter.md)
+ - [TrainModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/TrainModelError.md)
+ - [TrainModelRequestBody](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/TrainModelRequestBody.md)
+ - [TrainModelRequestBodySamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/TrainModelRequestBodySamplesInner.md)
+ - [TrainModelRequestBodySamplesInnerFineTuningParameters](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/TrainModelRequestBodySamplesInnerFineTuningParameters.md)
+ - [TrainModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/docs/TrainModelSuccess.md)
 
 
 <a id="documentation-for-authorization"></a>
