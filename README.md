@@ -6,7 +6,7 @@ Interface for interacting with Gradient AI.
 
 The gradientai-python-sdk library provides convenient access to the [Gradient AI](https://www.gradient.ai/) from applications written in the Python language. It includes a pre-defined set of classes for API resources that initialize themselves dynamically from API responses.
 
-You can find usage examples for the OpenAI Python library in our [API reference](https://docs.gradient.ai/reference) and [SDK quickstart](https://docs.gradient.ai/docs/sdk-quickstart). We also offer an [example](https://github.com/Preemo-Inc/gradient-sdk-python-example) project in Python.
+You can find usage examples for the Gradient AI Python library in our [API reference](https://docs.gradient.ai/reference) and [SDK quickstart](https://docs.gradient.ai/docs/sdk-quickstart). We also offer an [example](https://github.com/Preemo-Inc/gradient-sdk-python-example) project in Python.
 
 ## Requirements
 
