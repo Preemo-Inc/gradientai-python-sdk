@@ -7,6 +7,8 @@ from gradientai.openapi.client.models.complete_model_body_params import (
 )
 from gradientai.pydantic_models.types import CompleteResponse
 
+import asyncio
+from gradientai.helpers.asyncio_threads import to_thread as _asyncio_to_thread
 
 class Guidance(TypedDict):
     type: Literal["choice"]
@@ -24,6 +26,8 @@ class Model(ABC):
         self._api_instance = api_instance
         self._id = id
         self._workspace_id = workspace_id
+        # internal
+        self._async_semaphore = asyncio.Semaphore(8)
 
     @property
     def id(self) -> str:
@@ -60,3 +64,13 @@ class Model(ABC):
             finish_reason=response.finish_reason,
             generated_output=response.generated_output,
         )
+
+    async def acomplete(
+        self,
+        **kwargs,
+    ) -> CompleteResponse:
+        async with self._async_semaphore:
+            response = await _asyncio_to_thread(
+                self.complete, **kwargs
+            )
+        return response

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Generate embeddings
 
-Generates embeddings with the given embeddings model.
+Generates normalized embeddings with the given embeddings model.
 
 ### Example
 
