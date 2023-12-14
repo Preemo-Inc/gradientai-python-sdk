@@ -27,7 +27,7 @@ class GenerateEmbeddingBodyParams(BaseModel):
     """
     GenerateEmbeddingBodyParams
     """
-    inputs: conlist(GenerateEmbeddingBodyParamsInputsInner, min_items=1) = Field(...)
+    inputs: conlist(GenerateEmbeddingBodyParamsInputsInner, max_items=256, min_items=1) = Field(...)
     additional_properties: Dict[str, Any] = {}
     __properties = ["inputs"]
 

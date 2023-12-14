@@ -50,7 +50,7 @@ class EmbeddingsApi(object):
     def generate_embedding(self, slug : StrictStr, x_gradient_workspace_id : constr(strict=True, min_length=1), generate_embedding_body_params : GenerateEmbeddingBodyParams, **kwargs) -> GenerateEmbeddingSuccess:  # noqa: E501
         """Generate embeddings  # noqa: E501
 
-        Generates embeddings with the given embeddings model.  # noqa: E501
+        Generates normalized embeddings with the given embeddings model.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -83,7 +83,7 @@ class EmbeddingsApi(object):
     def generate_embedding_with_http_info(self, slug : StrictStr, x_gradient_workspace_id : constr(strict=True, min_length=1), generate_embedding_body_params : GenerateEmbeddingBodyParams, **kwargs) -> ApiResponse:  # noqa: E501
         """Generate embeddings  # noqa: E501
 
-        Generates embeddings with the given embeddings model.  # noqa: E501
+        Generates normalized embeddings with the given embeddings model.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
