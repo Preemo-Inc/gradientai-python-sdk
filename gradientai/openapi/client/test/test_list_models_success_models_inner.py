@@ -39,6 +39,9 @@ class TestListModelsSuccessModelsInner(unittest.TestCase):
         model = gradientai.openapi.client.models.list_models_success_models_inner.ListModelsSuccessModelsInner()  # noqa: E501
         if include_optional :
             return ListModelsSuccessModelsInner(
+                capabilities = [
+                    'complete'
+                    ], 
                 id = '012345678910111213141516171819202122232425262728293031323334353637383940414243444546474849', 
                 name = '0', 
                 slug = '0', 
@@ -48,6 +51,9 @@ class TestListModelsSuccessModelsInner(unittest.TestCase):
             )
         else :
             return ListModelsSuccessModelsInner(
+                capabilities = [
+                    'complete'
+                    ],
                 id = '012345678910111213141516171819202122232425262728293031323334353637383940414243444546474849',
                 name = '0',
                 slug = '0',

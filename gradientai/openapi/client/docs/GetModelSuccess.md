@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.get_model_success import GetModelSuccess
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of GetModelSuccess from a JSON string
 get_model_success_instance = GetModelSuccess.from_json(json)

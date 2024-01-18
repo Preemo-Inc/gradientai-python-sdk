@@ -40,12 +40,12 @@ class TestCompleteModelErrorOneOf4(unittest.TestCase):
         if include_optional :
             return CompleteModelErrorOneOf4(
                 message = '0', 
-                type = 'unknownModelAdapter'
+                type = 'modelDoesNotSupportGuidance'
             )
         else :
             return CompleteModelErrorOneOf4(
                 message = '0',
-                type = 'unknownModelAdapter',
+                type = 'modelDoesNotSupportGuidance',
         )
         """
 

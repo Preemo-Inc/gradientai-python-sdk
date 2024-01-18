@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.model_adapter import ModelAdapter
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of ModelAdapter from a JSON string
 model_adapter_instance = ModelAdapter.from_json(json)

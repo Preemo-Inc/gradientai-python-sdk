@@ -39,6 +39,7 @@ class TestCompleteModelBodyParams(unittest.TestCase):
         model = gradientai.openapi.client.models.complete_model_body_params.CompleteModelBodyParams()  # noqa: E501
         if include_optional :
             return CompleteModelBodyParams(
+                auto_template = True, 
                 guidance = gradientai.openapi.client.models.complete_model_body_params_guidance.CompleteModelBodyParams_guidance(
                     type = 'choice', 
                     value = [
@@ -46,6 +47,8 @@ class TestCompleteModelBodyParams(unittest.TestCase):
                         ], ), 
                 max_generated_token_count = 0, 
                 query = '0', 
+                rag = gradientai.openapi.client.models.complete_model_body_params_rag.CompleteModelBodyParams_rag(
+                    collection_id = '0', ), 
                 temperature = 1.337, 
                 top_k = 56, 
                 top_p = 1.337

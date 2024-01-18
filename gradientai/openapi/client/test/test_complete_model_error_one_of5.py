@@ -40,12 +40,12 @@ class TestCompleteModelErrorOneOf5(unittest.TestCase):
         if include_optional :
             return CompleteModelErrorOneOf5(
                 message = '0', 
-                type = 'unprocessableContent'
+                type = 'noRagDocumentsFound'
             )
         else :
             return CompleteModelErrorOneOf5(
                 message = '0',
-                type = 'unprocessableContent',
+                type = 'noRagDocumentsFound',
         )
         """
 

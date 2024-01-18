@@ -20,21 +20,24 @@ import json
 
 
 from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, conint, constr
+from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, conint, constr
 from gradientai.openapi.client.models.complete_model_body_params_guidance import CompleteModelBodyParamsGuidance
+from gradientai.openapi.client.models.complete_model_body_params_rag import CompleteModelBodyParamsRag
 
 class CompleteModelBodyParams(BaseModel):
     """
     CompleteModelBodyParams
     """
+    auto_template: Optional[StrictBool] = Field(True, alias="autoTemplate", description="Automatically adds the recommended base model templating.")
     guidance: Optional[CompleteModelBodyParamsGuidance] = None
     max_generated_token_count: Optional[conint(strict=True, lt=512, gt=0)] = Field(None, alias="maxGeneratedTokenCount", description="The maximum number of tokens to generate.")
     query: constr(strict=True, min_length=1) = Field(..., description="The prompt string you are providing the model, to which the model will generate a completion in response.")
+    rag: Optional[CompleteModelBodyParamsRag] = None
     temperature: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="This parameter adjusts the degree of randomness in generation. Higher temperature results in more diverse generations.")
     top_k: Optional[StrictInt] = Field(None, alias="topK", description="This parameter ensures that only the top k most likely tokens are considered for generation at each step.")
     top_p: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="topP", description="This parameter ensures that only the most likely tokens, with total probability mass of p, are considered for generation at each step. If topK is also enabled, topP acts after topK.")
     additional_properties: Dict[str, Any] = {}
-    __properties = ["guidance", "maxGeneratedTokenCount", "query", "temperature", "topK", "topP"]
+    __properties = ["autoTemplate", "guidance", "maxGeneratedTokenCount", "query", "rag", "temperature", "topK", "topP"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,10 +67,18 @@ class CompleteModelBodyParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of guidance
         if self.guidance:
             _dict['guidance'] = self.guidance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of rag
+        if self.rag:
+            _dict['rag'] = self.rag.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if auto_template (nullable) is None
+        # and __fields_set__ contains the field
+        if self.auto_template is None and "auto_template" in self.__fields_set__:
+            _dict['autoTemplate'] = None
 
         # set to None if guidance (nullable) is None
         # and __fields_set__ contains the field
@@ -78,6 +89,11 @@ class CompleteModelBodyParams(BaseModel):
         # and __fields_set__ contains the field
         if self.max_generated_token_count is None and "max_generated_token_count" in self.__fields_set__:
             _dict['maxGeneratedTokenCount'] = None
+
+        # set to None if rag (nullable) is None
+        # and __fields_set__ contains the field
+        if self.rag is None and "rag" in self.__fields_set__:
+            _dict['rag'] = None
 
         # set to None if temperature (nullable) is None
         # and __fields_set__ contains the field
@@ -106,9 +122,11 @@ class CompleteModelBodyParams(BaseModel):
             return CompleteModelBodyParams.parse_obj(obj)
 
         _obj = CompleteModelBodyParams.parse_obj({
+            "auto_template": obj.get("autoTemplate") if obj.get("autoTemplate") is not None else True,
             "guidance": CompleteModelBodyParamsGuidance.from_dict(obj.get("guidance")) if obj.get("guidance") is not None else None,
             "max_generated_token_count": obj.get("maxGeneratedTokenCount"),
             "query": obj.get("query"),
+            "rag": CompleteModelBodyParamsRag.from_dict(obj.get("rag")) if obj.get("rag") is not None else None,
             "temperature": obj.get("temperature"),
             "top_k": obj.get("topK"),
             "top_p": obj.get("topP")

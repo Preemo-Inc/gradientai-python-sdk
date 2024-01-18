@@ -20,7 +20,7 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import StrictBool, constr
+from pydantic import StrictBool, StrictStr, constr
 
 from typing import Any, Dict, Optional
 
@@ -831,18 +831,20 @@ class ModelsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def list_models(self, x_gradient_workspace_id : constr(strict=True, min_length=1), only_base : Optional[StrictBool] = None, **kwargs) -> ListModelsSuccess:  # noqa: E501
+    def list_models(self, x_gradient_workspace_id : constr(strict=True, min_length=1), capability : Optional[StrictStr] = None, only_base : Optional[StrictBool] = None, **kwargs) -> ListModelsSuccess:  # noqa: E501
         """List available models  # noqa: E501
 
         Lists the currently available models in the selected workspace and provides basic information, such as the model name, ID and whether it is a base or fine-tuned model.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_models(x_gradient_workspace_id, only_base, async_req=True)
+        >>> thread = api.list_models(x_gradient_workspace_id, capability, only_base, async_req=True)
         >>> result = thread.get()
 
         :param x_gradient_workspace_id: (required)
         :type x_gradient_workspace_id: str
+        :param capability:
+        :type capability: str
         :param only_base:
         :type only_base: bool
         :param async_req: Whether to execute the request asynchronously.
@@ -859,21 +861,23 @@ class ModelsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the list_models_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.list_models_with_http_info(x_gradient_workspace_id, only_base, **kwargs)  # noqa: E501
+        return self.list_models_with_http_info(x_gradient_workspace_id, capability, only_base, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_models_with_http_info(self, x_gradient_workspace_id : constr(strict=True, min_length=1), only_base : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def list_models_with_http_info(self, x_gradient_workspace_id : constr(strict=True, min_length=1), capability : Optional[StrictStr] = None, only_base : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List available models  # noqa: E501
 
         Lists the currently available models in the selected workspace and provides basic information, such as the model name, ID and whether it is a base or fine-tuned model.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_models_with_http_info(x_gradient_workspace_id, only_base, async_req=True)
+        >>> thread = api.list_models_with_http_info(x_gradient_workspace_id, capability, only_base, async_req=True)
         >>> result = thread.get()
 
         :param x_gradient_workspace_id: (required)
         :type x_gradient_workspace_id: str
+        :param capability:
+        :type capability: str
         :param only_base:
         :type only_base: bool
         :param async_req: Whether to execute the request asynchronously.
@@ -905,6 +909,7 @@ class ModelsApi(object):
 
         _all_params = [
             'x_gradient_workspace_id',
+            'capability',
             'only_base'
         ]
         _all_params.extend(
@@ -936,6 +941,9 @@ class ModelsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('capability') is not None:  # noqa: E501
+            _query_params.append(('capability', _params['capability']))
+
         if _params.get('only_base') is not None:  # noqa: E501
             _query_params.append(('onlyBase', _params['only_base']))
 

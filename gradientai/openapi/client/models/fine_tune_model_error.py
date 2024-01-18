@@ -23,14 +23,15 @@ from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.complete_model_error_one_of import CompleteModelErrorOneOf
 from gradientai.openapi.client.models.complete_model_error_one_of1 import CompleteModelErrorOneOf1
+from gradientai.openapi.client.models.complete_model_error_one_of10 import CompleteModelErrorOneOf10
 from gradientai.openapi.client.models.complete_model_error_one_of2 import CompleteModelErrorOneOf2
-from gradientai.openapi.client.models.complete_model_error_one_of4 import CompleteModelErrorOneOf4
-from gradientai.openapi.client.models.complete_model_error_one_of5 import CompleteModelErrorOneOf5
+from gradientai.openapi.client.models.complete_model_error_one_of8 import CompleteModelErrorOneOf8
 from gradientai.openapi.client.models.fine_tune_model_error_one_of import FineTuneModelErrorOneOf
+from gradientai.openapi.client.models.fine_tune_model_error_one_of1 import FineTuneModelErrorOneOf1
 from typing import Any, List
 from pydantic import StrictStr, Field
 
-FINETUNEMODELERROR_ONE_OF_SCHEMAS = ["CompleteModelErrorOneOf", "CompleteModelErrorOneOf1", "CompleteModelErrorOneOf2", "CompleteModelErrorOneOf4", "CompleteModelErrorOneOf5", "FineTuneModelErrorOneOf"]
+FINETUNEMODELERROR_ONE_OF_SCHEMAS = ["CompleteModelErrorOneOf", "CompleteModelErrorOneOf1", "CompleteModelErrorOneOf10", "CompleteModelErrorOneOf2", "CompleteModelErrorOneOf8", "FineTuneModelErrorOneOf", "FineTuneModelErrorOneOf1"]
 
 class FineTuneModelError(BaseModel):
     """
@@ -44,10 +45,12 @@ class FineTuneModelError(BaseModel):
     oneof_schema_3_validator: Optional[CompleteModelErrorOneOf2] = None
     # data type: FineTuneModelErrorOneOf
     oneof_schema_4_validator: Optional[FineTuneModelErrorOneOf] = None
-    # data type: CompleteModelErrorOneOf4
-    oneof_schema_5_validator: Optional[CompleteModelErrorOneOf4] = None
-    # data type: CompleteModelErrorOneOf5
-    oneof_schema_6_validator: Optional[CompleteModelErrorOneOf5] = None
+    # data type: FineTuneModelErrorOneOf1
+    oneof_schema_5_validator: Optional[FineTuneModelErrorOneOf1] = None
+    # data type: CompleteModelErrorOneOf8
+    oneof_schema_6_validator: Optional[CompleteModelErrorOneOf8] = None
+    # data type: CompleteModelErrorOneOf10
+    oneof_schema_7_validator: Optional[CompleteModelErrorOneOf10] = None
     actual_instance: Any
     one_of_schemas: List[str] = Field(FINETUNEMODELERROR_ONE_OF_SCHEMAS, const=True)
 
@@ -89,22 +92,27 @@ class FineTuneModelError(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `FineTuneModelErrorOneOf`")
         else:
             match += 1
-        # validate data type: CompleteModelErrorOneOf4
-        if not isinstance(v, CompleteModelErrorOneOf4):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf4`")
+        # validate data type: FineTuneModelErrorOneOf1
+        if not isinstance(v, FineTuneModelErrorOneOf1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `FineTuneModelErrorOneOf1`")
         else:
             match += 1
-        # validate data type: CompleteModelErrorOneOf5
-        if not isinstance(v, CompleteModelErrorOneOf5):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf5`")
+        # validate data type: CompleteModelErrorOneOf8
+        if not isinstance(v, CompleteModelErrorOneOf8):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf8`")
+        else:
+            match += 1
+        # validate data type: CompleteModelErrorOneOf10
+        if not isinstance(v, CompleteModelErrorOneOf10):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf10`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, FineTuneModelErrorOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf8, FineTuneModelErrorOneOf, FineTuneModelErrorOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, FineTuneModelErrorOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf8, FineTuneModelErrorOneOf, FineTuneModelErrorOneOf1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -143,25 +151,31 @@ class FineTuneModelError(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into CompleteModelErrorOneOf4
+        # deserialize data into FineTuneModelErrorOneOf1
         try:
-            instance.actual_instance = CompleteModelErrorOneOf4.from_json(json_str)
+            instance.actual_instance = FineTuneModelErrorOneOf1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into CompleteModelErrorOneOf5
+        # deserialize data into CompleteModelErrorOneOf8
         try:
-            instance.actual_instance = CompleteModelErrorOneOf5.from_json(json_str)
+            instance.actual_instance = CompleteModelErrorOneOf8.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into CompleteModelErrorOneOf10
+        try:
+            instance.actual_instance = CompleteModelErrorOneOf10.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, FineTuneModelErrorOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf8, FineTuneModelErrorOneOf, FineTuneModelErrorOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, FineTuneModelErrorOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into FineTuneModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf8, FineTuneModelErrorOneOf, FineTuneModelErrorOneOf1. Details: " + ", ".join(error_messages))
         else:
             return instance
 

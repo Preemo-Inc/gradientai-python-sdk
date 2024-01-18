@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.generate_embedding_body_params import GenerateEmbeddingBodyParams
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of GenerateEmbeddingBodyParams from a JSON string
 generate_embedding_body_params_instance = GenerateEmbeddingBodyParams.from_json(json)

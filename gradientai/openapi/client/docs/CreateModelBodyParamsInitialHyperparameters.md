@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.create_model_body_params_initial_hyperparameters import CreateModelBodyParamsInitialHyperparameters
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of CreateModelBodyParamsInitialHyperparameters from a JSON string
 create_model_body_params_initial_hyperparameters_instance = CreateModelBodyParamsInitialHyperparameters.from_json(json)

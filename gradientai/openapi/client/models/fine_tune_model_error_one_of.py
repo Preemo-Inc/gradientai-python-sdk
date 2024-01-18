@@ -34,8 +34,8 @@ class FineTuneModelErrorOneOf(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('nanLoss'):
-            raise ValueError("must be one of enum values ('nanLoss')")
+        if value not in ('modelIncapableOfFineTuning'):
+            raise ValueError("must be one of enum values ('modelIncapableOfFineTuning')")
         return value
 
     class Config:

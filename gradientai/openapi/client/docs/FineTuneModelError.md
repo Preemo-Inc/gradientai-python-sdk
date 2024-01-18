@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.fine_tune_model_error import FineTuneModelError
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of FineTuneModelError from a JSON string
 fine_tune_model_error_instance = FineTuneModelError.from_json(json)

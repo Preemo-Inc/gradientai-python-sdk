@@ -23,7 +23,7 @@ def _get_required_string_env(
     return value
 
 
-# TODO(adrian@gradient.ai, 04/24/2023): test this
+
 def _get_optional_int_env(name: str) -> Optional[int]:
     value = _get_string_env(name)
     if value is None:
