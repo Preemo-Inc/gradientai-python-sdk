@@ -40,12 +40,12 @@ class TestFineTuneModelErrorOneOf(unittest.TestCase):
         if include_optional :
             return FineTuneModelErrorOneOf(
                 message = '0', 
-                type = 'nanLoss'
+                type = 'modelIncapableOfFineTuning'
             )
         else :
             return FineTuneModelErrorOneOf(
                 message = '0',
-                type = 'nanLoss',
+                type = 'modelIncapableOfFineTuning',
         )
         """
 

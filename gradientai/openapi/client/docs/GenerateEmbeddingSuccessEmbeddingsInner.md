@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.generate_embedding_success_embeddings_inner import GenerateEmbeddingSuccessEmbeddingsInner
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of GenerateEmbeddingSuccessEmbeddingsInner from a JSON string
 generate_embedding_success_embeddings_inner_instance = GenerateEmbeddingSuccessEmbeddingsInner.from_json(json)

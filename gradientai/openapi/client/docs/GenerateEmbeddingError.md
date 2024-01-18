@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.generate_embedding_error import GenerateEmbeddingError
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of GenerateEmbeddingError from a JSON string
 generate_embedding_error_instance = GenerateEmbeddingError.from_json(json)

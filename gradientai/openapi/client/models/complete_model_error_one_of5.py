@@ -34,8 +34,8 @@ class CompleteModelErrorOneOf5(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('unprocessableContent'):
-            raise ValueError("must be one of enum values ('unprocessableContent')")
+        if value not in ('noRagDocumentsFound'):
+            raise ValueError("must be one of enum values ('noRagDocumentsFound')")
         return value
 
     class Config:

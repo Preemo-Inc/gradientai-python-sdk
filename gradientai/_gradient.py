@@ -1,21 +1,20 @@
 from types import TracebackType
-from typing import Any, List, Literal, Optional, overload, Type
-from typing_extensions import Self
+from typing import Any, List, Literal, Optional, Type, overload
 
-from gradientai.openapi.client.api.models_api import ModelsApi
+from typing_extensions import Self, assert_never
+
+from gradientai._base_model import BaseModel, CapabilityFilterOption
+from gradientai._embeddings_model import EmbeddingsModel
+from gradientai._model import Model
+from gradientai._model_adapter import ModelAdapter
+from gradientai.helpers.env_manager import ENV_MANAGER
 from gradientai.openapi.client.api.embeddings_api import EmbeddingsApi
+from gradientai.openapi.client.api.models_api import ModelsApi
 from gradientai.openapi.client.api_client import ApiClient
 from gradientai.openapi.client.configuration import Configuration
 from gradientai.openapi.client.models.model_adapter import (
     ModelAdapter as ApiModelAdapter,
 )
-from typing_extensions import assert_never
-
-from gradientai.helpers.env_manager import ENV_MANAGER
-from gradientai._base_model import BaseModel
-from gradientai._model_adapter import ModelAdapter
-from gradientai._model import Model
-from gradientai._embeddings_model import EmbeddingsModel
 
 
 class Gradient:
@@ -107,28 +106,50 @@ class Gradient:
         )
 
     @overload
-    def list_models(self, *, only_base: Literal[True]) -> List[BaseModel]:
+    def list_models(
+        self,
+        *,
+        only_base: Literal[True],
+        capability: Optional[CapabilityFilterOption],
+    ) -> List[BaseModel]:
         ...
 
     @overload
-    def list_models(self, *, only_base: Literal[False]) -> List[Model]:
+    def list_models(
+        self,
+        *,
+        only_base: Literal[False],
+        capability: Optional[CapabilityFilterOption],
+    ) -> List[Model]:
         ...
 
-    def list_models(self, *, only_base: bool) -> List[Model]:  # type: ignore
+    def list_models(
+        self,
+        *,
+        only_base: bool,
+        capability: Optional[
+            CapabilityFilterOption
+        ] = CapabilityFilterOption.ANY,
+    ) -> List[Model]:  # type: ignore
         response = self._models_api.list_models(
-            x_gradient_workspace_id=self._workspace_id, only_base=only_base
+            capability=capability.value,
+            only_base=only_base,
+            x_gradient_workspace_id=self._workspace_id,
         )
 
         def deserialize_model(
             api_model: Any,
         ) -> Model:
+            
+
             if api_model.type == "baseModel":
                 return BaseModel(
-                        api_instance=self._models_api,
-                        id=api_model.id,
-                        slug=api_model.slug,
-                        workspace_id=self._workspace_id,
-                    )
+                    api_instance=self._models_api,
+                    capabilities=api_model.capabilities,
+                    id=api_model.id,
+                    slug=api_model.slug,
+                    workspace_id=self._workspace_id,
+                )
             if api_model.type == "modelAdapter":
                 response: ApiModelAdapter = api_model
                 return ModelAdapter(
@@ -163,7 +184,7 @@ class Gradient:
             return EmbeddingsModel(
                 api_instance=self._embeddings_api,
                 slug=api_model.slug,
-                workspace_id=self._workspace_id
+                workspace_id=self._workspace_id,
             )
 
         return [

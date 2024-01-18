@@ -409,7 +409,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_models**
-> ListModelsSuccess list_models(x_gradient_workspace_id, only_base=only_base)
+> ListModelsSuccess list_models(x_gradient_workspace_id, capability=capability, only_base=only_base)
 
 List available models
 
@@ -446,11 +446,12 @@ with gradientai.openapi.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = gradientai.openapi.client.ModelsApi(api_client)
     x_gradient_workspace_id = 'x_gradient_workspace_id_example' # str | 
+    capability = 'fineTune' # str |  (optional) (default to 'fineTune')
     only_base = False # bool |  (optional) (default to False)
 
     try:
         # List available models
-        api_response = api_instance.list_models(x_gradient_workspace_id, only_base=only_base)
+        api_response = api_instance.list_models(x_gradient_workspace_id, capability=capability, only_base=only_base)
         print("The response of ModelsApi->list_models:\n")
         pprint(api_response)
     except Exception as e:
@@ -463,6 +464,7 @@ with gradientai.openapi.client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_gradient_workspace_id** | **str**|  | 
+ **capability** | **str**|  | [optional] [default to &#39;fineTune&#39;]
  **only_base** | **bool**|  | [optional] [default to False]
 
 ### Return type

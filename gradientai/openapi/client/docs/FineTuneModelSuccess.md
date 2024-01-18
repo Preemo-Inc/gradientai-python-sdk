@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.fine_tune_model_success import FineTuneModelSuccess
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of FineTuneModelSuccess from a JSON string
 fine_tune_model_success_instance = FineTuneModelSuccess.from_json(json)

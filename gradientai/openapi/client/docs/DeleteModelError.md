@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.delete_model_error import DeleteModelError
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of DeleteModelError from a JSON string
 delete_model_error_instance = DeleteModelError.from_json(json)

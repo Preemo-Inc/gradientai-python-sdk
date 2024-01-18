@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.complete_model_error_one_of1_payload import CompleteModelErrorOneOf1Payload
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of CompleteModelErrorOneOf1Payload from a JSON string
 complete_model_error_one_of1_payload_instance = CompleteModelErrorOneOf1Payload.from_json(json)

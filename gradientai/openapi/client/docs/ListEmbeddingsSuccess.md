@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.list_embeddings_success import ListEmbeddingsSuccess
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of ListEmbeddingsSuccess from a JSON string
 list_embeddings_success_instance = ListEmbeddingsSuccess.from_json(json)

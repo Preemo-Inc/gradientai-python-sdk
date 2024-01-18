@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.list_embeddings_success_embeddings_models_inner import ListEmbeddingsSuccessEmbeddingsModelsInner
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of ListEmbeddingsSuccessEmbeddingsModelsInner from a JSON string
 list_embeddings_success_embeddings_models_inner_instance = ListEmbeddingsSuccessEmbeddingsModelsInner.from_json(json)

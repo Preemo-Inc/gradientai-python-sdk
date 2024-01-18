@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.create_model_body_params import CreateModelBodyParams
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of CreateModelBodyParams from a JSON string
 create_model_body_params_instance = CreateModelBodyParams.from_json(json)

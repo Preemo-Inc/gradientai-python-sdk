@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.get_model_error import GetModelError
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of GetModelError from a JSON string
 get_model_error_instance = GetModelError.from_json(json)

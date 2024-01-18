@@ -23,14 +23,19 @@ from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.complete_model_error_one_of import CompleteModelErrorOneOf
 from gradientai.openapi.client.models.complete_model_error_one_of1 import CompleteModelErrorOneOf1
+from gradientai.openapi.client.models.complete_model_error_one_of10 import CompleteModelErrorOneOf10
 from gradientai.openapi.client.models.complete_model_error_one_of2 import CompleteModelErrorOneOf2
 from gradientai.openapi.client.models.complete_model_error_one_of3 import CompleteModelErrorOneOf3
 from gradientai.openapi.client.models.complete_model_error_one_of4 import CompleteModelErrorOneOf4
 from gradientai.openapi.client.models.complete_model_error_one_of5 import CompleteModelErrorOneOf5
+from gradientai.openapi.client.models.complete_model_error_one_of6 import CompleteModelErrorOneOf6
+from gradientai.openapi.client.models.complete_model_error_one_of7 import CompleteModelErrorOneOf7
+from gradientai.openapi.client.models.complete_model_error_one_of8 import CompleteModelErrorOneOf8
+from gradientai.openapi.client.models.complete_model_error_one_of9 import CompleteModelErrorOneOf9
 from typing import Any, List
 from pydantic import StrictStr, Field
 
-COMPLETEMODELERROR_ONE_OF_SCHEMAS = ["CompleteModelErrorOneOf", "CompleteModelErrorOneOf1", "CompleteModelErrorOneOf2", "CompleteModelErrorOneOf3", "CompleteModelErrorOneOf4", "CompleteModelErrorOneOf5"]
+COMPLETEMODELERROR_ONE_OF_SCHEMAS = ["CompleteModelErrorOneOf", "CompleteModelErrorOneOf1", "CompleteModelErrorOneOf10", "CompleteModelErrorOneOf2", "CompleteModelErrorOneOf3", "CompleteModelErrorOneOf4", "CompleteModelErrorOneOf5", "CompleteModelErrorOneOf6", "CompleteModelErrorOneOf7", "CompleteModelErrorOneOf8", "CompleteModelErrorOneOf9"]
 
 class CompleteModelError(BaseModel):
     """
@@ -48,6 +53,16 @@ class CompleteModelError(BaseModel):
     oneof_schema_5_validator: Optional[CompleteModelErrorOneOf4] = None
     # data type: CompleteModelErrorOneOf5
     oneof_schema_6_validator: Optional[CompleteModelErrorOneOf5] = None
+    # data type: CompleteModelErrorOneOf6
+    oneof_schema_7_validator: Optional[CompleteModelErrorOneOf6] = None
+    # data type: CompleteModelErrorOneOf7
+    oneof_schema_8_validator: Optional[CompleteModelErrorOneOf7] = None
+    # data type: CompleteModelErrorOneOf8
+    oneof_schema_9_validator: Optional[CompleteModelErrorOneOf8] = None
+    # data type: CompleteModelErrorOneOf9
+    oneof_schema_10_validator: Optional[CompleteModelErrorOneOf9] = None
+    # data type: CompleteModelErrorOneOf10
+    oneof_schema_11_validator: Optional[CompleteModelErrorOneOf10] = None
     actual_instance: Any
     one_of_schemas: List[str] = Field(COMPLETEMODELERROR_ONE_OF_SCHEMAS, const=True)
 
@@ -99,12 +114,37 @@ class CompleteModelError(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf5`")
         else:
             match += 1
+        # validate data type: CompleteModelErrorOneOf6
+        if not isinstance(v, CompleteModelErrorOneOf6):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf6`")
+        else:
+            match += 1
+        # validate data type: CompleteModelErrorOneOf7
+        if not isinstance(v, CompleteModelErrorOneOf7):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf7`")
+        else:
+            match += 1
+        # validate data type: CompleteModelErrorOneOf8
+        if not isinstance(v, CompleteModelErrorOneOf8):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf8`")
+        else:
+            match += 1
+        # validate data type: CompleteModelErrorOneOf9
+        if not isinstance(v, CompleteModelErrorOneOf9):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf9`")
+        else:
+            match += 1
+        # validate data type: CompleteModelErrorOneOf10
+        if not isinstance(v, CompleteModelErrorOneOf10):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CompleteModelErrorOneOf10`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, CompleteModelErrorOneOf6, CompleteModelErrorOneOf7, CompleteModelErrorOneOf8, CompleteModelErrorOneOf9. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, CompleteModelErrorOneOf6, CompleteModelErrorOneOf7, CompleteModelErrorOneOf8, CompleteModelErrorOneOf9. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -155,13 +195,43 @@ class CompleteModelError(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into CompleteModelErrorOneOf6
+        try:
+            instance.actual_instance = CompleteModelErrorOneOf6.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into CompleteModelErrorOneOf7
+        try:
+            instance.actual_instance = CompleteModelErrorOneOf7.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into CompleteModelErrorOneOf8
+        try:
+            instance.actual_instance = CompleteModelErrorOneOf8.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into CompleteModelErrorOneOf9
+        try:
+            instance.actual_instance = CompleteModelErrorOneOf9.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into CompleteModelErrorOneOf10
+        try:
+            instance.actual_instance = CompleteModelErrorOneOf10.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, CompleteModelErrorOneOf6, CompleteModelErrorOneOf7, CompleteModelErrorOneOf8, CompleteModelErrorOneOf9. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CompleteModelError with oneOf schemas: CompleteModelErrorOneOf, CompleteModelErrorOneOf1, CompleteModelErrorOneOf10, CompleteModelErrorOneOf2, CompleteModelErrorOneOf3, CompleteModelErrorOneOf4, CompleteModelErrorOneOf5, CompleteModelErrorOneOf6, CompleteModelErrorOneOf7, CompleteModelErrorOneOf8, CompleteModelErrorOneOf9. Details: " + ", ".join(error_messages))
         else:
             return instance
 

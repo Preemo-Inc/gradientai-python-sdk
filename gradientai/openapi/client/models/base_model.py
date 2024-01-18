@@ -19,19 +19,28 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictStr, constr, validator
+from typing import Any, Dict, List
+from pydantic import BaseModel, Field, StrictStr, conlist, constr, validator
 
 class BaseModel(BaseModel):
     """
     BaseModel
     """
+    capabilities: conlist(StrictStr) = Field(...)
     id: constr(strict=True, max_length=50, min_length=50) = Field(...)
     name: constr(strict=True, min_length=1) = Field(...)
     slug: constr(strict=True, min_length=1) = Field(...)
     type: StrictStr = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["id", "name", "slug", "type"]
+    __properties = ["capabilities", "id", "name", "slug", "type"]
+
+    @validator('capabilities')
+    def capabilities_validate_enum(cls, value):
+        """Validates the enum"""
+        for i in value:
+            if i not in ('complete', 'fineTune'):
+                raise ValueError("each list item must be one of ('complete', 'fineTune')")
+        return value
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -82,6 +91,7 @@ class BaseModel(BaseModel):
             return BaseModel.parse_obj(obj)
 
         _obj = BaseModel.parse_obj({
+            "capabilities": obj.get("capabilities"),
             "id": obj.get("id"),
             "name": obj.get("name"),
             "slug": obj.get("slug"),

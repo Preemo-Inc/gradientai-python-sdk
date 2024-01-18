@@ -34,8 +34,8 @@ class CompleteModelErrorOneOf4(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('unknownModelAdapter'):
-            raise ValueError("must be one of enum values ('unknownModelAdapter')")
+        if value not in ('modelDoesNotSupportGuidance'):
+            raise ValueError("must be one of enum values ('modelDoesNotSupportGuidance')")
         return value
 
     class Config:

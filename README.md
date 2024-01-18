@@ -1,6 +1,11 @@
-[link to main docs](https://docs.gradient.ai/docs/sdk-quickstart)
+# Gradient Python SDK
 
-To create an instance of `Gradient` you can either provide an access token and workspace_id in the constructor call or allow the constructor to default to using the two environment variables
+The [Gradient Python SDK](https://docs.gradient.ai/docs/sdk-quickstart) is the official Python client for the API at gradient.ai, and is released on [PyPi](https://pypi.org/project/gradientai/).
 
-- GRADIENT_ACCESS_TOKEN
-- GRADIENT_WORKSPACE_ID
+# Installation and Usage
+
+```
+pip install --upgrade gradientai
+```
+
+[For more details, visit the docs on our website.](https://docs.gradient.ai/docs/sdk-quickstart)

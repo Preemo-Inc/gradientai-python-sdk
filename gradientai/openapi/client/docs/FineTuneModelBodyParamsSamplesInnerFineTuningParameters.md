@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.fine_tune_model_body_params_samples_inner_fine_tuning_parameters import FineTuneModelBodyParamsSamplesInnerFineTuningParameters
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of FineTuneModelBodyParamsSamplesInnerFineTuningParameters from a JSON string
 fine_tune_model_body_params_samples_inner_fine_tuning_parameters_instance = FineTuneModelBodyParamsSamplesInnerFineTuningParameters.from_json(json)

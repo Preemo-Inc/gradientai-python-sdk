@@ -4,9 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**auto_template** | **bool** | Automatically adds the recommended base model templating. | [optional] [default to True]
 **guidance** | [**CompleteModelBodyParamsGuidance**](CompleteModelBodyParamsGuidance.md) |  | [optional] 
 **max_generated_token_count** | **int** | The maximum number of tokens to generate. | [optional] 
 **query** | **str** | The prompt string you are providing the model, to which the model will generate a completion in response. | 
+**rag** | [**CompleteModelBodyParamsRag**](CompleteModelBodyParamsRag.md) |  | [optional] 
 **temperature** | **float** | This parameter adjusts the degree of randomness in generation. Higher temperature results in more diverse generations. | [optional] 
 **top_k** | **int** | This parameter ensures that only the top k most likely tokens are considered for generation at each step. | [optional] 
 **top_p** | **float** | This parameter ensures that only the most likely tokens, with total probability mass of p, are considered for generation at each step. If topK is also enabled, topP acts after topK. | [optional] 
@@ -16,7 +18,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.complete_model_body_params import CompleteModelBodyParams
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of CompleteModelBodyParams from a JSON string
 complete_model_body_params_instance = CompleteModelBodyParams.from_json(json)

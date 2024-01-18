@@ -40,12 +40,12 @@ class TestCompleteModelErrorOneOf3(unittest.TestCase):
         if include_optional :
             return CompleteModelErrorOneOf3(
                 message = '0', 
-                type = 'unknownBaseModel'
+                type = 'failed'
             )
         else :
             return CompleteModelErrorOneOf3(
                 message = '0',
-                type = 'unknownBaseModel',
+                type = 'failed',
         )
         """
 

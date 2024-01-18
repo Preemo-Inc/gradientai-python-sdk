@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.complete_model_body_params_guidance import CompleteModelBodyParamsGuidance
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of CompleteModelBodyParamsGuidance from a JSON string
 complete_model_body_params_guidance_instance = CompleteModelBodyParamsGuidance.from_json(json)

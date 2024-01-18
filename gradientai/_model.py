@@ -1,18 +1,22 @@
+import asyncio
 from abc import ABC
 from typing import List, Literal, Optional, TypedDict
 
+from gradientai.helpers.asyncio_threads import to_thread as _asyncio_to_thread
 from gradientai.openapi.client.api.models_api import ModelsApi
 from gradientai.openapi.client.models.complete_model_body_params import (
     CompleteModelBodyParams,
 )
 from gradientai.pydantic_models.types import CompleteResponse
 
-import asyncio
-from gradientai.helpers.asyncio_threads import to_thread as _asyncio_to_thread
 
 class Guidance(TypedDict):
     type: Literal["choice"]
     value: List[str]
+
+
+class RAG(TypedDict):
+    collection_id: str
 
 
 class Model(ABC):
@@ -41,8 +45,10 @@ class Model(ABC):
         self,
         *,
         query: str,
+        auto_template: Optional[bool] = None,
         guidance: Optional[Guidance] = None,
         max_generated_token_count: Optional[int] = None,
+        rag: Optional[RAG] = None,
         temperature: Optional[float] = None,
         top_k: Optional[int] = None,
         top_p: Optional[float] = None,
@@ -51,9 +57,11 @@ class Model(ABC):
             id=self._id,
             x_gradient_workspace_id=self._workspace_id,
             complete_model_body_params=CompleteModelBodyParams(
+                auto_template=auto_template,
                 guidance=guidance,
                 query=query,
                 max_generated_token_count=max_generated_token_count,
+                rag=rag,
                 temperature=temperature,
                 top_k=top_k,
                 top_p=top_p,
@@ -70,7 +78,5 @@ class Model(ABC):
         **kwargs,
     ) -> CompleteResponse:
         async with self._async_semaphore:
-            response = await _asyncio_to_thread(
-                self.complete, **kwargs
-            )
+            response = await _asyncio_to_thread(self.complete, **kwargs)
         return response

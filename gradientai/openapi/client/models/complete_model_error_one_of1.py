@@ -36,8 +36,8 @@ class CompleteModelErrorOneOf1(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('bodyParsingError', 'flaggedContent', 'queryOrPathParsingError', 'unknownBaseModel', 'unknownModelAdapter', 'unprocessableContent', 'nanLoss'):
-            raise ValueError("must be one of enum values ('bodyParsingError', 'flaggedContent', 'queryOrPathParsingError', 'unknownBaseModel', 'unknownModelAdapter', 'unprocessableContent', 'nanLoss')")
+        if value not in ('bodyParsingError', 'flaggedContent', 'queryOrPathParsingError', 'failed', 'modelDoesNotSupportGuidance', 'noRagDocumentsFound', 'ragRequiresAutoTemplating', 'unknownBaseModel', 'unknownModelAdapter', 'unknownRagCollection', 'unprocessableContent', 'modelIncapableOfFineTuning', 'nanLoss'):
+            raise ValueError("must be one of enum values ('bodyParsingError', 'flaggedContent', 'queryOrPathParsingError', 'failed', 'modelDoesNotSupportGuidance', 'noRagDocumentsFound', 'ragRequiresAutoTemplating', 'unknownBaseModel', 'unknownModelAdapter', 'unknownRagCollection', 'unprocessableContent', 'modelIncapableOfFineTuning', 'nanLoss')")
         return value
 
     class Config:

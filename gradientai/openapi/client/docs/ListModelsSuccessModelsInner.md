@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**capabilities** | **List[str]** |  | 
 **id** | **str** |  | 
 **name** | **str** |  | 
 **slug** | **str** |  | 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 ```python
 from gradientai.openapi.client.models.list_models_success_models_inner import ListModelsSuccessModelsInner
 
-# TODO update the JSON string below
+
 json = "{}"
 # create an instance of ListModelsSuccessModelsInner from a JSON string
 list_models_success_models_inner_instance = ListModelsSuccessModelsInner.from_json(json)
