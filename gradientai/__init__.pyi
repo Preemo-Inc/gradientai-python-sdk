@@ -8,6 +8,15 @@ from typing_extensions import NotRequired, Protocol, TypedDict
 
 from gradientai._base_model import BaseModelCapability, CapabilityFilterOption
 from gradientai._gradient import Gradient
+from gradientai._model import Guidance
+from gradientai._types import (
+    AnalyzeSentimentParamsExample,
+    ExtractParamsSchemaValue,
+    ExtractParamsSchemaValueType,
+    Sentiment,
+    SummarizeParamsExample,
+    SummarizeParamsLength,
+)
 from gradientai.pydantic_models.types import CompleteResponse, FineTuneResponse
 
 class Model(Protocol):
@@ -57,11 +66,18 @@ class BaseModel(Model, Protocol):
     ) -> ModelAdapter: ...
 
 __all__ = [
+    "AnalyzeSentimentParamsExample",
     "BaseModel",
     "CapabilityFilterOption",
+    "ExtractParamsSchemaValue",
+    "ExtractParamsSchemaValueType",
     "Gradient",
+    "Guidance",
     "Model",
     "ModelAdapter",
     "Sample",
+    "Sentiment",
     "StructuredInput",
+    "SummarizeParamsExample",
+    "SummarizeParamsLength",
 ]

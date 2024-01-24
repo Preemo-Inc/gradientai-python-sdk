@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gradientai"
-version = "1.5.0"
+version = "1.6.0"
 description = "Gradient AI API"
 authors = ["Gradient AI Support <support@gradient.ai>"]
 license = "MIT"
