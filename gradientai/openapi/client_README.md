@@ -53,18 +53,17 @@ configuration = gradientai.openapi.client.Configuration(
 # Enter a context with an instance of the API client
 with gradientai.openapi.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = gradientai.openapi.client.EmbeddingsApi(api_client)
-    slug = 'slug_example' # str | 
+    api_instance = gradientai.openapi.client.BlocksApi(api_client)
     x_gradient_workspace_id = 'x_gradient_workspace_id_example' # str | 
-    generate_embedding_body_params = gradientai.openapi.client.GenerateEmbeddingBodyParams() # GenerateEmbeddingBodyParams | 
+    analyze_sentiment_body_params = gradientai.openapi.client.AnalyzeSentimentBodyParams() # AnalyzeSentimentBodyParams | 
 
     try:
-        # Generate embeddings
-        api_response = api_instance.generate_embedding(slug, x_gradient_workspace_id, generate_embedding_body_params)
-        print("The response of EmbeddingsApi->generate_embedding:\n")
+        # Sentiment analysis
+        api_response = api_instance.analyze_sentiment(x_gradient_workspace_id, analyze_sentiment_body_params)
+        print("The response of BlocksApi->analyze_sentiment:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EmbeddingsApi->generate_embedding: %s\n" % e)
+        print("Exception when calling BlocksApi->analyze_sentiment: %s\n" % e)
 
 ```
 
@@ -74,6 +73,11 @@ All URIs are relative to *https://github.com/Preemo-Inc/gradientai-python-sdk/bl
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BlocksApi* | [**analyze_sentiment**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#analyze_sentiment) | **POST** /blocks/analyze-sentiment | Sentiment analysis
+*BlocksApi* | [**extract_entity**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#extract_entity) | **POST** /blocks/extract | Entity extraction
+*BlocksApi* | [**generate_answer**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#generate_answer) | **POST** /blocks/answer | Document question &amp; answer
+*BlocksApi* | [**personalize_document**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#personalize_document) | **POST** /blocks/personalize | Document personalization
+*BlocksApi* | [**summarize_document**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#summarize_document) | **POST** /blocks/summarize | Document summary
 *EmbeddingsApi* | [**generate_embedding**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/EmbeddingsApi.md#generate_embedding) | **POST** /embeddings/{slug} | Generate embeddings
 *EmbeddingsApi* | [**list_embeddings**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/EmbeddingsApi.md#list_embeddings) | **GET** /embeddings | List available embeddings models
 *ModelsApi* | [**complete_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#complete_model) | **POST** /models/{id}/complete | Complete model
@@ -86,6 +90,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AnalyzeSentimentBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AnalyzeSentimentBodyParams.md)
+ - [AnalyzeSentimentBodyParamsExamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AnalyzeSentimentBodyParamsExamplesInner.md)
+ - [AnalyzeSentimentError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AnalyzeSentimentError.md)
+ - [AnalyzeSentimentSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AnalyzeSentimentSuccess.md)
  - [BaseModel](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BaseModel.md)
  - [CompleteModelBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CompleteModelBodyParams.md)
  - [CompleteModelBodyParamsGuidance](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CompleteModelBodyParamsGuidance.md)
@@ -114,6 +122,11 @@ Class | Method | HTTP request | Description
  - [CreateModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelError.md)
  - [CreateModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelSuccess.md)
  - [DeleteModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/DeleteModelError.md)
+ - [ExtractEntityBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityBodyParams.md)
+ - [ExtractEntityBodyParamsSchemaValue](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityBodyParamsSchemaValue.md)
+ - [ExtractEntityError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityError.md)
+ - [ExtractEntitySuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntitySuccess.md)
+ - [ExtractEntitySuccessEntityValue](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntitySuccessEntityValue.md)
  - [FineTuneModelBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelBodyParams.md)
  - [FineTuneModelBodyParamsSamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelBodyParamsSamplesInner.md)
  - [FineTuneModelBodyParamsSamplesInnerFineTuningParameters](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelBodyParamsSamplesInnerFineTuningParameters.md)
@@ -123,6 +136,14 @@ Class | Method | HTTP request | Description
  - [FineTuneModelErrorOneOf](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelErrorOneOf.md)
  - [FineTuneModelErrorOneOf1](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelErrorOneOf1.md)
  - [FineTuneModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelSuccess.md)
+ - [GenerateAnswerBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerBodyParams.md)
+ - [GenerateAnswerBodyParamsSource](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerBodyParamsSource.md)
+ - [GenerateAnswerBodyParamsSourceOneOf](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerBodyParamsSourceOneOf.md)
+ - [GenerateAnswerBodyParamsSourceOneOf1](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerBodyParamsSourceOneOf1.md)
+ - [GenerateAnswerError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerError.md)
+ - [GenerateAnswerSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerSuccess.md)
+ - [GenerateAnswerSuccessRagContext](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerSuccessRagContext.md)
+ - [GenerateAnswerSuccessRagContextDocumentsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateAnswerSuccessRagContextDocumentsInner.md)
  - [GenerateEmbeddingBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateEmbeddingBodyParams.md)
  - [GenerateEmbeddingBodyParamsInputsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateEmbeddingBodyParamsInputsInner.md)
  - [GenerateEmbeddingError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateEmbeddingError.md)
@@ -137,6 +158,13 @@ Class | Method | HTTP request | Description
  - [ListModelsSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListModelsSuccess.md)
  - [ListModelsSuccessModelsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListModelsSuccessModelsInner.md)
  - [ModelAdapter](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelAdapter.md)
+ - [PersonalizeDocumentBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/PersonalizeDocumentBodyParams.md)
+ - [PersonalizeDocumentError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/PersonalizeDocumentError.md)
+ - [PersonalizeDocumentSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/PersonalizeDocumentSuccess.md)
+ - [SummarizeDocumentBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/SummarizeDocumentBodyParams.md)
+ - [SummarizeDocumentBodyParamsExamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/SummarizeDocumentBodyParamsExamplesInner.md)
+ - [SummarizeDocumentError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/SummarizeDocumentError.md)
+ - [SummarizeDocumentSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/SummarizeDocumentSuccess.md)
 
 
 <a id="documentation-for-authorization"></a>

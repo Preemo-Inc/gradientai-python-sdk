@@ -1,5 +1,5 @@
 from types import TracebackType
-from typing import Any, List, Literal, Optional, Type, overload
+from typing import Any, List, Literal, Mapping, Optional, Type, overload
 
 from typing_extensions import Self, assert_never
 
@@ -7,18 +7,63 @@ from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._embeddings_model import EmbeddingsModel
 from gradientai._model import Model
 from gradientai._model_adapter import ModelAdapter
+from gradientai._types import (
+    AnalyzeSentimentParamsExample,
+    AnalyzeSentimentResponse,
+    AnswerParamsSource,
+    AnswerResponse,
+    ExtractParamsSchemaValue,
+    ExtractResponse,
+    PersonalizeResponse,
+    Sentiment,
+    SummarizeParamsExample,
+    SummarizeParamsLength,
+    SummarizeResponse,
+)
 from gradientai.helpers.env_manager import ENV_MANAGER
+from gradientai.openapi.client.api.blocks_api import BlocksApi
 from gradientai.openapi.client.api.embeddings_api import EmbeddingsApi
 from gradientai.openapi.client.api.models_api import ModelsApi
 from gradientai.openapi.client.api_client import ApiClient
 from gradientai.openapi.client.configuration import Configuration
+from gradientai.openapi.client.models.analyze_sentiment_body_params import (
+    AnalyzeSentimentBodyParams,
+)
+from gradientai.openapi.client.models.extract_entity_body_params import (
+    ExtractEntityBodyParams,
+)
+from gradientai.openapi.client.models.extract_entity_success import (
+    ExtractEntitySuccess,
+)
+from gradientai.openapi.client.models.generate_answer_body_params import (
+    GenerateAnswerBodyParams,
+)
+from gradientai.openapi.client.models.generate_answer_body_params_source import (
+    GenerateAnswerBodyParamsSource,
+)
+from gradientai.openapi.client.models.generate_answer_success import (
+    GenerateAnswerSuccess,
+)
 from gradientai.openapi.client.models.model_adapter import (
     ModelAdapter as ApiModelAdapter,
+)
+from gradientai.openapi.client.models.personalize_document_body_params import (
+    PersonalizeDocumentBodyParams,
+)
+from gradientai.openapi.client.models.personalize_document_success import (
+    PersonalizeDocumentSuccess,
+)
+from gradientai.openapi.client.models.summarize_document_body_params import (
+    SummarizeDocumentBodyParams,
+)
+from gradientai.openapi.client.models.summarize_document_success import (
+    SummarizeDocumentSuccess,
 )
 
 
 class Gradient:
     _api_client: ApiClient
+    _blocks_api: BlocksApi
     _embeddings_api: EmbeddingsApi
     _models_api: ModelsApi
     _workspace_id: str
@@ -65,6 +110,7 @@ class Gradient:
                 host=host,
             )
         )
+        self._blocks_api = BlocksApi(self._api_client)
         self._embeddings_api = EmbeddingsApi(self._api_client)
         self._models_api = ModelsApi(self._api_client)
         self._workspace_id = workspace_id
@@ -191,3 +237,100 @@ class Gradient:
             deserialize_embeddings_model(embeddings_model)
             for embeddings_model in response.embeddings_models
         ]
+
+    def answer(
+        self,
+        *,
+        question: str,
+        source: AnswerParamsSource,
+    ) -> AnswerResponse:
+        response = self._blocks_api.generate_answer(
+            x_gradient_workspace_id=self._workspace_id,
+            generate_answer_body_params=GenerateAnswerBodyParams.from_dict(
+                {
+                    "question": question,
+                    "source": source,
+                }
+            ),
+        )
+
+        return AnswerResponse(answer=response.answer)
+
+    def summarize(
+        self,
+        *,
+        document: str,
+        examples: Optional[List[SummarizeParamsExample]] = None,
+        length: Optional[SummarizeParamsLength] = None,
+    ) -> SummarizeResponse:
+        response = self._blocks_api.summarize_document(
+            x_gradient_workspace_id=self._workspace_id,
+            summarize_document_body_params=SummarizeDocumentBodyParams(
+                document=document,
+                examples=[] if examples is None else examples,
+                length=None if length is None else length.value,
+            ),
+        )
+
+        return SummarizeResponse(summary=response.summary)
+
+    def analyze_sentiment(
+        self, *, document: str, examples: List[AnalyzeSentimentParamsExample]
+    ) -> AnalyzeSentimentResponse:
+        parsed_examples = [
+            {
+                "document": example["document"],
+                "sentiment": example["sentiment"].value,
+            }
+            for example in examples
+        ]
+
+        result = self._blocks_api.analyze_sentiment(
+            x_gradient_workspace_id=self._workspace_id,
+            analyze_sentiment_body_params=AnalyzeSentimentBodyParams(
+                document=document, examples=parsed_examples
+            ),
+        )
+
+        return AnalyzeSentimentResponse(
+            sentiment=Sentiment(result.sentiment),
+        )
+
+    def personalize(
+        self, *, document: str, audience_description: str
+    ) -> PersonalizeResponse:
+        result = self._blocks_api.personalize_document(
+            x_gradient_workspace_id=self._workspace_id,
+            personalize_document_body_params=PersonalizeDocumentBodyParams(
+                document=document,
+                audience_description=audience_description,
+            ),
+        )
+
+        return PersonalizeResponse(
+            personalized_document=result.personalized_document
+        )
+
+    def extract(
+        self, *, document: str, schema_: Mapping[str, ExtractParamsSchemaValue]
+    ) -> ExtractResponse:
+        parsed_schema = {
+            key: {
+                "type": value["type"].value,
+                "required": value.get("required"),
+            }
+            for key, value in schema_.items()
+        }
+
+        result = self._blocks_api.extract_entity(
+            x_gradient_workspace_id=self._workspace_id,
+            extract_entity_body_params=ExtractEntityBodyParams(
+                document=document,
+                schema=parsed_schema,
+            ),
+        )
+
+        entity = {
+            key: value.actual_instance for key, value in result.entity.items()
+        }
+        return ExtractResponse(entity=entity)
