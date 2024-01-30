@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **content** | **str** |  | 
+**file_name** | **str** |  | 
 
 ## Example
 

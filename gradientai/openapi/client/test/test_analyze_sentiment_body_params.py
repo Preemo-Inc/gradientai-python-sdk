@@ -49,11 +49,6 @@ class TestAnalyzeSentimentBodyParams(unittest.TestCase):
         else :
             return AnalyzeSentimentBodyParams(
                 document = '0',
-                examples = [
-                    gradientai.openapi.client.models.analyze_sentiment_body_params_examples_inner.AnalyzeSentimentBodyParams_examples_inner(
-                        document = '0', 
-                        sentiment = 'negative', )
-                    ],
         )
         """
 

@@ -254,7 +254,7 @@ class Gradient:
             ),
         )
 
-        return AnswerResponse(answer=response.answer)
+        return AnswerResponse(answer=response.answer, rag_context=response.rag_context)
 
     def summarize(
         self,
@@ -267,7 +267,7 @@ class Gradient:
             x_gradient_workspace_id=self._workspace_id,
             summarize_document_body_params=SummarizeDocumentBodyParams(
                 document=document,
-                examples=[] if examples is None else examples,
+                examples=examples,
                 length=None if length is None else length.value,
             ),
         )
@@ -275,9 +275,12 @@ class Gradient:
         return SummarizeResponse(summary=response.summary)
 
     def analyze_sentiment(
-        self, *, document: str, examples: List[AnalyzeSentimentParamsExample]
+        self,
+        *,
+        document: str,
+        examples: Optional[List[AnalyzeSentimentParamsExample]] = None,
     ) -> AnalyzeSentimentResponse:
-        parsed_examples = [
+        parsed_examples = None if not examples else [
             {
                 "document": example["document"],
                 "sentiment": example["sentiment"].value,

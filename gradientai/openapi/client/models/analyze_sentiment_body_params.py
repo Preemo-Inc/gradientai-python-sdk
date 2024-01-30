@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field, conlist, constr
 from gradientai.openapi.client.models.analyze_sentiment_body_params_examples_inner import AnalyzeSentimentBodyParamsExamplesInner
 
@@ -28,7 +28,7 @@ class AnalyzeSentimentBodyParams(BaseModel):
     AnalyzeSentimentBodyParams
     """
     document: constr(strict=True, min_length=1) = Field(..., description="The document that will be analyzed to determine the sentiment.")
-    examples: conlist(AnalyzeSentimentBodyParamsExamplesInner, min_items=1) = Field(..., description="Example pairs of documents and sentiments.")
+    examples: Optional[conlist(AnalyzeSentimentBodyParamsExamplesInner)] = Field(None, description="Example pairs of documents and sentiments.")
     additional_properties: Dict[str, Any] = {}
     __properties = ["document", "examples"]
 
@@ -68,6 +68,11 @@ class AnalyzeSentimentBodyParams(BaseModel):
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if examples (nullable) is None
+        # and __fields_set__ contains the field
+        if self.examples is None and "examples" in self.__fields_set__:
+            _dict['examples'] = None
 
         return _dict
 
