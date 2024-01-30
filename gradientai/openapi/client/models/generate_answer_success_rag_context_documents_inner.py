@@ -27,8 +27,9 @@ class GenerateAnswerSuccessRagContextDocumentsInner(BaseModel):
     GenerateAnswerSuccessRagContextDocumentsInner
     """
     content: constr(strict=True, min_length=1) = Field(...)
+    file_name: constr(strict=True, min_length=1) = Field(..., alias="fileName")
     additional_properties: Dict[str, Any] = {}
-    __properties = ["content"]
+    __properties = ["content", "fileName"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,7 +73,8 @@ class GenerateAnswerSuccessRagContextDocumentsInner(BaseModel):
             return GenerateAnswerSuccessRagContextDocumentsInner.parse_obj(obj)
 
         _obj = GenerateAnswerSuccessRagContextDocumentsInner.parse_obj({
-            "content": obj.get("content")
+            "content": obj.get("content"),
+            "file_name": obj.get("fileName")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

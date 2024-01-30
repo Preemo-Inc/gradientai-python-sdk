@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Literal, Mapping, TypedDict, Union
+from typing import List, Literal, Mapping, Optional, TypedDict, Union
 
 from typing_extensions import NotRequired
 
@@ -19,9 +19,16 @@ AnswerParamsSource = Union[
     AnswerParamsSourceDocument,
 ]
 
+class Document(TypedDict):
+    content: str
+    file_name: str
+
+class RagContext(TypedDict):
+    documents: List[Document]
 
 class AnswerResponse(TypedDict):
     answer: str
+    rag_context: Optional[RagContext]
 
 
 class SummarizeParamsExample(TypedDict):

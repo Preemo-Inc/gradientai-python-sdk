@@ -50,11 +50,6 @@ class TestSummarizeDocumentBodyParams(unittest.TestCase):
         else :
             return SummarizeDocumentBodyParams(
                 document = '0',
-                examples = [
-                    gradientai.openapi.client.models.summarize_document_body_params_examples_inner.SummarizeDocumentBodyParams_examples_inner(
-                        document = '0', 
-                        summary = '0', )
-                    ],
         )
         """
 

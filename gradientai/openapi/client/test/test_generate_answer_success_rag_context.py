@@ -41,14 +41,16 @@ class TestGenerateAnswerSuccessRagContext(unittest.TestCase):
             return GenerateAnswerSuccessRagContext(
                 documents = [
                     gradientai.openapi.client.models.generate_answer_success_rag_context_documents_inner.GenerateAnswerSuccess_ragContext_documents_inner(
-                        content = '0', )
+                        content = '0', 
+                        file_name = '0', )
                     ]
             )
         else :
             return GenerateAnswerSuccessRagContext(
                 documents = [
                     gradientai.openapi.client.models.generate_answer_success_rag_context_documents_inner.GenerateAnswerSuccess_ragContext_documents_inner(
-                        content = '0', )
+                        content = '0', 
+                        file_name = '0', )
                     ],
         )
         """

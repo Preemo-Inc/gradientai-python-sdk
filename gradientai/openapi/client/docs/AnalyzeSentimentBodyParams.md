@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **document** | **str** | The document that will be analyzed to determine the sentiment. | 
-**examples** | [**List[AnalyzeSentimentBodyParamsExamplesInner]**](AnalyzeSentimentBodyParamsExamplesInner.md) | Example pairs of documents and sentiments. | 
+**examples** | [**List[AnalyzeSentimentBodyParamsExamplesInner]**](AnalyzeSentimentBodyParamsExamplesInner.md) | Example pairs of documents and sentiments. | [optional] 
 
 ## Example
 

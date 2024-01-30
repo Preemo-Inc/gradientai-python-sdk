@@ -28,7 +28,7 @@ class SummarizeDocumentBodyParams(BaseModel):
     SummarizeDocumentBodyParams
     """
     document: constr(strict=True, min_length=1) = Field(..., description="The document to summarize.")
-    examples: conlist(SummarizeDocumentBodyParamsExamplesInner) = Field(..., description="Examples of how to summarize documents.")
+    examples: Optional[conlist(SummarizeDocumentBodyParamsExamplesInner)] = Field(None, description="Examples of how to summarize documents.")
     length: Optional[StrictStr] = Field(None, description="Roughly how long the summary should be.")
     additional_properties: Dict[str, Any] = {}
     __properties = ["document", "examples", "length"]
@@ -79,6 +79,11 @@ class SummarizeDocumentBodyParams(BaseModel):
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
+
+        # set to None if examples (nullable) is None
+        # and __fields_set__ contains the field
+        if self.examples is None and "examples" in self.__fields_set__:
+            _dict['examples'] = None
 
         # set to None if length (nullable) is None
         # and __fields_set__ contains the field

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **document** | **str** | The document to summarize. | 
-**examples** | [**List[SummarizeDocumentBodyParamsExamplesInner]**](SummarizeDocumentBodyParamsExamplesInner.md) | Examples of how to summarize documents. | 
+**examples** | [**List[SummarizeDocumentBodyParamsExamplesInner]**](SummarizeDocumentBodyParamsExamplesInner.md) | Examples of how to summarize documents. | [optional] 
 **length** | **str** | Roughly how long the summary should be. | [optional] 
 
 ## Example

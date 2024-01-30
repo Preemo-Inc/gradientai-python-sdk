@@ -39,11 +39,13 @@ class TestGenerateAnswerSuccessRagContextDocumentsInner(unittest.TestCase):
         model = gradientai.openapi.client.models.generate_answer_success_rag_context_documents_inner.GenerateAnswerSuccessRagContextDocumentsInner()  # noqa: E501
         if include_optional :
             return GenerateAnswerSuccessRagContextDocumentsInner(
-                content = '0'
+                content = '0', 
+                file_name = '0'
             )
         else :
             return GenerateAnswerSuccessRagContextDocumentsInner(
                 content = '0',
+                file_name = '0',
         )
         """
 
