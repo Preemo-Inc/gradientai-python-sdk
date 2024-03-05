@@ -19,12 +19,15 @@ AnswerParamsSource = Union[
     AnswerParamsSourceDocument,
 ]
 
+
 class Document(TypedDict):
     content: str
     file_name: str
 
+
 class RagContext(TypedDict):
     documents: List[Document]
+
 
 class AnswerResponse(TypedDict):
     answer: str
@@ -78,3 +81,43 @@ class ExtractParamsSchemaValue(TypedDict):
 
 class ExtractResponse(TypedDict):
     entity: Mapping[str, Union[str, bool, int, float]]
+
+
+class ExtractPdfResponseImage(TypedDict):
+    data: str
+    format: Literal["base64-png"]
+
+
+class ExtractPdfResponseCell(TypedDict):
+    cell_value: str
+    col_span: Optional[int]
+    row_span: Optional[int]
+
+
+class ExtractPdfResponseRow(TypedDict):
+    cells: List[ExtractPdfResponseCell]
+    type: Literal["table_data_row", "table_header"]
+
+
+class ExtractPdfResponseTable(TypedDict):
+    name: str
+    table_rows: List[ExtractPdfResponseRow]
+
+
+class ExtractPdfResponseTextBlock(TypedDict):
+    kind: Literal["footer", "header", "section_title", "text", "title"]
+    texts: List[str]
+
+
+class ExtractPdfResponsePage(TypedDict):
+    images: List[ExtractPdfResponseImage]
+    pageNumber: int
+    tables: List[ExtractPdfResponseTable]
+    text: str
+    textBlocks: List[ExtractPdfResponseTextBlock]
+
+
+class ExtractPdfResponse(TypedDict):
+    pages: List[ExtractPdfResponsePage]
+    text: str
+    title: Optional[str]

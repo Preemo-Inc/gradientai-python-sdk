@@ -43,6 +43,13 @@ class TestBlocksApi(unittest.TestCase):
         """
         pass
 
+    def test_extract_pdf(self):
+        """Test case for extract_pdf
+
+        PDF extraction  # noqa: E501
+        """
+        pass
+
     def test_generate_answer(self):
         """Test case for generate_answer
 

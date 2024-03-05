@@ -75,6 +75,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *BlocksApi* | [**analyze_sentiment**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#analyze_sentiment) | **POST** /blocks/analyze-sentiment | Sentiment analysis
 *BlocksApi* | [**extract_entity**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#extract_entity) | **POST** /blocks/extract | Entity extraction
+*BlocksApi* | [**extract_pdf**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#extract_pdf) | **POST** /blocks/extract-pdf | PDF extraction
 *BlocksApi* | [**generate_answer**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#generate_answer) | **POST** /blocks/answer | Document question &amp; answer
 *BlocksApi* | [**personalize_document**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#personalize_document) | **POST** /blocks/personalize | Document personalization
 *BlocksApi* | [**summarize_document**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#summarize_document) | **POST** /blocks/summarize | Document summary
@@ -127,6 +128,14 @@ Class | Method | HTTP request | Description
  - [ExtractEntityError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityError.md)
  - [ExtractEntitySuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntitySuccess.md)
  - [ExtractEntitySuccessEntityValue](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntitySuccessEntityValue.md)
+ - [ExtractPdfError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfError.md)
+ - [ExtractPdfSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfSuccess.md)
+ - [ExtractPdfSuccessPagesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfSuccessPagesInner.md)
+ - [ExtractPdfSuccessPagesInnerImagesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfSuccessPagesInnerImagesInner.md)
+ - [ExtractPdfSuccessPagesInnerTablesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfSuccessPagesInnerTablesInner.md)
+ - [ExtractPdfSuccessPagesInnerTablesInnerTableRowsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfSuccessPagesInnerTablesInnerTableRowsInner.md)
+ - [ExtractPdfSuccessPagesInnerTablesInnerTableRowsInnerCellsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfSuccessPagesInnerTablesInnerTableRowsInnerCellsInner.md)
+ - [ExtractPdfSuccessPagesInnerTextBlocksInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractPdfSuccessPagesInnerTextBlocksInner.md)
  - [FineTuneModelBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelBodyParams.md)
  - [FineTuneModelBodyParamsSamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelBodyParamsSamplesInner.md)
  - [FineTuneModelBodyParamsSamplesInnerFineTuningParameters](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FineTuneModelBodyParamsSamplesInnerFineTuningParameters.md)
