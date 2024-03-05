@@ -13,6 +13,7 @@ from gradientai._types import (
     AnswerParamsSource,
     AnswerResponse,
     ExtractParamsSchemaValue,
+    ExtractPdfResponse,
     ExtractResponse,
     PersonalizeResponse,
     Sentiment,
@@ -32,17 +33,8 @@ from gradientai.openapi.client.models.analyze_sentiment_body_params import (
 from gradientai.openapi.client.models.extract_entity_body_params import (
     ExtractEntityBodyParams,
 )
-from gradientai.openapi.client.models.extract_entity_success import (
-    ExtractEntitySuccess,
-)
 from gradientai.openapi.client.models.generate_answer_body_params import (
     GenerateAnswerBodyParams,
-)
-from gradientai.openapi.client.models.generate_answer_body_params_source import (
-    GenerateAnswerBodyParamsSource,
-)
-from gradientai.openapi.client.models.generate_answer_success import (
-    GenerateAnswerSuccess,
 )
 from gradientai.openapi.client.models.model_adapter import (
     ModelAdapter as ApiModelAdapter,
@@ -50,14 +42,8 @@ from gradientai.openapi.client.models.model_adapter import (
 from gradientai.openapi.client.models.personalize_document_body_params import (
     PersonalizeDocumentBodyParams,
 )
-from gradientai.openapi.client.models.personalize_document_success import (
-    PersonalizeDocumentSuccess,
-)
 from gradientai.openapi.client.models.summarize_document_body_params import (
     SummarizeDocumentBodyParams,
-)
-from gradientai.openapi.client.models.summarize_document_success import (
-    SummarizeDocumentSuccess,
 )
 
 
@@ -157,8 +143,7 @@ class Gradient:
         *,
         only_base: Literal[True],
         capability: Optional[CapabilityFilterOption],
-    ) -> List[BaseModel]:
-        ...
+    ) -> List[BaseModel]: ...
 
     @overload
     def list_models(
@@ -166,8 +151,7 @@ class Gradient:
         *,
         only_base: Literal[False],
         capability: Optional[CapabilityFilterOption],
-    ) -> List[Model]:
-        ...
+    ) -> List[Model]: ...
 
     def list_models(
         self,
@@ -254,7 +238,9 @@ class Gradient:
             ),
         )
 
-        return AnswerResponse(answer=response.answer, rag_context=response.rag_context)
+        return AnswerResponse(
+            answer=response.answer, rag_context=response.rag_context
+        )
 
     def summarize(
         self,
@@ -280,13 +266,17 @@ class Gradient:
         document: str,
         examples: Optional[List[AnalyzeSentimentParamsExample]] = None,
     ) -> AnalyzeSentimentResponse:
-        parsed_examples = None if not examples else [
-            {
-                "document": example["document"],
-                "sentiment": example["sentiment"].value,
-            }
-            for example in examples
-        ]
+        parsed_examples = (
+            None
+            if not examples
+            else [
+                {
+                    "document": example["document"],
+                    "sentiment": example["sentiment"].value,
+                }
+                for example in examples
+            ]
+        )
 
         result = self._blocks_api.analyze_sentiment(
             x_gradient_workspace_id=self._workspace_id,
@@ -337,3 +327,61 @@ class Gradient:
             key: value.actual_instance for key, value in result.entity.items()
         }
         return ExtractResponse(entity=entity)
+
+    def extract_pdf(
+        self,
+        *,
+        filepath: str,
+    ) -> ExtractPdfResponse:
+        result = self._blocks_api.extract_pdf(
+            x_gradient_workspace_id=self._workspace_id,
+            file=filepath,
+        )
+
+        pages = [
+            {
+                "images": [
+                    {
+                        "data": image.data,
+                        "format": image.format,
+                    }
+                    for image in page.images
+                ],
+                "page_number": page.page_number,
+                "tables": [
+                    {
+                        "name": table.name,
+                        "table_rows": [
+                            {
+                                "cells": [
+                                    {
+                                        "cell_value": cell.cell_value,
+                                        "col_span": cell.col_span,
+                                        "row_span": cell.row_span,
+                                    }
+                                    for cell in row
+                                ],
+                                "type": row.type,
+                            }
+                            for row in table.table_rows
+                        ],
+                    }
+                    for table in page.tables
+                ],
+                "text": page.text,
+                "text_blocks": [
+                    {
+                        "kind": text_block.kind,
+                        "texts": text_block.texts,
+                    }
+                    for text_block in page.text_blocks
+                ],
+            }
+            for page in result.pages
+        ]
+
+        return ExtractPdfResponse(
+            pages=pages,
+            text=result.text,
+            title=result.title,
+        )

@@ -20,12 +20,15 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import constr
+from pydantic import StrictBytes, StrictStr, constr
+
+from typing import Union
 
 from gradientai.openapi.client.models.analyze_sentiment_body_params import AnalyzeSentimentBodyParams
 from gradientai.openapi.client.models.analyze_sentiment_success import AnalyzeSentimentSuccess
 from gradientai.openapi.client.models.extract_entity_body_params import ExtractEntityBodyParams
 from gradientai.openapi.client.models.extract_entity_success import ExtractEntitySuccess
+from gradientai.openapi.client.models.extract_pdf_success import ExtractPdfSuccess
 from gradientai.openapi.client.models.generate_answer_body_params import GenerateAnswerBodyParams
 from gradientai.openapi.client.models.generate_answer_success import GenerateAnswerSuccess
 from gradientai.openapi.client.models.personalize_document_body_params import PersonalizeDocumentBodyParams
@@ -348,6 +351,161 @@ class BlocksApi(object):
 
         return self.api_client.call_api(
             '/blocks/extract', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def extract_pdf(self, x_gradient_workspace_id : constr(strict=True, min_length=1), file : Union[StrictBytes, StrictStr], **kwargs) -> ExtractPdfSuccess:  # noqa: E501
+        """PDF extraction  # noqa: E501
+
+        Extracts content from the PDF.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.extract_pdf(x_gradient_workspace_id, file, async_req=True)
+        >>> result = thread.get()
+
+        :param x_gradient_workspace_id: (required)
+        :type x_gradient_workspace_id: str
+        :param file: (required)
+        :type file: bytearray
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: ExtractPdfSuccess
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the extract_pdf_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.extract_pdf_with_http_info(x_gradient_workspace_id, file, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def extract_pdf_with_http_info(self, x_gradient_workspace_id : constr(strict=True, min_length=1), file : Union[StrictBytes, StrictStr], **kwargs) -> ApiResponse:  # noqa: E501
+        """PDF extraction  # noqa: E501
+
+        Extracts content from the PDF.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.extract_pdf_with_http_info(x_gradient_workspace_id, file, async_req=True)
+        >>> result = thread.get()
+
+        :param x_gradient_workspace_id: (required)
+        :type x_gradient_workspace_id: str
+        :param file: (required)
+        :type file: bytearray
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(ExtractPdfSuccess, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'x_gradient_workspace_id',
+            'file'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method extract_pdf" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        if _params['x_gradient_workspace_id']:
+            _header_params['x-gradient-workspace-id'] = _params['x_gradient_workspace_id']
+
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        if _params['file']:
+            _files['file'] = _params['file']
+
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['multipart/form-data']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['AccessToken']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ExtractPdfSuccess",
+            '4XX': "ExtractPdfError",
+        }
+
+        return self.api_client.call_api(
+            '/blocks/extract-pdf', 'POST',
             _path_params,
             _query_params,
             _header_params,
