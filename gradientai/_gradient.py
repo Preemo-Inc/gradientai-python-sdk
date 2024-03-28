@@ -359,7 +359,7 @@ class Gradient:
                                         "col_span": cell.col_span,
                                         "row_span": cell.row_span,
                                     }
-                                    for cell in row
+                                    for cell in row.cells
                                 ],
                                 "type": row.type,
                             }

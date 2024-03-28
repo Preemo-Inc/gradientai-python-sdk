@@ -15,6 +15,8 @@
 
 
 # import models into model package
+from gradientai.openapi.client.models.add_files_to_rag_collection_body_params import AddFilesToRagCollectionBodyParams
+from gradientai.openapi.client.models.add_files_to_rag_collection_error import AddFilesToRagCollectionError
 from gradientai.openapi.client.models.analyze_sentiment_body_params import AnalyzeSentimentBodyParams
 from gradientai.openapi.client.models.analyze_sentiment_body_params_examples_inner import AnalyzeSentimentBodyParamsExamplesInner
 from gradientai.openapi.client.models.analyze_sentiment_error import AnalyzeSentimentError
@@ -46,6 +48,10 @@ from gradientai.openapi.client.models.create_model_body_params_initial_hyperpara
 from gradientai.openapi.client.models.create_model_body_params_model import CreateModelBodyParamsModel
 from gradientai.openapi.client.models.create_model_error import CreateModelError
 from gradientai.openapi.client.models.create_model_success import CreateModelSuccess
+from gradientai.openapi.client.models.create_rag_collection_body_params import CreateRagCollectionBodyParams
+from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
+from gradientai.openapi.client.models.create_rag_collection_error import CreateRagCollectionError
+from gradientai.openapi.client.models.create_rag_collection_success import CreateRagCollectionSuccess
 from gradientai.openapi.client.models.delete_model_error import DeleteModelError
 from gradientai.openapi.client.models.extract_entity_body_params import ExtractEntityBodyParams
 from gradientai.openapi.client.models.extract_entity_body_params_schema_value import ExtractEntityBodyParamsSchemaValue
@@ -98,3 +104,5 @@ from gradientai.openapi.client.models.summarize_document_body_params import Summ
 from gradientai.openapi.client.models.summarize_document_body_params_examples_inner import SummarizeDocumentBodyParamsExamplesInner
 from gradientai.openapi.client.models.summarize_document_error import SummarizeDocumentError
 from gradientai.openapi.client.models.summarize_document_success import SummarizeDocumentSuccess
+from gradientai.openapi.client.models.upload_file_error import UploadFileError
+from gradientai.openapi.client.models.upload_file_success import UploadFileSuccess
