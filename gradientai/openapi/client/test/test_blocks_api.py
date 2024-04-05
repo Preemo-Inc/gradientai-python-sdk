@@ -36,6 +36,13 @@ class TestBlocksApi(unittest.TestCase):
         """
         pass
 
+    def test_create_audio_transcription(self):
+        """Test case for create_audio_transcription
+
+        Create audio transcription  # noqa: E501
+        """
+        pass
+
     def test_extract_entity(self):
         """Test case for extract_entity
 
@@ -54,6 +61,13 @@ class TestBlocksApi(unittest.TestCase):
         """Test case for generate_answer
 
         Document question & answer  # noqa: E501
+        """
+        pass
+
+    def test_get_audio_transcription(self):
+        """Test case for get_audio_transcription
+
+        Get audio transcription  # noqa: E501
         """
         pass
 
