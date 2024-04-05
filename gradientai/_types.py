@@ -121,3 +121,7 @@ class ExtractPdfResponse(TypedDict):
     pages: List[ExtractPdfResponsePage]
     text: str
     title: Optional[str]
+
+
+class TranscribeAudioResponse(TypedDict):
+    text: str

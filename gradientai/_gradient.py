@@ -1,3 +1,5 @@
+import os
+import time
 from types import TracebackType
 from typing import Any, List, Literal, Mapping, Optional, Type, overload
 
@@ -5,8 +7,9 @@ from typing_extensions import Self, assert_never
 
 from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._embeddings_model import EmbeddingsModel
-from gradientai._model import Model
+from gradientai._model import RAG, Model
 from gradientai._model_adapter import ModelAdapter
+from gradientai._rag import RAGCollection
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
     AnalyzeSentimentResponse,
@@ -20,15 +23,27 @@ from gradientai._types import (
     SummarizeParamsExample,
     SummarizeParamsLength,
     SummarizeResponse,
+    TranscribeAudioResponse,
 )
 from gradientai.helpers.env_manager import ENV_MANAGER
 from gradientai.openapi.client.api.blocks_api import BlocksApi
 from gradientai.openapi.client.api.embeddings_api import EmbeddingsApi
+from gradientai.openapi.client.api.files_api import FilesApi
 from gradientai.openapi.client.api.models_api import ModelsApi
+from gradientai.openapi.client.api.rag_api import RAGApi
 from gradientai.openapi.client.api_client import ApiClient
 from gradientai.openapi.client.configuration import Configuration
 from gradientai.openapi.client.models.analyze_sentiment_body_params import (
     AnalyzeSentimentBodyParams,
+)
+from gradientai.openapi.client.models.create_audio_transcription_body_params import (
+    CreateAudioTranscriptionBodyParams,
+)
+from gradientai.openapi.client.models.create_rag_collection_body_params import (
+    CreateRagCollectionBodyParams,
+)
+from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import (
+    CreateRagCollectionBodyParamsFilesInner,
 )
 from gradientai.openapi.client.models.extract_entity_body_params import (
     ExtractEntityBodyParams,
@@ -51,7 +66,9 @@ class Gradient:
     _api_client: ApiClient
     _blocks_api: BlocksApi
     _embeddings_api: EmbeddingsApi
+    _files_api: FilesApi
     _models_api: ModelsApi
+    _rag_api: RAGApi
     _workspace_id: str
 
     def __init__(
@@ -98,7 +115,9 @@ class Gradient:
         )
         self._blocks_api = BlocksApi(self._api_client)
         self._embeddings_api = EmbeddingsApi(self._api_client)
+        self._files_api = FilesApi(self._api_client)
         self._models_api = ModelsApi(self._api_client)
+        self._rag_api = RAGApi(self._api_client)
         self._workspace_id = workspace_id
 
     def __enter__(self) -> Self:
@@ -331,7 +350,7 @@ class Gradient:
     def extract_pdf(
         self,
         *,
-        filepath: str,
+        filepath: os.PathLike,
     ) -> ExtractPdfResponse:
         result = self._blocks_api.extract_pdf(
             x_gradient_workspace_id=self._workspace_id,
@@ -384,4 +403,96 @@ class Gradient:
             pages=pages,
             text=result.text,
             title=result.title,
+        )
+
+    def transcribe_audio(
+        self,
+        *,
+        filepath: os.PathLike,
+    ) -> TranscribeAudioResponse:
+        file_result = self._files_api.upload_file(
+            file=filepath,
+            type="audioFile",
+            x_gradient_workspace_id=self._workspace_id,
+        )
+
+        create_transcription_result = self._blocks_api.create_audio_transcription(
+            create_audio_transcription_body_params=CreateAudioTranscriptionBodyParams(
+                file_id=file_result.id,
+            ),
+            x_gradient_workspace_id=self._workspace_id,
+        )
+
+        while True:
+            get_transcription_result = self._blocks_api.get_audio_transcription(
+                transcription_id=create_transcription_result.transcription_id,
+                x_gradient_workspace_id=self._workspace_id,
+            )
+
+            status = get_transcription_result.actual_instance.status
+            if (
+                status == "pending"
+                or status == "pendingCancellation"
+                or status == "running"
+            ):
+                time.sleep(1)
+                continue
+
+            if status == "cancelled" or status == "failed":
+                raise Exception("Unable to get transcription")
+
+            if status == "succeeded":
+                return TranscribeAudioResponse(
+                    text=get_transcription_result.actual_instance.result.text
+                )
+
+            raise Exception(f"Received unexpected status: {status}")
+
+    def create_rag_collection(
+        self,
+        *,
+        name: str,
+        slug: str,
+        filepaths: Optional[List[os.PathLike]] = None,
+    ) -> RAGCollection:
+        if filepaths is None:
+            filepaths = []
+
+        file_results = [
+            self._files_api.upload_file(
+                file=file_,
+                type="ragUserFile",
+                x_gradient_workspace_id=self._workspace_id,
+            )
+            for file_ in filepaths
+        ]
+
+        rag_result = self._rag_api.create_rag_collection(
+            x_gradient_workspace_id=self._workspace_id,
+            create_rag_collection_body_params=CreateRagCollectionBodyParams(
+                name=name,
+                slug=slug,
+                files=[
+                    CreateRagCollectionBodyParamsFilesInner(
+                        id=file_result.id, name=os.path.basename(file_path)
+                    )
+                    for (file_result, file_path) in zip(file_results, filepaths)
+                ],
+            ),
+        )
+
+        return RAGCollection(
+            id_=rag_result.id,
+            files_api=self._files_api,
+            rag_api=self._rag_api,
+            workspace_id=self._workspace_id,
+        )
+
+    def get_rag_collection(self, *, id_: str) -> RAGCollection:
+        
+        return RAGCollection(
+            id_=id_,
+            files_api=self._files_api,
+            rag_api=self._rag_api,
+            workspace_id=self._workspace_id,
         )

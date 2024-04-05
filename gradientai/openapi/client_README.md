@@ -74,23 +74,30 @@ All URIs are relative to *https://github.com/Preemo-Inc/gradientai-python-sdk/bl
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *BlocksApi* | [**analyze_sentiment**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#analyze_sentiment) | **POST** /blocks/analyze-sentiment | Sentiment analysis
+*BlocksApi* | [**create_audio_transcription**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#create_audio_transcription) | **POST** /blocks/transcription | Create audio transcription
 *BlocksApi* | [**extract_entity**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#extract_entity) | **POST** /blocks/extract | Entity extraction
 *BlocksApi* | [**extract_pdf**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#extract_pdf) | **POST** /blocks/extract-pdf | PDF extraction
 *BlocksApi* | [**generate_answer**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#generate_answer) | **POST** /blocks/answer | Document question &amp; answer
+*BlocksApi* | [**get_audio_transcription**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#get_audio_transcription) | **GET** /blocks/transcription | Get audio transcription
 *BlocksApi* | [**personalize_document**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#personalize_document) | **POST** /blocks/personalize | Document personalization
 *BlocksApi* | [**summarize_document**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/BlocksApi.md#summarize_document) | **POST** /blocks/summarize | Document summary
 *EmbeddingsApi* | [**generate_embedding**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/EmbeddingsApi.md#generate_embedding) | **POST** /embeddings/{slug} | Generate embeddings
 *EmbeddingsApi* | [**list_embeddings**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/EmbeddingsApi.md#list_embeddings) | **GET** /embeddings | List available embeddings models
+*FilesApi* | [**upload_file**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/FilesApi.md#upload_file) | **POST** /files | File upload
 *ModelsApi* | [**complete_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#complete_model) | **POST** /models/{id}/complete | Complete model
 *ModelsApi* | [**create_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#create_model) | **POST** /models | Create model
 *ModelsApi* | [**delete_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#delete_model) | **DELETE** /models/{id} | Delete model
 *ModelsApi* | [**fine_tune_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#fine_tune_model) | **POST** /models/{id}/fine-tune | Fine-tune model
 *ModelsApi* | [**get_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#get_model) | **GET** /models/{id} | Describe model
 *ModelsApi* | [**list_models**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#list_models) | **GET** /models | List available models
+*RAGApi* | [**add_files_to_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#add_files_to_rag_collection) | **POST** /rag-collections/{id}/files | Add files to RAG collection
+*RAGApi* | [**create_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#create_rag_collection) | **POST** /rag-collections | RAG collections
 
 
 ## Documentation For Models
 
+ - [AddFilesToRagCollectionBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AddFilesToRagCollectionBodyParams.md)
+ - [AddFilesToRagCollectionError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AddFilesToRagCollectionError.md)
  - [AnalyzeSentimentBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AnalyzeSentimentBodyParams.md)
  - [AnalyzeSentimentBodyParamsExamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AnalyzeSentimentBodyParamsExamplesInner.md)
  - [AnalyzeSentimentError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/AnalyzeSentimentError.md)
@@ -115,6 +122,9 @@ Class | Method | HTTP request | Description
  - [CompleteModelErrorOneOfPayload](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CompleteModelErrorOneOfPayload.md)
  - [CompleteModelErrorOneOfPayloadFlaggedContentInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CompleteModelErrorOneOfPayloadFlaggedContentInner.md)
  - [CompleteModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CompleteModelSuccess.md)
+ - [CreateAudioTranscriptionBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateAudioTranscriptionBodyParams.md)
+ - [CreateAudioTranscriptionError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateAudioTranscriptionError.md)
+ - [CreateAudioTranscriptionSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateAudioTranscriptionSuccess.md)
  - [CreateModelBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelBodyParams.md)
  - [CreateModelBodyParamsInitialHyperparameters](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelBodyParamsInitialHyperparameters.md)
  - [CreateModelBodyParamsInitialHyperparametersLoraHyperparameters](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelBodyParamsInitialHyperparametersLoraHyperparameters.md)
@@ -122,6 +132,10 @@ Class | Method | HTTP request | Description
  - [CreateModelBodyParamsModel](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelBodyParamsModel.md)
  - [CreateModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelError.md)
  - [CreateModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateModelSuccess.md)
+ - [CreateRagCollectionBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateRagCollectionBodyParams.md)
+ - [CreateRagCollectionBodyParamsFilesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateRagCollectionBodyParamsFilesInner.md)
+ - [CreateRagCollectionError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateRagCollectionError.md)
+ - [CreateRagCollectionSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateRagCollectionSuccess.md)
  - [DeleteModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/DeleteModelError.md)
  - [ExtractEntityBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityBodyParams.md)
  - [ExtractEntityBodyParamsSchemaValue](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityBodyParamsSchemaValue.md)
@@ -158,6 +172,11 @@ Class | Method | HTTP request | Description
  - [GenerateEmbeddingError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateEmbeddingError.md)
  - [GenerateEmbeddingSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateEmbeddingSuccess.md)
  - [GenerateEmbeddingSuccessEmbeddingsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GenerateEmbeddingSuccessEmbeddingsInner.md)
+ - [GetAudioTranscriptionError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetAudioTranscriptionError.md)
+ - [GetAudioTranscriptionSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetAudioTranscriptionSuccess.md)
+ - [GetAudioTranscriptionSuccessOneOf](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetAudioTranscriptionSuccessOneOf.md)
+ - [GetAudioTranscriptionSuccessOneOf1](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetAudioTranscriptionSuccessOneOf1.md)
+ - [GetAudioTranscriptionSuccessOneOf1Result](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetAudioTranscriptionSuccessOneOf1Result.md)
  - [GetModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetModelError.md)
  - [GetModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetModelSuccess.md)
  - [ListEmbeddingsError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListEmbeddingsError.md)
@@ -174,6 +193,8 @@ Class | Method | HTTP request | Description
  - [SummarizeDocumentBodyParamsExamplesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/SummarizeDocumentBodyParamsExamplesInner.md)
  - [SummarizeDocumentError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/SummarizeDocumentError.md)
  - [SummarizeDocumentSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/SummarizeDocumentSuccess.md)
+ - [UploadFileError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/UploadFileError.md)
+ - [UploadFileSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/UploadFileSuccess.md)
 
 
 <a id="documentation-for-authorization"></a>
