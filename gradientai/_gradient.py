@@ -7,9 +7,9 @@ from typing_extensions import Self, assert_never
 
 from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._embeddings_model import EmbeddingsModel
-from gradientai._model import RAG, Model
+from gradientai._model import Model
 from gradientai._model_adapter import ModelAdapter
-from gradientai._rag import RAGCollection
+from gradientai._rag import RAGCollection, RAGFile
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
     AnalyzeSentimentResponse,
@@ -350,7 +350,7 @@ class Gradient:
     def extract_pdf(
         self,
         *,
-        filepath: os.PathLike,
+        filepath: str,
     ) -> ExtractPdfResponse:
         result = self._blocks_api.extract_pdf(
             x_gradient_workspace_id=self._workspace_id,
@@ -408,7 +408,7 @@ class Gradient:
     def transcribe_audio(
         self,
         *,
-        filepath: os.PathLike,
+        filepath: str,
     ) -> TranscribeAudioResponse:
         file_result = self._files_api.upload_file(
             file=filepath,
@@ -453,7 +453,7 @@ class Gradient:
         *,
         name: str,
         slug: str,
-        filepaths: Optional[List[os.PathLike]] = None,
+        filepaths: Optional[List[str]] = None,
     ) -> RAGCollection:
         if filepaths is None:
             filepaths = []
@@ -481,18 +481,42 @@ class Gradient:
             ),
         )
 
-        return RAGCollection(
-            id_=rag_result.id,
-            files_api=self._files_api,
-            rag_api=self._rag_api,
-            workspace_id=self._workspace_id,
+        return self.get_rag_collection(id_=rag_result.id)
+
+    def list_rag_collections(self) -> List[RAGCollection]:
+        """Files are not present in the list call. To retrieve the files use `getRagCollection`."""
+        result = self._rag_api.list_rag_collections(
+            x_gradient_workspace_id=self._workspace_id,
         )
 
+        return [
+            RAGCollection(
+                files_api=self._files_api,
+                files=[],
+                id_=rag_collection.id,
+                name=rag_collection.name,
+                rag_api=self._rag_api,
+                workspace_id=self._workspace_id,
+            )
+            for rag_collection in result.rag_collections
+        ]
+
     def get_rag_collection(self, *, id_: str) -> RAGCollection:
-        
+        result = self._rag_api.get_rag_collection(
+            id=id_,
+            x_gradient_workspace_id=self._workspace_id,
+        )
+
+        files: List[RAGFile] = [
+            {"id_": file.id, "name": file.name, "status": file.status}
+            for file in result.files
+        ]
+
         return RAGCollection(
-            id_=id_,
             files_api=self._files_api,
+            files=files,
+            id_=id_,
+            name=result.name,
             rag_api=self._rag_api,
             workspace_id=self._workspace_id,
         )

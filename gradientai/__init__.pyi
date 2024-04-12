@@ -9,6 +9,7 @@ from typing_extensions import NotRequired, Protocol, TypedDict
 from gradientai._base_model import BaseModelCapability, CapabilityFilterOption
 from gradientai._gradient import Gradient
 from gradientai._model import Guidance
+from gradientai._rag import RAGFile
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
     ExtractParamsSchemaValue,
@@ -65,6 +66,15 @@ class BaseModel(Model, Protocol):
         learning_rate: Optional[float] = ...
     ) -> ModelAdapter: ...
 
+class RAGCollection:
+    @property
+    def id_(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def files(self) -> List[RAGFile]: ...
+    def add_files(self, *, filepaths: List[str]) -> None: ...
+
 __all__ = [
     "AnalyzeSentimentParamsExample",
     "BaseModel",
@@ -75,6 +85,7 @@ __all__ = [
     "Guidance",
     "Model",
     "ModelAdapter",
+    "RAGCollection",
     "Sample",
     "Sentiment",
     "StructuredInput",

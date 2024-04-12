@@ -91,7 +91,9 @@ Class | Method | HTTP request | Description
 *ModelsApi* | [**get_model**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#get_model) | **GET** /models/{id} | Describe model
 *ModelsApi* | [**list_models**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#list_models) | **GET** /models | List available models
 *RAGApi* | [**add_files_to_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#add_files_to_rag_collection) | **POST** /rag-collections/{id}/files | Add files to RAG collection
-*RAGApi* | [**create_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#create_rag_collection) | **POST** /rag-collections | RAG collections
+*RAGApi* | [**create_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#create_rag_collection) | **POST** /rag-collections | Create RAG collection
+*RAGApi* | [**get_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#get_rag_collection) | **GET** /rag-collections/{id} | Get RAG collection
+*RAGApi* | [**list_rag_collections**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#list_rag_collections) | **GET** /rag-collections | List RAG collections
 
 
 ## Documentation For Models
@@ -179,12 +181,18 @@ Class | Method | HTTP request | Description
  - [GetAudioTranscriptionSuccessOneOf1Result](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetAudioTranscriptionSuccessOneOf1Result.md)
  - [GetModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetModelError.md)
  - [GetModelSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetModelSuccess.md)
+ - [GetRagCollectionError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetRagCollectionError.md)
+ - [GetRagCollectionSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetRagCollectionSuccess.md)
+ - [GetRagCollectionSuccessFilesInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/GetRagCollectionSuccessFilesInner.md)
  - [ListEmbeddingsError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListEmbeddingsError.md)
  - [ListEmbeddingsSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListEmbeddingsSuccess.md)
  - [ListEmbeddingsSuccessEmbeddingsModelsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListEmbeddingsSuccessEmbeddingsModelsInner.md)
  - [ListModelsError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListModelsError.md)
  - [ListModelsSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListModelsSuccess.md)
  - [ListModelsSuccessModelsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListModelsSuccessModelsInner.md)
+ - [ListRagCollectionsError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListRagCollectionsError.md)
+ - [ListRagCollectionsSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListRagCollectionsSuccess.md)
+ - [ListRagCollectionsSuccessRagCollectionsInner](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ListRagCollectionsSuccessRagCollectionsInner.md)
  - [ModelAdapter](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelAdapter.md)
  - [PersonalizeDocumentBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/PersonalizeDocumentBodyParams.md)
  - [PersonalizeDocumentError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/PersonalizeDocumentError.md)

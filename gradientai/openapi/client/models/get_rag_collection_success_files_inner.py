@@ -19,17 +19,25 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
-from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
+from typing import Any, Dict
+from pydantic import BaseModel, Field, StrictStr, constr, validator
 
-class AddFilesToRagCollectionBodyParams(BaseModel):
+class GetRagCollectionSuccessFilesInner(BaseModel):
     """
-    AddFilesToRagCollectionBodyParams
+    GetRagCollectionSuccessFilesInner
     """
-    files: conlist(CreateRagCollectionBodyParamsFilesInner, max_items=20) = Field(...)
+    id: constr(strict=True, min_length=1) = Field(...)
+    name: constr(strict=True, min_length=1) = Field(...)
+    status: StrictStr = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["files"]
+    __properties = ["id", "name", "status"]
+
+    @validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('cancelled', 'failed', 'succeeded', 'pending', 'pendingCancellation', 'running'):
+            raise ValueError("must be one of enum values ('cancelled', 'failed', 'succeeded', 'pending', 'pendingCancellation', 'running')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -45,8 +53,8 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AddFilesToRagCollectionBodyParams:
-        """Create an instance of AddFilesToRagCollectionBodyParams from a JSON string"""
+    def from_json(cls, json_str: str) -> GetRagCollectionSuccessFilesInner:
+        """Create an instance of GetRagCollectionSuccessFilesInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -56,13 +64,6 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in files (list)
-        _items = []
-        if self.files:
-            for _item in self.files:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['files'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -71,16 +72,18 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AddFilesToRagCollectionBodyParams:
-        """Create an instance of AddFilesToRagCollectionBodyParams from a dict"""
+    def from_dict(cls, obj: dict) -> GetRagCollectionSuccessFilesInner:
+        """Create an instance of GetRagCollectionSuccessFilesInner from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AddFilesToRagCollectionBodyParams.parse_obj(obj)
+            return GetRagCollectionSuccessFilesInner.parse_obj(obj)
 
-        _obj = AddFilesToRagCollectionBodyParams.parse_obj({
-            "files": [CreateRagCollectionBodyParamsFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None
+        _obj = GetRagCollectionSuccessFilesInner.parse_obj({
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "status": obj.get("status")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

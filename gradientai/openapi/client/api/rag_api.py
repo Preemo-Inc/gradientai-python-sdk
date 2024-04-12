@@ -27,6 +27,8 @@ from typing import Any, Dict
 from gradientai.openapi.client.models.add_files_to_rag_collection_body_params import AddFilesToRagCollectionBodyParams
 from gradientai.openapi.client.models.create_rag_collection_body_params import CreateRagCollectionBodyParams
 from gradientai.openapi.client.models.create_rag_collection_success import CreateRagCollectionSuccess
+from gradientai.openapi.client.models.get_rag_collection_success import GetRagCollectionSuccess
+from gradientai.openapi.client.models.list_rag_collections_success import ListRagCollectionsSuccess
 
 from gradientai.openapi.client.api_client import ApiClient
 from gradientai.openapi.client.api_response import ApiResponse
@@ -213,7 +215,7 @@ class RAGApi(object):
 
     @validate_arguments
     def create_rag_collection(self, x_gradient_workspace_id : constr(strict=True, min_length=1), create_rag_collection_body_params : CreateRagCollectionBodyParams, **kwargs) -> CreateRagCollectionSuccess:  # noqa: E501
-        """RAG collections  # noqa: E501
+        """Create RAG collection  # noqa: E501
 
         Creates a new collection of RAG documents.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -244,7 +246,7 @@ class RAGApi(object):
 
     @validate_arguments
     def create_rag_collection_with_http_info(self, x_gradient_workspace_id : constr(strict=True, min_length=1), create_rag_collection_body_params : CreateRagCollectionBodyParams, **kwargs) -> ApiResponse:  # noqa: E501
-        """RAG collections  # noqa: E501
+        """Create RAG collection  # noqa: E501
 
         Creates a new collection of RAG documents.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -351,6 +353,294 @@ class RAGApi(object):
 
         return self.api_client.call_api(
             '/rag-collections', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_rag_collection(self, id : constr(strict=True, min_length=1), x_gradient_workspace_id : constr(strict=True, min_length=1), **kwargs) -> GetRagCollectionSuccess:  # noqa: E501
+        """Get RAG collection  # noqa: E501
+
+        Gets the RAG collection details.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rag_collection(id, x_gradient_workspace_id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: (required)
+        :type id: str
+        :param x_gradient_workspace_id: (required)
+        :type x_gradient_workspace_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetRagCollectionSuccess
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_rag_collection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_rag_collection_with_http_info(id, x_gradient_workspace_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_rag_collection_with_http_info(self, id : constr(strict=True, min_length=1), x_gradient_workspace_id : constr(strict=True, min_length=1), **kwargs) -> ApiResponse:  # noqa: E501
+        """Get RAG collection  # noqa: E501
+
+        Gets the RAG collection details.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rag_collection_with_http_info(id, x_gradient_workspace_id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: (required)
+        :type id: str
+        :param x_gradient_workspace_id: (required)
+        :type x_gradient_workspace_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetRagCollectionSuccess, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'x_gradient_workspace_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_rag_collection" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        if _params['x_gradient_workspace_id']:
+            _header_params['x-gradient-workspace-id'] = _params['x_gradient_workspace_id']
+
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['AccessToken']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetRagCollectionSuccess",
+            '4XX': "GetRagCollectionError",
+        }
+
+        return self.api_client.call_api(
+            '/rag-collections/{id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def list_rag_collections(self, x_gradient_workspace_id : constr(strict=True, min_length=1), **kwargs) -> ListRagCollectionsSuccess:  # noqa: E501
+        """List RAG collections  # noqa: E501
+
+        Lists all RAG collections associated with your workspace.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_rag_collections(x_gradient_workspace_id, async_req=True)
+        >>> result = thread.get()
+
+        :param x_gradient_workspace_id: (required)
+        :type x_gradient_workspace_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: ListRagCollectionsSuccess
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the list_rag_collections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.list_rag_collections_with_http_info(x_gradient_workspace_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def list_rag_collections_with_http_info(self, x_gradient_workspace_id : constr(strict=True, min_length=1), **kwargs) -> ApiResponse:  # noqa: E501
+        """List RAG collections  # noqa: E501
+
+        Lists all RAG collections associated with your workspace.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_rag_collections_with_http_info(x_gradient_workspace_id, async_req=True)
+        >>> result = thread.get()
+
+        :param x_gradient_workspace_id: (required)
+        :type x_gradient_workspace_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(ListRagCollectionsSuccess, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'x_gradient_workspace_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_rag_collections" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        if _params['x_gradient_workspace_id']:
+            _header_params['x-gradient-workspace-id'] = _params['x_gradient_workspace_id']
+
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['AccessToken']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ListRagCollectionsSuccess",
+            '4XX': "ListRagCollectionsError",
+        }
+
+        return self.api_client.call_api(
+            '/rag-collections', 'GET',
             _path_params,
             _query_params,
             _header_params,

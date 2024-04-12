@@ -21,15 +21,15 @@ import json
 
 from typing import Any, Dict, List
 from pydantic import BaseModel, Field, conlist
-from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
+from gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner import ListRagCollectionsSuccessRagCollectionsInner
 
-class AddFilesToRagCollectionBodyParams(BaseModel):
+class ListRagCollectionsSuccess(BaseModel):
     """
-    AddFilesToRagCollectionBodyParams
+    ListRagCollectionsSuccess
     """
-    files: conlist(CreateRagCollectionBodyParamsFilesInner, max_items=20) = Field(...)
+    rag_collections: conlist(ListRagCollectionsSuccessRagCollectionsInner) = Field(..., alias="ragCollections")
     additional_properties: Dict[str, Any] = {}
-    __properties = ["files"]
+    __properties = ["ragCollections"]
 
     class Config:
         """Pydantic configuration"""
@@ -45,8 +45,8 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AddFilesToRagCollectionBodyParams:
-        """Create an instance of AddFilesToRagCollectionBodyParams from a JSON string"""
+    def from_json(cls, json_str: str) -> ListRagCollectionsSuccess:
+        """Create an instance of ListRagCollectionsSuccess from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -56,13 +56,13 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in files (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in rag_collections (list)
         _items = []
-        if self.files:
-            for _item in self.files:
+        if self.rag_collections:
+            for _item in self.rag_collections:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['files'] = _items
+            _dict['ragCollections'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -71,16 +71,16 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AddFilesToRagCollectionBodyParams:
-        """Create an instance of AddFilesToRagCollectionBodyParams from a dict"""
+    def from_dict(cls, obj: dict) -> ListRagCollectionsSuccess:
+        """Create an instance of ListRagCollectionsSuccess from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AddFilesToRagCollectionBodyParams.parse_obj(obj)
+            return ListRagCollectionsSuccess.parse_obj(obj)
 
-        _obj = AddFilesToRagCollectionBodyParams.parse_obj({
-            "files": [CreateRagCollectionBodyParamsFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None
+        _obj = ListRagCollectionsSuccess.parse_obj({
+            "rag_collections": [ListRagCollectionsSuccessRagCollectionsInner.from_dict(_item) for _item in obj.get("ragCollections")] if obj.get("ragCollections") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
