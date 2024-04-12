@@ -39,7 +39,21 @@ class TestRAGApi(unittest.TestCase):
     def test_create_rag_collection(self):
         """Test case for create_rag_collection
 
-        RAG collections  # noqa: E501
+        Create RAG collection  # noqa: E501
+        """
+        pass
+
+    def test_get_rag_collection(self):
+        """Test case for get_rag_collection
+
+        Get RAG collection  # noqa: E501
+        """
+        pass
+
+    def test_list_rag_collections(self):
+        """Test case for list_rag_collections
+
+        List RAG collections  # noqa: E501
         """
         pass
 

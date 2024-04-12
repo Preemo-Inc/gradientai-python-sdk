@@ -125,3 +125,13 @@ class ExtractPdfResponse(TypedDict):
 
 class TranscribeAudioResponse(TypedDict):
     text: str
+
+
+RAGFileIngestionStatus = Literal[
+    "pending",
+    "pendingCancellation",
+    "running",
+    "cancelled",
+    "failed",
+    "succeeded",
+]

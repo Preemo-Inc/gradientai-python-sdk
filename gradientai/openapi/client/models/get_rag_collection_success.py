@@ -18,18 +18,29 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
-from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
+from pydantic import BaseModel, Field, StrictStr, conlist, constr, validator
+from gradientai.openapi.client.models.get_rag_collection_success_files_inner import GetRagCollectionSuccessFilesInner
 
-class AddFilesToRagCollectionBodyParams(BaseModel):
+class GetRagCollectionSuccess(BaseModel):
     """
-    AddFilesToRagCollectionBodyParams
+    GetRagCollectionSuccess
     """
-    files: conlist(CreateRagCollectionBodyParamsFilesInner, max_items=20) = Field(...)
+    creation_time: datetime = Field(..., alias="creationTime")
+    files: conlist(GetRagCollectionSuccessFilesInner) = Field(...)
+    latest_update_time: datetime = Field(..., alias="latestUpdateTime")
+    name: constr(strict=True, min_length=1) = Field(...)
+    slug: StrictStr = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["files"]
+    __properties = ["creationTime", "files", "latestUpdateTime", "name", "slug"]
+
+    @validator('slug')
+    def slug_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('bge-large'):
+            raise ValueError("must be one of enum values ('bge-large')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -45,8 +56,8 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AddFilesToRagCollectionBodyParams:
-        """Create an instance of AddFilesToRagCollectionBodyParams from a JSON string"""
+    def from_json(cls, json_str: str) -> GetRagCollectionSuccess:
+        """Create an instance of GetRagCollectionSuccess from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -71,16 +82,20 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AddFilesToRagCollectionBodyParams:
-        """Create an instance of AddFilesToRagCollectionBodyParams from a dict"""
+    def from_dict(cls, obj: dict) -> GetRagCollectionSuccess:
+        """Create an instance of GetRagCollectionSuccess from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AddFilesToRagCollectionBodyParams.parse_obj(obj)
+            return GetRagCollectionSuccess.parse_obj(obj)
 
-        _obj = AddFilesToRagCollectionBodyParams.parse_obj({
-            "files": [CreateRagCollectionBodyParamsFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None
+        _obj = GetRagCollectionSuccess.parse_obj({
+            "creation_time": obj.get("creationTime"),
+            "files": [GetRagCollectionSuccessFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None,
+            "latest_update_time": obj.get("latestUpdateTime"),
+            "name": obj.get("name"),
+            "slug": obj.get("slug")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
