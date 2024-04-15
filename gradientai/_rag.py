@@ -87,3 +87,9 @@ class RAGCollection:
             {"id_": file.id, "name": file.name, "status": file.status}
             for file in result.files
         ]
+
+    def delete(self) -> None:
+        self._rag_api.delete_rag_collection(
+            id=self._id,
+            x_gradient_workspace_id=self._workspace_id,
+        )

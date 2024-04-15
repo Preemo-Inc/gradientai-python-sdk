@@ -92,6 +92,7 @@ Class | Method | HTTP request | Description
 *ModelsApi* | [**list_models**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ModelsApi.md#list_models) | **GET** /models | List available models
 *RAGApi* | [**add_files_to_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#add_files_to_rag_collection) | **POST** /rag-collections/{id}/files | Add files to RAG collection
 *RAGApi* | [**create_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#create_rag_collection) | **POST** /rag-collections | Create RAG collection
+*RAGApi* | [**delete_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#delete_rag_collection) | **DELETE** /rag-collections/{id} | Delete RAG collection
 *RAGApi* | [**get_rag_collection**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#get_rag_collection) | **GET** /rag-collections/{id} | Get RAG collection
 *RAGApi* | [**list_rag_collections**](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/RAGApi.md#list_rag_collections) | **GET** /rag-collections | List RAG collections
 
@@ -139,6 +140,7 @@ Class | Method | HTTP request | Description
  - [CreateRagCollectionError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateRagCollectionError.md)
  - [CreateRagCollectionSuccess](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/CreateRagCollectionSuccess.md)
  - [DeleteModelError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/DeleteModelError.md)
+ - [DeleteRagCollectionError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/DeleteRagCollectionError.md)
  - [ExtractEntityBodyParams](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityBodyParams.md)
  - [ExtractEntityBodyParamsSchemaValue](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityBodyParamsSchemaValue.md)
  - [ExtractEntityError](https://github.com/Preemo-Inc/gradientai-python-sdk/blob/main/gradientai/openapi/client/docs/ExtractEntityError.md)
