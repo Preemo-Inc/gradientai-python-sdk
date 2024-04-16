@@ -75,6 +75,7 @@ from gradientai.openapi.client.models.create_rag_collection_body_params_files_in
 from gradientai.openapi.client.models.create_rag_collection_error import CreateRagCollectionError
 from gradientai.openapi.client.models.create_rag_collection_success import CreateRagCollectionSuccess
 from gradientai.openapi.client.models.delete_model_error import DeleteModelError
+from gradientai.openapi.client.models.delete_rag_collection_error import DeleteRagCollectionError
 from gradientai.openapi.client.models.extract_entity_body_params import ExtractEntityBodyParams
 from gradientai.openapi.client.models.extract_entity_body_params_schema_value import ExtractEntityBodyParamsSchemaValue
 from gradientai.openapi.client.models.extract_entity_error import ExtractEntityError

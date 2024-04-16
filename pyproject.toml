@@ -15,7 +15,7 @@ license = "MIT"
 name = "gradientai"
 readme = "README.md"
 repository = "https://github.com/Preemo-Inc/gradientai-python-sdk"
-version = "1.10.0"
+version = "1.11.0"
 
 [tool.poetry.dependencies]
 aenum = ">=3.1.11"

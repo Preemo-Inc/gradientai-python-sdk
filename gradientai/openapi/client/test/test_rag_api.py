@@ -43,6 +43,13 @@ class TestRAGApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_rag_collection(self):
+        """Test case for delete_rag_collection
+
+        Delete RAG collection  # noqa: E501
+        """
+        pass
+
     def test_get_rag_collection(self):
         """Test case for get_rag_collection
 
