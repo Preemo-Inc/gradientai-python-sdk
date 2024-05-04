@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr
 from gradientai.openapi.client.models.extract_entity_body_params_schema_value import ExtractEntityBodyParamsSchemaValue
 
 class ExtractEntityBodyParams(BaseModel):
@@ -57,7 +57,7 @@ class ExtractEntityBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each value in var_schema (dict)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each value in var_schema (dict)
         _field_dict = {}
         if self.var_schema:
             for _key in self.var_schema:

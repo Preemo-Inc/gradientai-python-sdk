@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from gradientai.openapi.client.models.extract_entity_success_entity_value import ExtractEntitySuccessEntityValue
 
 class ExtractEntitySuccess(BaseModel):
@@ -56,7 +56,7 @@ class ExtractEntitySuccess(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each value in entity (dict)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each value in entity (dict)
         _field_dict = {}
         if self.entity:
             for _key in self.entity:

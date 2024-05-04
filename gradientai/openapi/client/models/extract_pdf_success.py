@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from gradientai.openapi.client.models.extract_pdf_success_pages_inner import ExtractPdfSuccessPagesInner
 
 class ExtractPdfSuccess(BaseModel):
@@ -58,7 +58,7 @@ class ExtractPdfSuccess(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in pages (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in pages (list)
         _items = []
         if self.pages:
             for _item in self.pages:

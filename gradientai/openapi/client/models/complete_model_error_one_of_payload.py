@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from gradientai.openapi.client.models.complete_model_error_one_of_payload_flagged_content_inner import CompleteModelErrorOneOfPayloadFlaggedContentInner
 
 class CompleteModelErrorOneOfPayload(BaseModel):
@@ -56,7 +56,7 @@ class CompleteModelErrorOneOfPayload(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in flagged_content (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in flagged_content (list)
         _items = []
         if self.flagged_content:
             for _item in self.flagged_content:

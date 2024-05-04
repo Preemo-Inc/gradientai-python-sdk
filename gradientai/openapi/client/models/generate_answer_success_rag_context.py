@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from gradientai.openapi.client.models.generate_answer_success_rag_context_documents_inner import GenerateAnswerSuccessRagContextDocumentsInner
 
 class GenerateAnswerSuccessRagContext(BaseModel):
@@ -56,7 +56,7 @@ class GenerateAnswerSuccessRagContext(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in documents (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in documents (list)
         _items = []
         if self.documents:
             for _item in self.documents:

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, confloat, conint
+from pydantic.v1 import BaseModel, Field, confloat, conint
 
 class CreateModelBodyParamsInitialHyperparametersTrainingArguments(BaseModel):
     """

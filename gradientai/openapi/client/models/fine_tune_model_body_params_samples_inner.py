@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from gradientai.openapi.client.models.fine_tune_model_body_params_samples_inner_fine_tuning_parameters import FineTuneModelBodyParamsSamplesInnerFineTuningParameters
 from gradientai.openapi.client.models.fine_tune_model_body_params_samples_inner_inputs import FineTuneModelBodyParamsSamplesInnerInputs
 
@@ -58,10 +58,10 @@ class FineTuneModelBodyParamsSamplesInner(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of fine_tuning_parameters
+        # override the default output from pydantic.v1 by calling `to_dict()` of fine_tuning_parameters
         if self.fine_tuning_parameters:
             _dict['fineTuningParameters'] = self.fine_tuning_parameters.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of inputs
+        # override the default output from pydantic.v1 by calling `to_dict()` of inputs
         if self.inputs:
             _dict['inputs'] = self.inputs.to_dict()
         # puts key-value pairs in additional_properties in the top level

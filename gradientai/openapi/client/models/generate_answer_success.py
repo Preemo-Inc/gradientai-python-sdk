@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr
 from gradientai.openapi.client.models.generate_answer_success_rag_context import GenerateAnswerSuccessRagContext
 
 class GenerateAnswerSuccess(BaseModel):
@@ -57,7 +57,7 @@ class GenerateAnswerSuccess(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of rag_context
+        # override the default output from pydantic.v1 by calling `to_dict()` of rag_context
         if self.rag_context:
             _dict['ragContext'] = self.rag_context.to_dict()
         # puts key-value pairs in additional_properties in the top level

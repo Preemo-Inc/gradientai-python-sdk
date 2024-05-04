@@ -20,7 +20,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
 
 class ListRagCollectionsSuccessRagCollectionsInner(BaseModel):
     """

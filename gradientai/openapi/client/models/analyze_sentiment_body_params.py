@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, conlist, constr
+from pydantic.v1 import BaseModel, Field, conlist, constr
 from gradientai.openapi.client.models.analyze_sentiment_body_params_examples_inner import AnalyzeSentimentBodyParamsExamplesInner
 
 class AnalyzeSentimentBodyParams(BaseModel):
@@ -57,7 +57,7 @@ class AnalyzeSentimentBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in examples (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in examples (list)
         _items = []
         if self.examples:
             for _item in self.examples:

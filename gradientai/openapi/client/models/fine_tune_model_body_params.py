@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from gradientai.openapi.client.models.fine_tune_model_body_params_samples_inner import FineTuneModelBodyParamsSamplesInner
 
 class FineTuneModelBodyParams(BaseModel):
@@ -56,7 +56,7 @@ class FineTuneModelBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in samples (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in samples (list)
         _items = []
         if self.samples:
             for _item in self.samples:

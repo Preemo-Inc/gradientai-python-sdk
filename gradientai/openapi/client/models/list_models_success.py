@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from gradientai.openapi.client.models.list_models_success_models_inner import ListModelsSuccessModelsInner
 
 class ListModelsSuccess(BaseModel):
@@ -56,7 +56,7 @@ class ListModelsSuccess(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in models (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in models (list)
         _items = []
         if self.models:
             for _item in self.models:

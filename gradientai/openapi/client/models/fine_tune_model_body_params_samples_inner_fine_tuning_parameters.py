@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, confloat, conint
+from pydantic.v1 import BaseModel, confloat, conint
 
 class FineTuneModelBodyParamsSamplesInnerFineTuningParameters(BaseModel):
     """

@@ -20,10 +20,10 @@ import pprint
 import re  # noqa: F401
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, conlist, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, conlist, constr, validator
 from gradientai.openapi.client.models.fine_tune_model_body_params_samples_inner_inputs_any_of_inner import FineTuneModelBodyParamsSamplesInnerInputsAnyOfInner
 from typing import Any, List
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 FINETUNEMODELBODYPARAMSSAMPLESINNERINPUTS_ANY_OF_SCHEMAS = ["List[FineTuneModelBodyParamsSamplesInnerInputsAnyOfInner]", "str"]
 

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr
 from gradientai.openapi.client.models.generate_answer_body_params_source import GenerateAnswerBodyParamsSource
 
 class GenerateAnswerBodyParams(BaseModel):
@@ -57,7 +57,7 @@ class GenerateAnswerBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of source
+        # override the default output from pydantic.v1 by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
         # puts key-value pairs in additional_properties in the top level

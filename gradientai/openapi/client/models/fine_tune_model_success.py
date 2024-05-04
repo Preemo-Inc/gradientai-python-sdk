@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, conint
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conint
 
 class FineTuneModelSuccess(BaseModel):
     """

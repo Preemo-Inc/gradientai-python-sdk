@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
 
 class AddFilesToRagCollectionBodyParams(BaseModel):
@@ -56,7 +56,7 @@ class AddFilesToRagCollectionBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in files (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in files (list)
         _items = []
         if self.files:
             for _item in self.files:

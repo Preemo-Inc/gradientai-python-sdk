@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, StrictStr, conint, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conint, conlist
 from gradientai.openapi.client.models.extract_pdf_success_pages_inner_images_inner import ExtractPdfSuccessPagesInnerImagesInner
 from gradientai.openapi.client.models.extract_pdf_success_pages_inner_tables_inner import ExtractPdfSuccessPagesInnerTablesInner
 from gradientai.openapi.client.models.extract_pdf_success_pages_inner_text_blocks_inner import ExtractPdfSuccessPagesInnerTextBlocksInner
@@ -62,21 +62,21 @@ class ExtractPdfSuccessPagesInner(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in images (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in images (list)
         _items = []
         if self.images:
             for _item in self.images:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['images'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in tables (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in tables (list)
         _items = []
         if self.tables:
             for _item in self.tables:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['tables'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in text_blocks (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in text_blocks (list)
         _items = []
         if self.text_blocks:
             for _item in self.text_blocks:
