@@ -43,6 +43,7 @@ class TestListRagCollectionsSuccessRagCollectionsInner(unittest.TestCase):
                 id = '0', 
                 latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '0', 
+                parser = None, 
                 slug = 'bge-large'
             )
         else :
@@ -51,6 +52,7 @@ class TestListRagCollectionsSuccessRagCollectionsInner(unittest.TestCase):
                 id = '0',
                 latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '0',
+                parser = None,
                 slug = 'bge-large',
         )
         """

@@ -45,6 +45,7 @@ class TestListRagCollectionsSuccess(unittest.TestCase):
                         id = '0', 
                         latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '0', 
+                        parser = null, 
                         slug = 'bge-large', )
                     ]
             )
@@ -56,6 +57,7 @@ class TestListRagCollectionsSuccess(unittest.TestCase):
                         id = '0', 
                         latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '0', 
+                        parser = null, 
                         slug = 'bge-large', )
                     ],
         )

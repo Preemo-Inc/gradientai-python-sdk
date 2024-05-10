@@ -22,6 +22,7 @@ from datetime import datetime
 from typing import Any, Dict, List
 from pydantic import BaseModel, Field, StrictStr, conlist, constr, validator
 from gradientai.openapi.client.models.get_rag_collection_success_files_inner import GetRagCollectionSuccessFilesInner
+from gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser import ListRagCollectionsSuccessRagCollectionsInnerParser
 
 class GetRagCollectionSuccess(BaseModel):
     """
@@ -29,11 +30,13 @@ class GetRagCollectionSuccess(BaseModel):
     """
     creation_time: datetime = Field(..., alias="creationTime")
     files: conlist(GetRagCollectionSuccessFilesInner) = Field(...)
+    id: constr(strict=True, min_length=1) = Field(...)
     latest_update_time: datetime = Field(..., alias="latestUpdateTime")
     name: constr(strict=True, min_length=1) = Field(...)
+    parser: ListRagCollectionsSuccessRagCollectionsInnerParser = Field(...)
     slug: StrictStr = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["creationTime", "files", "latestUpdateTime", "name", "slug"]
+    __properties = ["creationTime", "files", "id", "latestUpdateTime", "name", "parser", "slug"]
 
     @validator('slug')
     def slug_validate_enum(cls, value):
@@ -74,6 +77,9 @@ class GetRagCollectionSuccess(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['files'] = _items
+        # override the default output from pydantic by calling `to_dict()` of parser
+        if self.parser:
+            _dict['parser'] = self.parser.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -93,8 +99,10 @@ class GetRagCollectionSuccess(BaseModel):
         _obj = GetRagCollectionSuccess.parse_obj({
             "creation_time": obj.get("creationTime"),
             "files": [GetRagCollectionSuccessFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None,
+            "id": obj.get("id"),
             "latest_update_time": obj.get("latestUpdateTime"),
             "name": obj.get("name"),
+            "parser": ListRagCollectionsSuccessRagCollectionsInnerParser.from_dict(obj.get("parser")) if obj.get("parser") is not None else None,
             "slug": obj.get("slug")
         })
         # store additional fields in additional_properties

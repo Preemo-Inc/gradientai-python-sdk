@@ -1,5 +1,6 @@
 import os
-from typing import List, TypedDict
+from dataclasses import dataclass
+from typing import List, Optional, TypedDict, Union
 
 from gradientai._types import RAGFileIngestionStatus
 from gradientai.openapi.client.api.files_api import FilesApi
@@ -18,11 +19,25 @@ class RAGFile(TypedDict):
     status: RAGFileIngestionStatus
 
 
+@dataclass(kw_only=True)
+class SimpleNodeParser:
+    chunk_size: Optional[int] = None
+    chunk_overlap: Optional[int] = None
+
+    @property
+    def parser_type(self) -> str:
+        return "simpleNodeParser"
+
+
+RAGParser = SimpleNodeParser
+
+
 class RAGCollection:
     _files: List[RAGFile]
     _files_api: FilesApi
     _id: str
     _name: str
+    _parser: RAGParser
     _rag_api: RAGApi
     _workspace_id: str
 
@@ -33,6 +48,7 @@ class RAGCollection:
         files_api: FilesApi,
         id_: str,
         name: str,
+        parser: RAGParser,
         rag_api: RAGApi,
         workspace_id: str,
     ) -> None:
@@ -40,6 +56,7 @@ class RAGCollection:
         self._files_api = files_api
         self._id = id_
         self._name = name
+        self._parser = parser
         self._rag_api = rag_api
         self._workspace_id = workspace_id
 
@@ -54,6 +71,13 @@ class RAGCollection:
     @property
     def files(self) -> List[RAGFile]:
         return self._files
+
+    @property
+    def parser(self) -> RAGParser:
+        return self._parser
+
+    def __str__(self) -> str:
+        return f"RAGCollection(id={self._id}, name={self._name}, parser={self._parser})"
 
     def add_files(self, *, filepaths: List[str]) -> None:
         file_results = [
