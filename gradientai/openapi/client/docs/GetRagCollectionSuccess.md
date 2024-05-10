@@ -6,8 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **creation_time** | **datetime** |  | 
 **files** | [**List[GetRagCollectionSuccessFilesInner]**](GetRagCollectionSuccessFilesInner.md) |  | 
+**id** | **str** |  | 
 **latest_update_time** | **datetime** |  | 
 **name** | **str** |  | 
+**parser** | [**ListRagCollectionsSuccessRagCollectionsInnerParser**](ListRagCollectionsSuccessRagCollectionsInnerParser.md) |  | 
 **slug** | **str** |  | 
 
 ## Example

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | 
 **latest_update_time** | **datetime** |  | 
 **name** | **str** |  | 
+**parser** | [**ListRagCollectionsSuccessRagCollectionsInnerParser**](ListRagCollectionsSuccessRagCollectionsInnerParser.md) |  | 
 **slug** | **str** |  | 
 
 ## Example

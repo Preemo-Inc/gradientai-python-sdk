@@ -9,7 +9,7 @@ from typing_extensions import NotRequired, Protocol, TypedDict
 from gradientai._base_model import BaseModelCapability, CapabilityFilterOption
 from gradientai._gradient import Gradient
 from gradientai._model import Guidance
-from gradientai._rag import RAGFile
+from gradientai._rag import RAGFile, SimpleNodeParser
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
     ExtractParamsSchemaValue,
@@ -88,6 +88,7 @@ __all__ = [
     "RAGCollection",
     "Sample",
     "Sentiment",
+    "SimpleNodeParser",
     "StructuredInput",
     "SummarizeParamsExample",
     "SummarizeParamsLength",

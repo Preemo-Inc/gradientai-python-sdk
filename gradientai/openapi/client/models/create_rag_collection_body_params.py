@@ -22,6 +22,7 @@ import json
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist, constr, validator
 from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
+from gradientai.openapi.client.models.simple_node_parser import SimpleNodeParser
 
 class CreateRagCollectionBodyParams(BaseModel):
     """
@@ -29,9 +30,10 @@ class CreateRagCollectionBodyParams(BaseModel):
     """
     files: Optional[conlist(CreateRagCollectionBodyParamsFilesInner, max_items=20)] = None
     name: constr(strict=True, min_length=1) = Field(...)
+    parser: Optional[SimpleNodeParser] = None
     slug: StrictStr = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["files", "name", "slug"]
+    __properties = ["files", "name", "parser", "slug"]
 
     @validator('slug')
     def slug_validate_enum(cls, value):
@@ -72,6 +74,9 @@ class CreateRagCollectionBodyParams(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['files'] = _items
+        # override the default output from pydantic by calling `to_dict()` of parser
+        if self.parser:
+            _dict['parser'] = self.parser.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -81,6 +86,11 @@ class CreateRagCollectionBodyParams(BaseModel):
         # and __fields_set__ contains the field
         if self.files is None and "files" in self.__fields_set__:
             _dict['files'] = None
+
+        # set to None if parser (nullable) is None
+        # and __fields_set__ contains the field
+        if self.parser is None and "parser" in self.__fields_set__:
+            _dict['parser'] = None
 
         return _dict
 
@@ -96,6 +106,7 @@ class CreateRagCollectionBodyParams(BaseModel):
         _obj = CreateRagCollectionBodyParams.parse_obj({
             "files": [CreateRagCollectionBodyParamsFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None,
             "name": obj.get("name"),
+            "parser": SimpleNodeParser.from_dict(obj.get("parser")) if obj.get("parser") is not None else None,
             "slug": obj.get("slug")
         })
         # store additional fields in additional_properties

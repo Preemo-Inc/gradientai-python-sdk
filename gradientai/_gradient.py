@@ -3,13 +3,16 @@ import time
 from types import TracebackType
 from typing import Any, List, Literal, Mapping, Optional, Type, overload
 
+from gradientai.openapi.client.models.simple_node_parser import (
+    SimpleNodeParser as ApiSimpleNodeParser,
+)
 from typing_extensions import Self, assert_never
 
 from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._embeddings_model import EmbeddingsModel
 from gradientai._model import Model
 from gradientai._model_adapter import ModelAdapter
-from gradientai._rag import RAGCollection, RAGFile
+from gradientai._rag import RAGCollection, RAGFile, RAGParser, SimpleNodeParser
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
     AnalyzeSentimentResponse,
@@ -454,6 +457,7 @@ class Gradient:
         name: str,
         slug: str,
         filepaths: Optional[List[str]] = None,
+        parser: Optional[RAGParser] = None,
     ) -> RAGCollection:
         if filepaths is None:
             filepaths = []
@@ -467,6 +471,15 @@ class Gradient:
             for file_ in filepaths
         ]
 
+        api_parser = None
+        if parser is not None:
+            
+            api_parser = ApiSimpleNodeParser(
+                chunk_overlap=parser.chunk_overlap,
+                chunk_size=parser.chunk_size,
+                parser_type="simpleNodeParser",
+            )
+
         rag_result = self._rag_api.create_rag_collection(
             x_gradient_workspace_id=self._workspace_id,
             create_rag_collection_body_params=CreateRagCollectionBodyParams(
@@ -478,10 +491,23 @@ class Gradient:
                     )
                     for (file_result, file_path) in zip(file_results, filepaths)
                 ],
+                parser=api_parser,
             ),
         )
 
         return self.get_rag_collection(id_=rag_result.id)
+
+    def _deserialize_rag_parser(self, result) -> RAGParser:
+        instance = result.parser.actual_instance
+        if instance.parser_type == "simpleNodeParser":
+            return SimpleNodeParser(
+                chunk_overlap=instance.chunk_overlap,
+                chunk_size=instance.chunk_size,
+            )
+        else:
+            raise ValueError(
+                f"Unknown parser type: {instance.parser_type}. Please upgrade Gradient library to the latest version."
+            )
 
     def list_rag_collections(self) -> List[RAGCollection]:
         """Files are not present in the list call. To retrieve the files use `getRagCollection`."""
@@ -495,6 +521,7 @@ class Gradient:
                 files=[],
                 id_=rag_collection.id,
                 name=rag_collection.name,
+                parser=self._deserialize_rag_parser(rag_collection),
                 rag_api=self._rag_api,
                 workspace_id=self._workspace_id,
             )
@@ -517,6 +544,7 @@ class Gradient:
             files=files,
             id_=id_,
             name=result.name,
+            parser=self._deserialize_rag_parser(result),
             rag_api=self._rag_api,
             workspace_id=self._workspace_id,
         )
