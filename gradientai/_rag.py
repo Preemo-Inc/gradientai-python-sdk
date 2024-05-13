@@ -1,6 +1,6 @@
-import os
 from dataclasses import dataclass
-from typing import List, Optional, TypedDict, Union
+import os
+from typing import List, Optional, Type, TypeVar, TypedDict
 
 from gradientai._types import RAGFileIngestionStatus
 from gradientai.openapi.client.api.files_api import FilesApi
@@ -12,6 +12,8 @@ from gradientai.openapi.client.models.create_rag_collection_body_params_files_in
     CreateRagCollectionBodyParamsFilesInner,
 )
 
+from typing_extensions import dataclass_transform
+
 
 class RAGFile(TypedDict):
     id_: str
@@ -19,7 +21,15 @@ class RAGFile(TypedDict):
     status: RAGFileIngestionStatus
 
 
-@dataclass(kw_only=True)
+T = TypeVar("T")
+
+
+@dataclass_transform(kw_only_default=True)
+def dataclass_with_kw_only(cls: Type[T]) -> Type[T]:
+    return dataclass(cls)
+
+
+@dataclass_with_kw_only
 class SimpleNodeParser:
     chunk_size: Optional[int] = None
     chunk_overlap: Optional[int] = None
@@ -27,6 +37,15 @@ class SimpleNodeParser:
     @property
     def parser_type(self) -> str:
         return "simpleNodeParser"
+
+    def __init__(
+        self,
+        *,
+        chunk_size: Optional[int] = None,
+        chunk_overlap: Optional[int] = None,
+    ) -> None:
+        self.chunk_size = chunk_size
+        self.chunk_overlap = chunk_overlap
 
 
 RAGParser = SimpleNodeParser
