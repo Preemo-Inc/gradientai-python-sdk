@@ -20,10 +20,10 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser_one_of import ListRagCollectionsSuccessRagCollectionsInnerParserOneOf
 from typing import Any, List
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 LISTRAGCOLLECTIONSSUCCESSRAGCOLLECTIONSINNERPARSER_ONE_OF_SCHEMAS = ["ListRagCollectionsSuccessRagCollectionsInnerParserOneOf"]
 

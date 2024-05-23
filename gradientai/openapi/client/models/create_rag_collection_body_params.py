@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
 from gradientai.openapi.client.models.simple_node_parser import SimpleNodeParser
 
@@ -43,7 +43,7 @@ class CreateRagCollectionBodyParams(BaseModel):
         return value
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -67,14 +67,14 @@ class CreateRagCollectionBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in files (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in files (list)
         _items = []
         if self.files:
             for _item in self.files:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['files'] = _items
-        # override the default output from pydantic by calling `to_dict()` of parser
+        # override the default output from pydantic.v1 by calling `to_dict()` of parser
         if self.parser:
             _dict['parser'] = self.parser.to_dict()
         # puts key-value pairs in additional_properties in the top level

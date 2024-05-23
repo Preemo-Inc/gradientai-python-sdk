@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
 from gradientai.openapi.client.models.complete_model_error_one_of_payload import CompleteModelErrorOneOfPayload
 
 class CompleteModelErrorOneOf(BaseModel):
@@ -41,7 +41,7 @@ class CompleteModelErrorOneOf(BaseModel):
         return value
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -65,7 +65,7 @@ class CompleteModelErrorOneOf(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of payload
+        # override the default output from pydantic.v1 by calling `to_dict()` of payload
         if self.payload:
             _dict['payload'] = self.payload.to_dict()
         # puts key-value pairs in additional_properties in the top level

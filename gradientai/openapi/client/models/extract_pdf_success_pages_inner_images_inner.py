@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 
 class ExtractPdfSuccessPagesInnerImagesInner(BaseModel):
     """
@@ -39,7 +39,7 @@ class ExtractPdfSuccessPagesInnerImagesInner(BaseModel):
         return value
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

@@ -20,11 +20,11 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.generate_answer_body_params_source_one_of import GenerateAnswerBodyParamsSourceOneOf
 from gradientai.openapi.client.models.generate_answer_body_params_source_one_of1 import GenerateAnswerBodyParamsSourceOneOf1
 from typing import Any, List
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 GENERATEANSWERBODYPARAMSSOURCE_ONE_OF_SCHEMAS = ["GenerateAnswerBodyParamsSourceOneOf", "GenerateAnswerBodyParamsSourceOneOf1"]
 

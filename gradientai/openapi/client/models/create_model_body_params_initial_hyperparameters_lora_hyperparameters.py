@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, conint
+from pydantic.v1 import BaseModel, conint
 
 class CreateModelBodyParamsInitialHyperparametersLoraHyperparameters(BaseModel):
     """
@@ -31,7 +31,7 @@ class CreateModelBodyParamsInitialHyperparametersLoraHyperparameters(BaseModel):
     __properties = ["rank"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr
 
 class GenerateAnswerSuccessRagContextDocumentsInner(BaseModel):
     """
@@ -32,7 +32,7 @@ class GenerateAnswerSuccessRagContextDocumentsInner(BaseModel):
     __properties = ["content", "fileName"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

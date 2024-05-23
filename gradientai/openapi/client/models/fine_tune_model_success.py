@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, conint
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conint
 
 class FineTuneModelSuccess(BaseModel):
     """
@@ -32,7 +32,7 @@ class FineTuneModelSuccess(BaseModel):
     __properties = ["numberOfTrainableTokens", "sumLoss"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

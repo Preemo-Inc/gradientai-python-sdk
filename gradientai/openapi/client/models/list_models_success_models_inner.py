@@ -20,11 +20,11 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.base_model import BaseModel
 from gradientai.openapi.client.models.model_adapter import ModelAdapter
 from typing import Any, List
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 LISTMODELSSUCCESSMODELSINNER_ONE_OF_SCHEMAS = ["BaseModel", "ModelAdapter"]
 

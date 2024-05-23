@@ -17,10 +17,10 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic.v1 import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import StrictStr, constr
+from pydantic.v1 import StrictStr, constr
 
 from gradientai.openapi.client.models.generate_embedding_body_params import GenerateEmbeddingBodyParams
 from gradientai.openapi.client.models.generate_embedding_success import GenerateEmbeddingSuccess
@@ -99,7 +99,7 @@ class EmbeddingsApi(object):
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
+                                 be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
                                  Default is True.
         :type _preload_content: bool, optional
@@ -254,7 +254,7 @@ class EmbeddingsApi(object):
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the 
+                                 be set to none and raw_data will store the
                                  HTTP response body without reading/decoding.
                                  Default is True.
         :type _preload_content: bool, optional

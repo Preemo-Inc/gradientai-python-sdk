@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from gradientai.openapi.client.models.create_model_body_params_initial_hyperparameters import CreateModelBodyParamsInitialHyperparameters
 from gradientai.openapi.client.models.create_model_body_params_model import CreateModelBodyParamsModel
 
@@ -34,7 +34,7 @@ class CreateModelBodyParams(BaseModel):
     __properties = ["initialHyperparameters", "model"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -58,10 +58,10 @@ class CreateModelBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of initial_hyperparameters
+        # override the default output from pydantic.v1 by calling `to_dict()` of initial_hyperparameters
         if self.initial_hyperparameters:
             _dict['initialHyperparameters'] = self.initial_hyperparameters.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
         # puts key-value pairs in additional_properties in the top level

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, conint, conlist
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conint, conlist
 
 class GenerateEmbeddingSuccessEmbeddingsInner(BaseModel):
     """
@@ -32,7 +32,7 @@ class GenerateEmbeddingSuccessEmbeddingsInner(BaseModel):
     __properties = ["embedding", "index"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

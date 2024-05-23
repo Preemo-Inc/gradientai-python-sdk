@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 
 class GetAudioTranscriptionSuccessOneOf1Result(BaseModel):
     """
@@ -31,7 +31,7 @@ class GetAudioTranscriptionSuccessOneOf1Result(BaseModel):
     __properties = ["text"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
