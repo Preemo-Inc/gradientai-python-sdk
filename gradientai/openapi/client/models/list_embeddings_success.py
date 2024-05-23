@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from gradientai.openapi.client.models.list_embeddings_success_embeddings_models_inner import ListEmbeddingsSuccessEmbeddingsModelsInner
 
 class ListEmbeddingsSuccess(BaseModel):
@@ -32,7 +32,7 @@ class ListEmbeddingsSuccess(BaseModel):
     __properties = ["embeddingsModels"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -56,7 +56,7 @@ class ListEmbeddingsSuccess(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in embeddings_models (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in embeddings_models (list)
         _items = []
         if self.embeddings_models:
             for _item in self.embeddings_models:

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from gradientai.openapi.client.models.generate_embedding_body_params_inputs_inner import GenerateEmbeddingBodyParamsInputsInner
 
 class GenerateEmbeddingBodyParams(BaseModel):
@@ -32,7 +32,7 @@ class GenerateEmbeddingBodyParams(BaseModel):
     __properties = ["inputs"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -56,7 +56,7 @@ class GenerateEmbeddingBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in inputs (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in inputs (list)
         _items = []
         if self.inputs:
             for _item in self.inputs:

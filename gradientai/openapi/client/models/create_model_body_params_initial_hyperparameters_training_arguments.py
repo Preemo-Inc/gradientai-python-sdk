@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, confloat, conint
+from pydantic.v1 import BaseModel, Field, confloat, conint
 
 class CreateModelBodyParamsInitialHyperparametersTrainingArguments(BaseModel):
     """
@@ -31,7 +31,7 @@ class CreateModelBodyParamsInitialHyperparametersTrainingArguments(BaseModel):
     __properties = ["learningRate"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

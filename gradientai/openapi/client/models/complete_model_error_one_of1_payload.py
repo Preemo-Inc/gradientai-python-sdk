@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 
 class CompleteModelErrorOneOf1Payload(BaseModel):
     """
@@ -32,7 +32,7 @@ class CompleteModelErrorOneOf1Payload(BaseModel):
     __properties = ["formattedValidationError", "validationError"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

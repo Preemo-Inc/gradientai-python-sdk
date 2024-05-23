@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, conint, constr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictFloat, StrictInt, conint, constr
 from gradientai.openapi.client.models.complete_model_body_params_guidance import CompleteModelBodyParamsGuidance
 from gradientai.openapi.client.models.complete_model_body_params_rag import CompleteModelBodyParamsRag
 
@@ -40,7 +40,7 @@ class CompleteModelBodyParams(BaseModel):
     __properties = ["autoTemplate", "guidance", "maxGeneratedTokenCount", "query", "rag", "temperature", "topK", "topP"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -64,10 +64,10 @@ class CompleteModelBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of guidance
+        # override the default output from pydantic.v1 by calling `to_dict()` of guidance
         if self.guidance:
             _dict['guidance'] = self.guidance.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of rag
+        # override the default output from pydantic.v1 by calling `to_dict()` of rag
         if self.rag:
             _dict['rag'] = self.rag.to_dict()
         # puts key-value pairs in additional_properties in the top level

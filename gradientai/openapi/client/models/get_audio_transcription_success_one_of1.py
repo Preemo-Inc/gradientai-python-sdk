@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 from gradientai.openapi.client.models.get_audio_transcription_success_one_of1_result import GetAudioTranscriptionSuccessOneOf1Result
 
 class GetAudioTranscriptionSuccessOneOf1(BaseModel):
@@ -40,7 +40,7 @@ class GetAudioTranscriptionSuccessOneOf1(BaseModel):
         return value
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -64,7 +64,7 @@ class GetAudioTranscriptionSuccessOneOf1(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of result
+        # override the default output from pydantic.v1 by calling `to_dict()` of result
         if self.result:
             _dict['result'] = self.result.to_dict()
         # puts key-value pairs in additional_properties in the top level

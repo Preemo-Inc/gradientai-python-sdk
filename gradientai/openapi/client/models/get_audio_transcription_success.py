@@ -20,11 +20,11 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.get_audio_transcription_success_one_of import GetAudioTranscriptionSuccessOneOf
 from gradientai.openapi.client.models.get_audio_transcription_success_one_of1 import GetAudioTranscriptionSuccessOneOf1
 from typing import Any, List
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 GETAUDIOTRANSCRIPTIONSUCCESS_ONE_OF_SCHEMAS = ["GetAudioTranscriptionSuccessOneOf", "GetAudioTranscriptionSuccessOneOf1"]
 

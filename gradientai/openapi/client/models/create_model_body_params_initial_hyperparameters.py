@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from gradientai.openapi.client.models.create_model_body_params_initial_hyperparameters_lora_hyperparameters import CreateModelBodyParamsInitialHyperparametersLoraHyperparameters
 from gradientai.openapi.client.models.create_model_body_params_initial_hyperparameters_training_arguments import CreateModelBodyParamsInitialHyperparametersTrainingArguments
 
@@ -34,7 +34,7 @@ class CreateModelBodyParamsInitialHyperparameters(BaseModel):
     __properties = ["loraHyperparameters", "trainingArguments"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -58,10 +58,10 @@ class CreateModelBodyParamsInitialHyperparameters(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of lora_hyperparameters
+        # override the default output from pydantic.v1 by calling `to_dict()` of lora_hyperparameters
         if self.lora_hyperparameters:
             _dict['loraHyperparameters'] = self.lora_hyperparameters.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of training_arguments
+        # override the default output from pydantic.v1 by calling `to_dict()` of training_arguments
         if self.training_arguments:
             _dict['trainingArguments'] = self.training_arguments.to_dict()
         # puts key-value pairs in additional_properties in the top level

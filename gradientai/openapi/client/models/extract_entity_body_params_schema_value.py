@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, validator
 
 class ExtractEntityBodyParamsSchemaValue(BaseModel):
     """
@@ -39,7 +39,7 @@ class ExtractEntityBodyParamsSchemaValue(BaseModel):
         return value
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

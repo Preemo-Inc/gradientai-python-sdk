@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, confloat, conint
+from pydantic.v1 import BaseModel, confloat, conint
 
 class FineTuneModelBodyParamsSamplesInnerFineTuningParameters(BaseModel):
     """
@@ -31,7 +31,7 @@ class FineTuneModelBodyParamsSamplesInnerFineTuningParameters(BaseModel):
     __properties = ["multiplier"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

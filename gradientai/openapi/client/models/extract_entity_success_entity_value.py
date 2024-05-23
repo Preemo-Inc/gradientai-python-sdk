@@ -20,9 +20,9 @@ import pprint
 import re  # noqa: F401
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, ValidationError, validator
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, ValidationError, validator
 from typing import Any, List
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 EXTRACTENTITYSUCCESSENTITYVALUE_ANY_OF_SCHEMAS = ["bool", "float", "str"]
 

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, StrictStr, conint
+from pydantic.v1 import BaseModel, Field, StrictStr, conint
 
 class ExtractPdfSuccessPagesInnerTablesInnerTableRowsInnerCellsInner(BaseModel):
     """
@@ -33,7 +33,7 @@ class ExtractPdfSuccessPagesInnerTablesInnerTableRowsInnerCellsInner(BaseModel):
     __properties = ["cellValue", "colSpan", "rowSpan"]
 
     class Config:
-        """Pydantic configuration"""
+        """pydantic.v1 configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 

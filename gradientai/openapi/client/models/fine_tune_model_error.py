@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.complete_model_error_one_of import CompleteModelErrorOneOf
 from gradientai.openapi.client.models.complete_model_error_one_of1 import CompleteModelErrorOneOf1
 from gradientai.openapi.client.models.complete_model_error_one_of10 import CompleteModelErrorOneOf10
@@ -29,7 +29,7 @@ from gradientai.openapi.client.models.complete_model_error_one_of8 import Comple
 from gradientai.openapi.client.models.fine_tune_model_error_one_of import FineTuneModelErrorOneOf
 from gradientai.openapi.client.models.fine_tune_model_error_one_of1 import FineTuneModelErrorOneOf1
 from typing import Any, List
-from pydantic import StrictStr, Field
+from pydantic.v1 import StrictStr, Field
 
 FINETUNEMODELERROR_ONE_OF_SCHEMAS = ["CompleteModelErrorOneOf", "CompleteModelErrorOneOf1", "CompleteModelErrorOneOf10", "CompleteModelErrorOneOf2", "CompleteModelErrorOneOf8", "FineTuneModelErrorOneOf", "FineTuneModelErrorOneOf1"]
 
