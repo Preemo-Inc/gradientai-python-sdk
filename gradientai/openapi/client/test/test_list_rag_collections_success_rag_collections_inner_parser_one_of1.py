@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import gradientai.openapi.client
-from gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser import ListRagCollectionsSuccessRagCollectionsInnerParser  # noqa: E501
+from gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser_one_of1 import ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1  # noqa: E501
 from gradientai.openapi.client.rest import ApiException
 
-class TestListRagCollectionsSuccessRagCollectionsInnerParser(unittest.TestCase):
-    """ListRagCollectionsSuccessRagCollectionsInnerParser unit test stubs"""
+class TestListRagCollectionsSuccessRagCollectionsInnerParserOneOf1(unittest.TestCase):
+    """ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1 unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,31 +30,29 @@ class TestListRagCollectionsSuccessRagCollectionsInnerParser(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test ListRagCollectionsSuccessRagCollectionsInnerParser
+        """Test ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ListRagCollectionsSuccessRagCollectionsInnerParser`
+        # uncomment below to create an instance of `ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1`
         """
-        model = gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser.ListRagCollectionsSuccessRagCollectionsInnerParser()  # noqa: E501
+        model = gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser_one_of1.ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1()  # noqa: E501
         if include_optional :
-            return ListRagCollectionsSuccessRagCollectionsInnerParser(
+            return ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1(
                 chunk_overlap = 0, 
                 chunk_size = 0, 
-                parser_type = 'simpleNodeParser', 
-                window_size = 0
+                parser_type = 'simpleNodeParser'
             )
         else :
-            return ListRagCollectionsSuccessRagCollectionsInnerParser(
+            return ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1(
                 chunk_overlap = 0,
                 chunk_size = 0,
                 parser_type = 'simpleNodeParser',
-                window_size = 0,
         )
         """
 
-    def testListRagCollectionsSuccessRagCollectionsInnerParser(self):
-        """Test ListRagCollectionsSuccessRagCollectionsInnerParser"""
+    def testListRagCollectionsSuccessRagCollectionsInnerParserOneOf1(self):
+        """Test ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

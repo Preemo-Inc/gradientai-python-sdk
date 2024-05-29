@@ -73,7 +73,7 @@ class Model(ABC):
             generated_output=response.generated_output,
         )
 
-    async def acomplete(
+    async def acomplete(  # type: ignore[no-untyped-def]
         self,
         **kwargs,
     ) -> CompleteResponse:

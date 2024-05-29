@@ -1,6 +1,12 @@
+from gradientai.openapi.client.models.simple_node_parser import (
+    SimpleNodeParser as ApiSimpleNodeParser,
+)
+from gradientai.openapi.client.models.sentence_window_node_parser import (
+    SentenceWindowNodeParser as ApiSentenceWindowNodeParser,
+)
 from dataclasses import dataclass
 import os
-from typing import List, Optional, Type, TypeVar, TypedDict
+from typing import List, Optional, Type, TypeVar, TypedDict, Union
 
 from gradientai._types import RAGFileIngestionStatus
 from gradientai.openapi.client.api.files_api import FilesApi
@@ -48,7 +54,49 @@ class SimpleNodeParser:
         self.chunk_overlap = chunk_overlap
 
 
-RAGParser = SimpleNodeParser
+@dataclass_with_kw_only
+class SentenceWindowNodeParser:
+    chunk_size: Optional[int] = None
+    chunk_overlap: Optional[int] = None
+    window_size: Optional[int] = None
+
+    @property
+    def parser_type(self) -> str:
+        return "sentenceWindowNodeParser"
+
+    def __init__(
+        self,
+        *,
+        chunk_size: Optional[int] = None,
+        chunk_overlap: Optional[int] = None,
+        window_size: Optional[int] = None,
+    ) -> None:
+        self.chunk_size = chunk_size
+        self.chunk_overlap = chunk_overlap
+        self.window_size = window_size
+
+
+RAGParser = Union[SentenceWindowNodeParser, SimpleNodeParser]
+
+
+def build_api_parser(
+    parser: RAGParser,
+) -> Union[ApiSentenceWindowNodeParser, ApiSimpleNodeParser]:
+    if type(parser) is SimpleNodeParser:
+        return ApiSimpleNodeParser(
+            chunk_overlap=parser.chunk_overlap,
+            chunk_size=parser.chunk_size,
+            parser_type=parser.parser_type,
+        )
+    elif type(parser) is SentenceWindowNodeParser:
+        return ApiSentenceWindowNodeParser(
+            chunk_overlap=parser.chunk_overlap,
+            chunk_size=parser.chunk_size,
+            parser_type=parser.parser_type,
+            window_size=parser.window_size,
+        )
+    else:
+        raise ValueError(f"Unsupported parser type {parser.parser_type}")
 
 
 class RAGCollection:

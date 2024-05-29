@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Literal, Mapping, Optional, TypedDict, Union
+from typing import List, Literal, Mapping, Optional, Protocol, TypedDict, Union
 
 from typing_extensions import NotRequired
 
@@ -25,7 +25,7 @@ class Document(TypedDict):
     file_name: str
 
 
-class RagContext(TypedDict):
+class RagContext(Protocol):
     documents: List[Document]
 
 
@@ -111,10 +111,10 @@ class ExtractPdfResponseTextBlock(TypedDict):
 
 class ExtractPdfResponsePage(TypedDict):
     images: List[ExtractPdfResponseImage]
-    pageNumber: int
+    page_number: int
     tables: List[ExtractPdfResponseTable]
     text: str
-    textBlocks: List[ExtractPdfResponseTextBlock]
+    text_blocks: List[ExtractPdfResponseTextBlock]
 
 
 class ExtractPdfResponse(TypedDict):

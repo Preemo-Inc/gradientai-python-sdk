@@ -6,7 +6,7 @@ from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._gradient import Gradient
 from gradientai._model import Guidance, Model
 from gradientai._model_adapter import ModelAdapter, Sample, StructuredInput
-from gradientai._rag import SimpleNodeParser
+from gradientai._rag import SentenceWindowNodeParser, SimpleNodeParser
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
     ExtractParamsSchemaValue,
@@ -27,6 +27,7 @@ __all__ = [
     "Model",
     "ModelAdapter",
     "Sample",
+    "SentenceWindowNodeParser",
     "Sentiment",
     "SimpleNodeParser",
     "StructuredInput",
