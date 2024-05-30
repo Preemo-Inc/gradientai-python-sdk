@@ -1,10 +1,20 @@
 import os
 import time
 from types import TracebackType
-from typing import Any, List, Literal, Mapping, Optional, Type, overload
+from typing import (
+    Any,
+    List,
+    Literal,
+    Mapping,
+    Optional,
+    Sequence,
+    Type,
+    Union,
+    overload,
+)
 
-from gradientai.openapi.client.models.simple_node_parser import (
-    SimpleNodeParser as ApiSimpleNodeParser,
+from gradientai.openapi.client.models.create_rag_collection_body_params_parser import (
+    CreateRagCollectionBodyParamsParser,
 )
 from typing_extensions import Self, assert_never
 
@@ -12,7 +22,14 @@ from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._embeddings_model import EmbeddingsModel
 from gradientai._model import Model
 from gradientai._model_adapter import ModelAdapter
-from gradientai._rag import RAGCollection, RAGFile, RAGParser, SimpleNodeParser
+from gradientai._rag import (
+    RAGCollection,
+    RAGFile,
+    RAGParser,
+    SentenceWindowNodeParser,
+    SimpleNodeParser,
+    build_api_parser,
+)
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
     AnalyzeSentimentResponse,
@@ -20,6 +37,7 @@ from gradientai._types import (
     AnswerResponse,
     ExtractParamsSchemaValue,
     ExtractPdfResponse,
+    ExtractPdfResponsePage,
     ExtractResponse,
     PersonalizeResponse,
     Sentiment,
@@ -59,6 +77,12 @@ from gradientai.openapi.client.models.model_adapter import (
 )
 from gradientai.openapi.client.models.personalize_document_body_params import (
     PersonalizeDocumentBodyParams,
+)
+from gradientai.openapi.client.models.simple_node_parser import (
+    SimpleNodeParser as ApiSimpleNodeParser,
+)
+from gradientai.openapi.client.models.sentence_window_node_parser import (
+    SentenceWindowNodeParser as ApiSentenceWindowNodeParser,
 )
 from gradientai.openapi.client.models.summarize_document_body_params import (
     SummarizeDocumentBodyParams,
@@ -164,7 +188,7 @@ class Gradient:
         self,
         *,
         only_base: Literal[True],
-        capability: Optional[CapabilityFilterOption],
+        capability: Optional[CapabilityFilterOption] = ...,
     ) -> List[BaseModel]: ...
 
     @overload
@@ -172,19 +196,19 @@ class Gradient:
         self,
         *,
         only_base: Literal[False],
-        capability: Optional[CapabilityFilterOption],
+        capability: Optional[CapabilityFilterOption] = ...,
     ) -> List[Model]: ...
 
     def list_models(
         self,
         *,
-        only_base: bool,
+        only_base: Optional[bool] = False,
         capability: Optional[
             CapabilityFilterOption
         ] = CapabilityFilterOption.ANY,
-    ) -> List[Model]:  # type: ignore
+    ) -> Sequence[Model]:
         response = self._models_api.list_models(
-            capability=capability.value,
+            capability=capability.value if capability is not None else None,
             only_base=only_base,
             x_gradient_workspace_id=self._workspace_id,
         )
@@ -341,7 +365,7 @@ class Gradient:
             x_gradient_workspace_id=self._workspace_id,
             extract_entity_body_params=ExtractEntityBodyParams(
                 document=document,
-                schema=parsed_schema,
+                var_schema=parsed_schema,
             ),
         )
 
@@ -360,7 +384,7 @@ class Gradient:
             file=filepath,
         )
 
-        pages = [
+        pages: List[ExtractPdfResponsePage] = [
             {
                 "images": [
                     {
@@ -473,12 +497,7 @@ class Gradient:
 
         api_parser = None
         if parser is not None:
-            
-            api_parser = ApiSimpleNodeParser(
-                chunk_overlap=parser.chunk_overlap,
-                chunk_size=parser.chunk_size,
-                parser_type="simpleNodeParser",
-            )
+            api_parser = build_api_parser(parser)
 
         rag_result = self._rag_api.create_rag_collection(
             x_gradient_workspace_id=self._workspace_id,
@@ -491,18 +510,27 @@ class Gradient:
                     )
                     for (file_result, file_path) in zip(file_results, filepaths)
                 ],
-                parser=api_parser,
+                parser=CreateRagCollectionBodyParamsParser(api_parser),
             ),
         )
 
         return self.get_rag_collection(id_=rag_result.id)
 
-    def _deserialize_rag_parser(self, result) -> RAGParser:
-        instance = result.parser.actual_instance
+    
+    @staticmethod
+    def _deserialize_rag_parser(
+        instance: Union[ApiSimpleNodeParser, ApiSentenceWindowNodeParser]
+    ) -> RAGParser:
         if instance.parser_type == "simpleNodeParser":
             return SimpleNodeParser(
                 chunk_overlap=instance.chunk_overlap,
                 chunk_size=instance.chunk_size,
+            )
+        elif instance.parser_type == "sentenceWindowNodeParser":
+            return SentenceWindowNodeParser(
+                chunk_overlap=instance.chunk_overlap,
+                chunk_size=instance.chunk_size,
+                window_size=instance.window_size,  # type: ignore
             )
         else:
             raise ValueError(
@@ -521,7 +549,9 @@ class Gradient:
                 files=[],
                 id_=rag_collection.id,
                 name=rag_collection.name,
-                parser=self._deserialize_rag_parser(rag_collection),
+                parser=self._deserialize_rag_parser(
+                    rag_collection.parser.actual_instance
+                ),
                 rag_api=self._rag_api,
                 workspace_id=self._workspace_id,
             )
@@ -544,7 +574,7 @@ class Gradient:
             files=files,
             id_=id_,
             name=result.name,
-            parser=self._deserialize_rag_parser(result),
+            parser=self._deserialize_rag_parser(result.parser.actual_instance),
             rag_api=self._rag_api,
             workspace_id=self._workspace_id,
         )

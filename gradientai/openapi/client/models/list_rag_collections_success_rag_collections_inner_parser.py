@@ -22,10 +22,11 @@ import re  # noqa: F401
 from typing import Any, List, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, ValidationError, validator
 from gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser_one_of import ListRagCollectionsSuccessRagCollectionsInnerParserOneOf
+from gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner_parser_one_of1 import ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1
 from typing import Any, List
 from pydantic.v1 import StrictStr, Field
 
-LISTRAGCOLLECTIONSSUCCESSRAGCOLLECTIONSINNERPARSER_ONE_OF_SCHEMAS = ["ListRagCollectionsSuccessRagCollectionsInnerParserOneOf"]
+LISTRAGCOLLECTIONSSUCCESSRAGCOLLECTIONSINNERPARSER_ONE_OF_SCHEMAS = ["ListRagCollectionsSuccessRagCollectionsInnerParserOneOf", "ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1"]
 
 class ListRagCollectionsSuccessRagCollectionsInnerParser(BaseModel):
     """
@@ -33,6 +34,8 @@ class ListRagCollectionsSuccessRagCollectionsInnerParser(BaseModel):
     """
     # data type: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf
     oneof_schema_1_validator: Optional[ListRagCollectionsSuccessRagCollectionsInnerParserOneOf] = None
+    # data type: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1
+    oneof_schema_2_validator: Optional[ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1] = None
     actual_instance: Any
     one_of_schemas: List[str] = Field(LISTRAGCOLLECTIONSSUCCESSRAGCOLLECTIONSINNERPARSER_ONE_OF_SCHEMAS, const=True)
 
@@ -59,12 +62,17 @@ class ListRagCollectionsSuccessRagCollectionsInnerParser(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `ListRagCollectionsSuccessRagCollectionsInnerParserOneOf`")
         else:
             match += 1
+        # validate data type: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1
+        if not isinstance(v, ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf, ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf, ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -85,13 +93,19 @@ class ListRagCollectionsSuccessRagCollectionsInnerParser(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1
+        try:
+            instance.actual_instance = ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf, ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into ListRagCollectionsSuccessRagCollectionsInnerParser with oneOf schemas: ListRagCollectionsSuccessRagCollectionsInnerParserOneOf, ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1. Details: " + ", ".join(error_messages))
         else:
             return instance
 

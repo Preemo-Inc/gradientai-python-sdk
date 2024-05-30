@@ -22,7 +22,7 @@ import json
 from typing import Any, Dict, List, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
 from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
-from gradientai.openapi.client.models.simple_node_parser import SimpleNodeParser
+from gradientai.openapi.client.models.create_rag_collection_body_params_parser import CreateRagCollectionBodyParamsParser
 
 class CreateRagCollectionBodyParams(BaseModel):
     """
@@ -30,7 +30,7 @@ class CreateRagCollectionBodyParams(BaseModel):
     """
     files: Optional[conlist(CreateRagCollectionBodyParamsFilesInner, max_items=20)] = None
     name: constr(strict=True, min_length=1) = Field(...)
-    parser: Optional[SimpleNodeParser] = None
+    parser: Optional[CreateRagCollectionBodyParamsParser] = None
     slug: StrictStr = Field(...)
     additional_properties: Dict[str, Any] = {}
     __properties = ["files", "name", "parser", "slug"]
@@ -106,7 +106,7 @@ class CreateRagCollectionBodyParams(BaseModel):
         _obj = CreateRagCollectionBodyParams.parse_obj({
             "files": [CreateRagCollectionBodyParamsFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None,
             "name": obj.get("name"),
-            "parser": SimpleNodeParser.from_dict(obj.get("parser")) if obj.get("parser") is not None else None,
+            "parser": CreateRagCollectionBodyParamsParser.from_dict(obj.get("parser")) if obj.get("parser") is not None else None,
             "slug": obj.get("slug")
         })
         # store additional fields in additional_properties

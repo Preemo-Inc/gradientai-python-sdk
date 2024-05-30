@@ -3,6 +3,7 @@
 Code attribution, PSF compatible license:
 https://github.com/python/cpython/blob/956023826a393b5704d3414dcd01f1bcbeaeda15/Lib/asyncio/threads.py#L12
 """
+
 __all__ = ["to_thread"]
 
 
@@ -14,6 +15,7 @@ except ImportError:
     import functools
     import contextvars
     from asyncio import events
+
     async def to_thread(func, /, *args, **kwargs):
         loop = events.get_running_loop()
         ctx = contextvars.copy_context()

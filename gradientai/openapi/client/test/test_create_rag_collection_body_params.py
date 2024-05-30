@@ -45,10 +45,7 @@ class TestCreateRagCollectionBodyParams(unittest.TestCase):
                         name = '0', )
                     ], 
                 name = '0', 
-                parser = gradientai.openapi.client.models.simple_node_parser.simpleNodeParser(
-                    chunk_overlap = 0, 
-                    chunk_size = 0, 
-                    parser_type = 'simpleNodeParser', ), 
+                parser = None, 
                 slug = 'bge-large'
             )
         else :

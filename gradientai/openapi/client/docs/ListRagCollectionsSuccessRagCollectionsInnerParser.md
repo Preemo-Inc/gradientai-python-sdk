@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **chunk_overlap** | **int** |  | 
 **chunk_size** | **int** |  | 
 **parser_type** | **str** |  | 
+**window_size** | **int** |  | 
 
 ## Example
 

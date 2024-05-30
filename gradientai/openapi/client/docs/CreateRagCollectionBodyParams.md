@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **files** | [**List[CreateRagCollectionBodyParamsFilesInner]**](CreateRagCollectionBodyParamsFilesInner.md) |  | [optional] 
 **name** | **str** |  | 
-**parser** | [**SimpleNodeParser**](SimpleNodeParser.md) |  | [optional] 
+**parser** | [**CreateRagCollectionBodyParamsParser**](CreateRagCollectionBodyParamsParser.md) |  | [optional] 
 **slug** | **str** |  | 
 
 ## Example

@@ -36,6 +36,7 @@ pep8-naming = "0.13.0"
 pytest = "7.2.1"
 python-dotenv = "1.0.0"
 twine = "4.0.2"
+types-python-dateutil = "^2.9.0.20240316"
 
 [tool.autoflake]
 check = true
@@ -81,7 +82,7 @@ check_untyped_defs = true
 disallow_any_unimported = true
 disallow_untyped_defs = true
 no_implicit_optional = true
-plugins = ["pydantic.mypy"]
+plugins = ["pydantic.mypy", "pydantic.v1.mypy"]
 show_error_codes = true
 warn_return_any = true
 warn_unused_ignores = true
