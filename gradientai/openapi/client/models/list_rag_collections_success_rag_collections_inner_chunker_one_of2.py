@@ -19,24 +19,26 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from pydantic.v1 import BaseModel, Field, StrictStr, conint, validator
 
-class SimpleNodeParser(BaseModel):
+class ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2(BaseModel):
     """
-    SimpleNodeParser
+    ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2
     """
-    chunk_overlap: Optional[conint(strict=True, ge=0)] = Field(None, alias="chunkOverlap")
-    chunk_size: Optional[conint(strict=True, gt=0)] = Field(None, alias="chunkSize")
-    parser_type: StrictStr = Field(..., alias="parserType")
+    chunker_type: StrictStr = Field(..., alias="chunkerType")
+    overlap: conint(strict=True, ge=0) = Field(...)
+    sentence_group_length: conint(strict=True, gt=0) = Field(..., alias="sentenceGroupLength")
+    similiarity_percent_threshold: conint(strict=True, le=100, ge=0) = Field(..., alias="similiarityPercentThreshold")
+    size: conint(strict=True, gt=0) = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["chunkOverlap", "chunkSize", "parserType"]
+    __properties = ["chunkerType", "overlap", "sentenceGroupLength", "similiarityPercentThreshold", "size"]
 
-    @validator('parser_type')
-    def parser_type_validate_enum(cls, value):
+    @validator('chunker_type')
+    def chunker_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('simpleNodeParser'):
-            raise ValueError("must be one of enum values ('simpleNodeParser')")
+        if value not in ('meaningBasedChunker'):
+            raise ValueError("must be one of enum values ('meaningBasedChunker')")
         return value
 
     class Config:
@@ -53,8 +55,8 @@ class SimpleNodeParser(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SimpleNodeParser:
-        """Create an instance of SimpleNodeParser from a JSON string"""
+    def from_json(cls, json_str: str) -> ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2:
+        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -69,31 +71,23 @@ class SimpleNodeParser(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if chunk_overlap (nullable) is None
-        # and __fields_set__ contains the field
-        if self.chunk_overlap is None and "chunk_overlap" in self.__fields_set__:
-            _dict['chunkOverlap'] = None
-
-        # set to None if chunk_size (nullable) is None
-        # and __fields_set__ contains the field
-        if self.chunk_size is None and "chunk_size" in self.__fields_set__:
-            _dict['chunkSize'] = None
-
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SimpleNodeParser:
-        """Create an instance of SimpleNodeParser from a dict"""
+    def from_dict(cls, obj: dict) -> ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2:
+        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SimpleNodeParser.parse_obj(obj)
+            return ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2.parse_obj(obj)
 
-        _obj = SimpleNodeParser.parse_obj({
-            "chunk_overlap": obj.get("chunkOverlap"),
-            "chunk_size": obj.get("chunkSize"),
-            "parser_type": obj.get("parserType")
+        _obj = ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf2.parse_obj({
+            "chunker_type": obj.get("chunkerType"),
+            "overlap": obj.get("overlap"),
+            "sentence_group_length": obj.get("sentenceGroupLength"),
+            "similiarity_percent_threshold": obj.get("similiarityPercentThreshold"),
+            "size": obj.get("size")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

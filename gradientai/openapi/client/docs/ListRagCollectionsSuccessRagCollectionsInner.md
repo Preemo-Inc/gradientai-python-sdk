@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**chunker** | [**ListRagCollectionsSuccessRagCollectionsInnerChunker**](ListRagCollectionsSuccessRagCollectionsInnerChunker.md) |  | 
 **creation_time** | **datetime** |  | 
 **id** | **str** |  | 
 **latest_update_time** | **datetime** |  | 
 **name** | **str** |  | 
-**parser** | [**ListRagCollectionsSuccessRagCollectionsInnerParser**](ListRagCollectionsSuccessRagCollectionsInnerParser.md) |  | 
 **slug** | **str** |  | 
 
 ## Example

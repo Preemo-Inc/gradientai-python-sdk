@@ -13,11 +13,6 @@ from typing import (
     overload,
 )
 
-from gradientai.openapi.client.models.create_rag_collection_body_params_parser import (
-    CreateRagCollectionBodyParamsParser,
-)
-from typing_extensions import Self, assert_never
-
 from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._embeddings_model import EmbeddingsModel
 from gradientai._model import Model
@@ -25,10 +20,12 @@ from gradientai._model_adapter import ModelAdapter
 from gradientai._rag import (
     RAGCollection,
     RAGFile,
-    RAGParser,
-    SentenceWindowNodeParser,
-    SimpleNodeParser,
-    build_api_parser,
+    RAGChunker,
+    MeaningBasedChunker,
+    SentenceWithContextChunker,
+    FileChunker,
+    NormalChunker,
+    build_api_chunker,
 )
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
@@ -63,6 +60,9 @@ from gradientai.openapi.client.models.create_audio_transcription_body_params imp
 from gradientai.openapi.client.models.create_rag_collection_body_params import (
     CreateRagCollectionBodyParams,
 )
+from gradientai.openapi.client.models.create_rag_collection_body_params_chunker import (
+    CreateRagCollectionBodyParamsChunker,
+)
 from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import (
     CreateRagCollectionBodyParamsFilesInner,
 )
@@ -78,15 +78,10 @@ from gradientai.openapi.client.models.model_adapter import (
 from gradientai.openapi.client.models.personalize_document_body_params import (
     PersonalizeDocumentBodyParams,
 )
-from gradientai.openapi.client.models.simple_node_parser import (
-    SimpleNodeParser as ApiSimpleNodeParser,
-)
-from gradientai.openapi.client.models.sentence_window_node_parser import (
-    SentenceWindowNodeParser as ApiSentenceWindowNodeParser,
-)
 from gradientai.openapi.client.models.summarize_document_body_params import (
     SummarizeDocumentBodyParams,
 )
+from typing_extensions import Self, assert_never
 
 
 class Gradient:
@@ -481,7 +476,7 @@ class Gradient:
         name: str,
         slug: str,
         filepaths: Optional[List[str]] = None,
-        parser: Optional[RAGParser] = None,
+        chunker: Optional[RAGChunker] = None,
     ) -> RAGCollection:
         if filepaths is None:
             filepaths = []
@@ -495,9 +490,9 @@ class Gradient:
             for file_ in filepaths
         ]
 
-        api_parser = None
-        if parser is not None:
-            api_parser = build_api_parser(parser)
+        api_chunker = None
+        if chunker is not None:
+            api_chunker = build_api_chunker(chunker)
 
         rag_result = self._rag_api.create_rag_collection(
             x_gradient_workspace_id=self._workspace_id,
@@ -510,32 +505,11 @@ class Gradient:
                     )
                     for (file_result, file_path) in zip(file_results, filepaths)
                 ],
-                parser=CreateRagCollectionBodyParamsParser(api_parser),
+                chunker=CreateRagCollectionBodyParamsChunker(api_chunker),
             ),
         )
 
         return self.get_rag_collection(id_=rag_result.id)
-
-    
-    @staticmethod
-    def _deserialize_rag_parser(
-        instance: Union[ApiSimpleNodeParser, ApiSentenceWindowNodeParser]
-    ) -> RAGParser:
-        if instance.parser_type == "simpleNodeParser":
-            return SimpleNodeParser(
-                chunk_overlap=instance.chunk_overlap,
-                chunk_size=instance.chunk_size,
-            )
-        elif instance.parser_type == "sentenceWindowNodeParser":
-            return SentenceWindowNodeParser(
-                chunk_overlap=instance.chunk_overlap,
-                chunk_size=instance.chunk_size,
-                window_size=instance.window_size,  # type: ignore
-            )
-        else:
-            raise ValueError(
-                f"Unknown parser type: {instance.parser_type}. Please upgrade Gradient library to the latest version."
-            )
 
     def list_rag_collections(self) -> List[RAGCollection]:
         """Files are not present in the list call. To retrieve the files use `getRagCollection`."""
@@ -549,7 +523,7 @@ class Gradient:
                 files=[],
                 id_=rag_collection.id,
                 name=rag_collection.name,
-                parser=self._deserialize_rag_parser(
+                chunker=RAGCollection.deserialize_rag_chunker(
                     rag_collection.parser.actual_instance
                 ),
                 rag_api=self._rag_api,
@@ -574,7 +548,9 @@ class Gradient:
             files=files,
             id_=id_,
             name=result.name,
-            parser=self._deserialize_rag_parser(result.parser.actual_instance),
+            chunker=RAGCollection.deserialize_rag_chunker(
+                result.chunker.actual_instance
+            ),
             rag_api=self._rag_api,
             workspace_id=self._workspace_id,
         )

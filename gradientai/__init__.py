@@ -6,9 +6,17 @@ from gradientai._base_model import BaseModel, CapabilityFilterOption
 from gradientai._gradient import Gradient
 from gradientai._model import Guidance, Model
 from gradientai._model_adapter import ModelAdapter, Sample, StructuredInput
-from gradientai._rag import SentenceWindowNodeParser, SimpleNodeParser
+from gradientai._rag import (
+    FileChunker,
+    MeaningBasedChunker,
+    NormalChunker,
+    RAGChunker,
+    RAGCollection,
+    SentenceWithContextChunker,
+)
 from gradientai._types import (
     AnalyzeSentimentParamsExample,
+    AnswerParamsSource,
     ExtractParamsSchemaValue,
     ExtractParamsSchemaValueType,
     Sentiment,
@@ -18,18 +26,23 @@ from gradientai._types import (
 
 __all__ = [
     "AnalyzeSentimentParamsExample",
+    "AnswerParamsSource",
     "BaseModel",
     "CapabilityFilterOption",
     "ExtractParamsSchemaValue",
     "ExtractParamsSchemaValueType",
+    "FileChunker",
     "Gradient",
     "Guidance",
+    "MeaningBasedChunker",
     "Model",
     "ModelAdapter",
+    "NormalChunker",
+    "RAGChunker",
+    "RAGCollection",
     "Sample",
-    "SentenceWindowNodeParser",
+    "SentenceWithContextChunker",
     "Sentiment",
-    "SimpleNodeParser",
     "StructuredInput",
     "SummarizeParamsExample",
     "SummarizeParamsLength",

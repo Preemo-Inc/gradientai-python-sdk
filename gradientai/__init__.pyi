@@ -12,20 +12,22 @@ from typing_extensions import NotRequired, Protocol, TypedDict, Self
 from gradientai._base_model import BaseModelCapability, CapabilityFilterOption
 from gradientai._model import Guidance
 from gradientai._rag import (
+    FileChunker,
+    MeaningBasedChunker,
+    NormalChunker,
+    RAGChunker,
     RAGFile,
-    RAGParser,
-    SimpleNodeParser,
-    SentenceWindowNodeParser,
+    SentenceWithContextChunker,
 )
 from gradientai._types import (
+    AnalyzeSentimentParamsExample,
     AnalyzeSentimentResponse,
     AnswerParamsSource,
     AnswerResponse,
-    AnalyzeSentimentParamsExample,
-    ExtractPdfResponse,
-    ExtractResponse,
     ExtractParamsSchemaValue,
     ExtractParamsSchemaValueType,
+    ExtractPdfResponse,
+    ExtractResponse,
     PersonalizeResponse,
     Sentiment,
     SummarizeParamsExample,
@@ -131,6 +133,8 @@ class RAGCollection:
     def name(self) -> str: ...
     @property
     def files(self) -> List[RAGFile]: ...
+    @property
+    def chunker(self) -> RAGChunker: ...
     def add_files(self, *, filepaths: List[str]) -> None: ...
     def delete(self) -> None: ...
 
@@ -210,7 +214,7 @@ class Gradient:
         name: str,
         slug: str,
         filepaths: Optional[List[str]] = ...,
-        parser: Optional[RAGParser] = ...,
+        chunker: Optional[RAGChunker] = ...,
     ) -> RAGCollection: ...
     def list_rag_collections(self) -> List[RAGCollection]: ...
     def get_rag_collection(self, *, id_: str) -> RAGCollection: ...
@@ -222,16 +226,18 @@ __all__ = [
     "CapabilityFilterOption",
     "ExtractParamsSchemaValue",
     "ExtractParamsSchemaValueType",
+    "FileChunker",
     "Gradient",
     "Guidance",
+    "MeaningBasedChunker",
     "Model",
     "ModelAdapter",
+    "NormalChunker",
+    "RAGChunker",
     "RAGCollection",
-    "RAGParser",
     "Sample",
-    "SentenceWindowNodeParser",
+    "SentenceWithContextChunker",
     "Sentiment",
-    "SimpleNodeParser",
     "StructuredInput",
     "SummarizeParamsExample",
     "SummarizeParamsLength",

@@ -22,22 +22,21 @@ import json
 from typing import Any, Dict
 from pydantic.v1 import BaseModel, Field, StrictStr, conint, validator
 
-class ListRagCollectionsSuccessRagCollectionsInnerParserOneOf(BaseModel):
+class ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3(BaseModel):
     """
-    ListRagCollectionsSuccessRagCollectionsInnerParserOneOf
+    ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3
     """
-    chunk_overlap: conint(strict=True, ge=0) = Field(..., alias="chunkOverlap")
-    chunk_size: conint(strict=True, gt=0) = Field(..., alias="chunkSize")
-    parser_type: StrictStr = Field(..., alias="parserType")
-    window_size: conint(strict=True, gt=0) = Field(..., alias="windowSize")
+    chunker_type: StrictStr = Field(..., alias="chunkerType")
+    overlap: conint(strict=True, ge=0) = Field(...)
+    size: conint(strict=True, gt=0) = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["chunkOverlap", "chunkSize", "parserType", "windowSize"]
+    __properties = ["chunkerType", "overlap", "size"]
 
-    @validator('parser_type')
-    def parser_type_validate_enum(cls, value):
+    @validator('chunker_type')
+    def chunker_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('sentenceWindowNodeParser'):
-            raise ValueError("must be one of enum values ('sentenceWindowNodeParser')")
+        if value not in ('normalChunker'):
+            raise ValueError("must be one of enum values ('normalChunker')")
         return value
 
     class Config:
@@ -54,8 +53,8 @@ class ListRagCollectionsSuccessRagCollectionsInnerParserOneOf(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ListRagCollectionsSuccessRagCollectionsInnerParserOneOf:
-        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerParserOneOf from a JSON string"""
+    def from_json(cls, json_str: str) -> ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3:
+        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -73,19 +72,18 @@ class ListRagCollectionsSuccessRagCollectionsInnerParserOneOf(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ListRagCollectionsSuccessRagCollectionsInnerParserOneOf:
-        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerParserOneOf from a dict"""
+    def from_dict(cls, obj: dict) -> ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3:
+        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ListRagCollectionsSuccessRagCollectionsInnerParserOneOf.parse_obj(obj)
+            return ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3.parse_obj(obj)
 
-        _obj = ListRagCollectionsSuccessRagCollectionsInnerParserOneOf.parse_obj({
-            "chunk_overlap": obj.get("chunkOverlap"),
-            "chunk_size": obj.get("chunkSize"),
-            "parser_type": obj.get("parserType"),
-            "window_size": obj.get("windowSize")
+        _obj = ListRagCollectionsSuccessRagCollectionsInnerChunkerOneOf3.parse_obj({
+            "chunker_type": obj.get("chunkerType"),
+            "overlap": obj.get("overlap"),
+            "size": obj.get("size")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

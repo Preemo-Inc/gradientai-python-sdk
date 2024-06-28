@@ -39,6 +39,7 @@ class TestGetRagCollectionSuccess(unittest.TestCase):
         model = gradientai.openapi.client.models.get_rag_collection_success.GetRagCollectionSuccess()  # noqa: E501
         if include_optional :
             return GetRagCollectionSuccess(
+                chunker = None, 
                 creation_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 files = [
                     gradientai.openapi.client.models.get_rag_collection_success_files_inner.GetRagCollectionSuccess_files_inner(
@@ -49,11 +50,11 @@ class TestGetRagCollectionSuccess(unittest.TestCase):
                 id = '0', 
                 latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '0', 
-                parser = None, 
                 slug = 'bge-large'
             )
         else :
             return GetRagCollectionSuccess(
+                chunker = None,
                 creation_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 files = [
                     gradientai.openapi.client.models.get_rag_collection_success_files_inner.GetRagCollectionSuccess_files_inner(
@@ -64,7 +65,6 @@ class TestGetRagCollectionSuccess(unittest.TestCase):
                 id = '0',
                 latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '0',
-                parser = None,
                 slug = 'bge-large',
         )
         """

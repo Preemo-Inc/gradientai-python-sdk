@@ -39,20 +39,20 @@ class TestListRagCollectionsSuccessRagCollectionsInner(unittest.TestCase):
         model = gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner.ListRagCollectionsSuccessRagCollectionsInner()  # noqa: E501
         if include_optional :
             return ListRagCollectionsSuccessRagCollectionsInner(
+                chunker = None, 
                 creation_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 id = '0', 
                 latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 name = '0', 
-                parser = None, 
                 slug = 'bge-large'
             )
         else :
             return ListRagCollectionsSuccessRagCollectionsInner(
+                chunker = None,
                 creation_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 id = '0',
                 latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 name = '0',
-                parser = None,
                 slug = 'bge-large',
         )
         """
