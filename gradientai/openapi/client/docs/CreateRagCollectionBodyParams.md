@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**chunker** | [**CreateRagCollectionBodyParamsChunker**](CreateRagCollectionBodyParamsChunker.md) |  | [optional] 
 **files** | [**List[CreateRagCollectionBodyParamsFilesInner]**](CreateRagCollectionBodyParamsFilesInner.md) |  | [optional] 
 **name** | **str** |  | 
-**parser** | [**CreateRagCollectionBodyParamsParser**](CreateRagCollectionBodyParamsParser.md) |  | [optional] 
 **slug** | **str** |  | 
 
 ## Example

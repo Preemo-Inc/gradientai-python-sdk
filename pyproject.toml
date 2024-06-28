@@ -15,7 +15,7 @@ license = "MIT"
 name = "gradientai"
 readme = "README.md"
 repository = "https://github.com/Preemo-Inc/gradientai-python-sdk"
-version = "1.12.3"
+version = "1.13.1"
 
 [tool.poetry.dependencies]
 aenum = ">=3.1.11"
@@ -31,7 +31,7 @@ black = "22.3.0"
 build = "0.10.0"
 flake8 = "6.0.0"
 isort = "5.10.1"
-mypy = "1.3.0"
+mypy = "1.10.0"
 pep8-naming = "0.13.0"
 pytest = "7.2.1"
 python-dotenv = "1.0.0"
@@ -81,11 +81,15 @@ profile = "black"
 check_untyped_defs = true
 disallow_any_unimported = true
 disallow_untyped_defs = true
+exclude = "openapi"
 no_implicit_optional = true
 plugins = ["pydantic.mypy", "pydantic.v1.mypy"]
 show_error_codes = true
 warn_return_any = true
 warn_unused_ignores = true
+
+[tool.pydantic-mypy]
+warn_required_dynamic_aliases = false
 
 [build-system]
 build-backend = "poetry.core.masonry.api"

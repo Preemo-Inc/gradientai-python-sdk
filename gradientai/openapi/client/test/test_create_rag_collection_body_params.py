@@ -39,13 +39,13 @@ class TestCreateRagCollectionBodyParams(unittest.TestCase):
         model = gradientai.openapi.client.models.create_rag_collection_body_params.CreateRagCollectionBodyParams()  # noqa: E501
         if include_optional :
             return CreateRagCollectionBodyParams(
+                chunker = None, 
                 files = [
                     gradientai.openapi.client.models.create_rag_collection_body_params_files_inner.CreateRagCollectionBodyParams_files_inner(
                         id = '0', 
                         name = '0', )
                     ], 
                 name = '0', 
-                parser = None, 
                 slug = 'bge-large'
             )
         else :

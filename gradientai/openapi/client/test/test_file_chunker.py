@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import gradientai.openapi.client
-from gradientai.openapi.client.models.sentence_window_node_parser import SentenceWindowNodeParser  # noqa: E501
+from gradientai.openapi.client.models.file_chunker import FileChunker  # noqa: E501
 from gradientai.openapi.client.rest import ApiException
 
-class TestSentenceWindowNodeParser(unittest.TestCase):
-    """SentenceWindowNodeParser unit test stubs"""
+class TestFileChunker(unittest.TestCase):
+    """FileChunker unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,28 +30,25 @@ class TestSentenceWindowNodeParser(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SentenceWindowNodeParser
+        """Test FileChunker
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `SentenceWindowNodeParser`
+        # uncomment below to create an instance of `FileChunker`
         """
-        model = gradientai.openapi.client.models.sentence_window_node_parser.SentenceWindowNodeParser()  # noqa: E501
+        model = gradientai.openapi.client.models.file_chunker.FileChunker()  # noqa: E501
         if include_optional :
-            return SentenceWindowNodeParser(
-                chunk_overlap = 0, 
-                chunk_size = 0, 
-                parser_type = 'sentenceWindowNodeParser', 
-                window_size = 0
+            return FileChunker(
+                chunker_type = 'fileChunker'
             )
         else :
-            return SentenceWindowNodeParser(
-                parser_type = 'sentenceWindowNodeParser',
+            return FileChunker(
+                chunker_type = 'fileChunker',
         )
         """
 
-    def testSentenceWindowNodeParser(self):
-        """Test SentenceWindowNodeParser"""
+    def testFileChunker(self):
+        """Test FileChunker"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

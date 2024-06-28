@@ -21,19 +21,19 @@ import json
 
 from typing import Any, Dict, List, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from gradientai.openapi.client.models.create_rag_collection_body_params_chunker import CreateRagCollectionBodyParamsChunker
 from gradientai.openapi.client.models.create_rag_collection_body_params_files_inner import CreateRagCollectionBodyParamsFilesInner
-from gradientai.openapi.client.models.create_rag_collection_body_params_parser import CreateRagCollectionBodyParamsParser
 
 class CreateRagCollectionBodyParams(BaseModel):
     """
     CreateRagCollectionBodyParams
     """
+    chunker: Optional[CreateRagCollectionBodyParamsChunker] = None
     files: Optional[conlist(CreateRagCollectionBodyParamsFilesInner, max_items=20)] = None
     name: constr(strict=True, min_length=1) = Field(...)
-    parser: Optional[CreateRagCollectionBodyParamsParser] = None
     slug: StrictStr = Field(...)
     additional_properties: Dict[str, Any] = {}
-    __properties = ["files", "name", "parser", "slug"]
+    __properties = ["chunker", "files", "name", "slug"]
 
     @validator('slug')
     def slug_validate_enum(cls, value):
@@ -67,6 +67,9 @@ class CreateRagCollectionBodyParams(BaseModel):
                             "additional_properties"
                           },
                           exclude_none=True)
+        # override the default output from pydantic.v1 by calling `to_dict()` of chunker
+        if self.chunker:
+            _dict['chunker'] = self.chunker.to_dict()
         # override the default output from pydantic.v1 by calling `to_dict()` of each item in files (list)
         _items = []
         if self.files:
@@ -74,23 +77,20 @@ class CreateRagCollectionBodyParams(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['files'] = _items
-        # override the default output from pydantic.v1 by calling `to_dict()` of parser
-        if self.parser:
-            _dict['parser'] = self.parser.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if chunker (nullable) is None
+        # and __fields_set__ contains the field
+        if self.chunker is None and "chunker" in self.__fields_set__:
+            _dict['chunker'] = None
+
         # set to None if files (nullable) is None
         # and __fields_set__ contains the field
         if self.files is None and "files" in self.__fields_set__:
             _dict['files'] = None
-
-        # set to None if parser (nullable) is None
-        # and __fields_set__ contains the field
-        if self.parser is None and "parser" in self.__fields_set__:
-            _dict['parser'] = None
 
         return _dict
 
@@ -104,9 +104,9 @@ class CreateRagCollectionBodyParams(BaseModel):
             return CreateRagCollectionBodyParams.parse_obj(obj)
 
         _obj = CreateRagCollectionBodyParams.parse_obj({
+            "chunker": CreateRagCollectionBodyParamsChunker.from_dict(obj.get("chunker")) if obj.get("chunker") is not None else None,
             "files": [CreateRagCollectionBodyParamsFilesInner.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None,
             "name": obj.get("name"),
-            "parser": CreateRagCollectionBodyParamsParser.from_dict(obj.get("parser")) if obj.get("parser") is not None else None,
             "slug": obj.get("slug")
         })
         # store additional fields in additional_properties

@@ -17,11 +17,11 @@ import unittest
 import datetime
 
 import gradientai.openapi.client
-from gradientai.openapi.client.models.simple_node_parser import SimpleNodeParser  # noqa: E501
+from gradientai.openapi.client.models.sentence_with_context_chunker import SentenceWithContextChunker  # noqa: E501
 from gradientai.openapi.client.rest import ApiException
 
-class TestSimpleNodeParser(unittest.TestCase):
-    """SimpleNodeParser unit test stubs"""
+class TestSentenceWithContextChunker(unittest.TestCase):
+    """SentenceWithContextChunker unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,27 +30,28 @@ class TestSimpleNodeParser(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test SimpleNodeParser
+        """Test SentenceWithContextChunker
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `SimpleNodeParser`
+        # uncomment below to create an instance of `SentenceWithContextChunker`
         """
-        model = gradientai.openapi.client.models.simple_node_parser.SimpleNodeParser()  # noqa: E501
+        model = gradientai.openapi.client.models.sentence_with_context_chunker.SentenceWithContextChunker()  # noqa: E501
         if include_optional :
-            return SimpleNodeParser(
-                chunk_overlap = 0, 
-                chunk_size = 0, 
-                parser_type = 'simpleNodeParser'
+            return SentenceWithContextChunker(
+                chunker_type = 'sentenceWithContextChunker', 
+                context_sentences = 0, 
+                overlap = 0, 
+                size = 0
             )
         else :
-            return SimpleNodeParser(
-                parser_type = 'simpleNodeParser',
+            return SentenceWithContextChunker(
+                chunker_type = 'sentenceWithContextChunker',
         )
         """
 
-    def testSimpleNodeParser(self):
-        """Test SimpleNodeParser"""
+    def testSentenceWithContextChunker(self):
+        """Test SentenceWithContextChunker"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

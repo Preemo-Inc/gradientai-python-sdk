@@ -19,24 +19,25 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, conint, validator
 
-class ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1(BaseModel):
+class SentenceWithContextChunker(BaseModel):
     """
-    ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1
+    SentenceWithContextChunker
     """
-    chunk_overlap: conint(strict=True, ge=0) = Field(..., alias="chunkOverlap")
-    chunk_size: conint(strict=True, gt=0) = Field(..., alias="chunkSize")
-    parser_type: StrictStr = Field(..., alias="parserType")
+    chunker_type: StrictStr = Field(..., alias="chunkerType")
+    context_sentences: Optional[conint(strict=True, gt=0)] = Field(None, alias="contextSentences")
+    overlap: Optional[conint(strict=True, ge=0)] = None
+    size: Optional[conint(strict=True, gt=0)] = None
     additional_properties: Dict[str, Any] = {}
-    __properties = ["chunkOverlap", "chunkSize", "parserType"]
+    __properties = ["chunkerType", "contextSentences", "overlap", "size"]
 
-    @validator('parser_type')
-    def parser_type_validate_enum(cls, value):
+    @validator('chunker_type')
+    def chunker_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('simpleNodeParser'):
-            raise ValueError("must be one of enum values ('simpleNodeParser')")
+        if value not in ('sentenceWithContextChunker'):
+            raise ValueError("must be one of enum values ('sentenceWithContextChunker')")
         return value
 
     class Config:
@@ -53,8 +54,8 @@ class ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1:
-        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1 from a JSON string"""
+    def from_json(cls, json_str: str) -> SentenceWithContextChunker:
+        """Create an instance of SentenceWithContextChunker from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -69,21 +70,37 @@ class ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if context_sentences (nullable) is None
+        # and __fields_set__ contains the field
+        if self.context_sentences is None and "context_sentences" in self.__fields_set__:
+            _dict['contextSentences'] = None
+
+        # set to None if overlap (nullable) is None
+        # and __fields_set__ contains the field
+        if self.overlap is None and "overlap" in self.__fields_set__:
+            _dict['overlap'] = None
+
+        # set to None if size (nullable) is None
+        # and __fields_set__ contains the field
+        if self.size is None and "size" in self.__fields_set__:
+            _dict['size'] = None
+
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1:
-        """Create an instance of ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1 from a dict"""
+    def from_dict(cls, obj: dict) -> SentenceWithContextChunker:
+        """Create an instance of SentenceWithContextChunker from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1.parse_obj(obj)
+            return SentenceWithContextChunker.parse_obj(obj)
 
-        _obj = ListRagCollectionsSuccessRagCollectionsInnerParserOneOf1.parse_obj({
-            "chunk_overlap": obj.get("chunkOverlap"),
-            "chunk_size": obj.get("chunkSize"),
-            "parser_type": obj.get("parserType")
+        _obj = SentenceWithContextChunker.parse_obj({
+            "chunker_type": obj.get("chunkerType"),
+            "context_sentences": obj.get("contextSentences"),
+            "overlap": obj.get("overlap"),
+            "size": obj.get("size")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

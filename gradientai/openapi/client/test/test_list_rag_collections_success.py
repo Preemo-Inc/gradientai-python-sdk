@@ -41,11 +41,11 @@ class TestListRagCollectionsSuccess(unittest.TestCase):
             return ListRagCollectionsSuccess(
                 rag_collections = [
                     gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner.ListRagCollectionsSuccess_ragCollections_inner(
+                        chunker = null, 
                         creation_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         id = '0', 
                         latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '0', 
-                        parser = null, 
                         slug = 'bge-large', )
                     ]
             )
@@ -53,11 +53,11 @@ class TestListRagCollectionsSuccess(unittest.TestCase):
             return ListRagCollectionsSuccess(
                 rag_collections = [
                     gradientai.openapi.client.models.list_rag_collections_success_rag_collections_inner.ListRagCollectionsSuccess_ragCollections_inner(
+                        chunker = null, 
                         creation_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         id = '0', 
                         latest_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         name = '0', 
-                        parser = null, 
                         slug = 'bge-large', )
                     ],
         )

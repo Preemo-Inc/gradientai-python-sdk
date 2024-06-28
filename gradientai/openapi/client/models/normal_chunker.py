@@ -22,22 +22,21 @@ import json
 from typing import Any, Dict, Optional
 from pydantic.v1 import BaseModel, Field, StrictStr, conint, validator
 
-class SentenceWindowNodeParser(BaseModel):
+class NormalChunker(BaseModel):
     """
-    SentenceWindowNodeParser
+    NormalChunker
     """
-    chunk_overlap: Optional[conint(strict=True, ge=0)] = Field(None, alias="chunkOverlap")
-    chunk_size: Optional[conint(strict=True, gt=0)] = Field(None, alias="chunkSize")
-    parser_type: StrictStr = Field(..., alias="parserType")
-    window_size: Optional[conint(strict=True, gt=0)] = Field(None, alias="windowSize")
+    chunker_type: StrictStr = Field(..., alias="chunkerType")
+    overlap: Optional[conint(strict=True, ge=0)] = None
+    size: Optional[conint(strict=True, gt=0)] = None
     additional_properties: Dict[str, Any] = {}
-    __properties = ["chunkOverlap", "chunkSize", "parserType", "windowSize"]
+    __properties = ["chunkerType", "overlap", "size"]
 
-    @validator('parser_type')
-    def parser_type_validate_enum(cls, value):
+    @validator('chunker_type')
+    def chunker_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('sentenceWindowNodeParser'):
-            raise ValueError("must be one of enum values ('sentenceWindowNodeParser')")
+        if value not in ('normalChunker'):
+            raise ValueError("must be one of enum values ('normalChunker')")
         return value
 
     class Config:
@@ -54,8 +53,8 @@ class SentenceWindowNodeParser(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SentenceWindowNodeParser:
-        """Create an instance of SentenceWindowNodeParser from a JSON string"""
+    def from_json(cls, json_str: str) -> NormalChunker:
+        """Create an instance of NormalChunker from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -70,37 +69,31 @@ class SentenceWindowNodeParser(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if chunk_overlap (nullable) is None
+        # set to None if overlap (nullable) is None
         # and __fields_set__ contains the field
-        if self.chunk_overlap is None and "chunk_overlap" in self.__fields_set__:
-            _dict['chunkOverlap'] = None
+        if self.overlap is None and "overlap" in self.__fields_set__:
+            _dict['overlap'] = None
 
-        # set to None if chunk_size (nullable) is None
+        # set to None if size (nullable) is None
         # and __fields_set__ contains the field
-        if self.chunk_size is None and "chunk_size" in self.__fields_set__:
-            _dict['chunkSize'] = None
-
-        # set to None if window_size (nullable) is None
-        # and __fields_set__ contains the field
-        if self.window_size is None and "window_size" in self.__fields_set__:
-            _dict['windowSize'] = None
+        if self.size is None and "size" in self.__fields_set__:
+            _dict['size'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SentenceWindowNodeParser:
-        """Create an instance of SentenceWindowNodeParser from a dict"""
+    def from_dict(cls, obj: dict) -> NormalChunker:
+        """Create an instance of NormalChunker from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SentenceWindowNodeParser.parse_obj(obj)
+            return NormalChunker.parse_obj(obj)
 
-        _obj = SentenceWindowNodeParser.parse_obj({
-            "chunk_overlap": obj.get("chunkOverlap"),
-            "chunk_size": obj.get("chunkSize"),
-            "parser_type": obj.get("parserType"),
-            "window_size": obj.get("windowSize")
+        _obj = NormalChunker.parse_obj({
+            "chunker_type": obj.get("chunkerType"),
+            "overlap": obj.get("overlap"),
+            "size": obj.get("size")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
